@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  role         String   // "farmer", "provider", "mechanic", "admin"
+  registryId   String   @unique // RSBSA ID, CDA/SEC, TESDA ID, GOV-MAO
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Relations
+  assets       Asset[]           @relation("ProviderAssets")
+  requests     DispatchRequest[] @relation("FarmerRequests")
+}
+
+model Asset {
+  id          String   @id @default(uuid())
+  providerId  String
+  type        String   // "tractor", "harvester", "drone"
+  name        String
+  description String
+  rate        Float
+  unit        String   // "per_ha", "per_day"
+  status      String   @default("available") // "available", "dispatched", "maintenance"
+  location    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  provider    User              @relation("ProviderAssets", fields: [providerId], references: [id])
+  requests    DispatchRequest[]
+}
+
+model DispatchRequest {
+  id          String   @id @default(uuid())
+  farmerId    String
+  assetId     String
+  status      String   @default("pending") // "pending", "approved", "in_progress", "completed", "cancelled"
+  date        DateTime
+  hectares    Float?
+  totalCost   Float?
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  farmer      User  @relation("FarmerRequests", fields: [farmerId], references: [id])
+  asset       Asset @relation(fields: [assetId], references: [id])
+}
