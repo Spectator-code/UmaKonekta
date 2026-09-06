@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-subtle":"#F3F4EE","on-secondary":"#ffffff","on-primary-fixed":"#00210b","surface-variant":"#dae5e0","field-ochre":"#C26D1A","status-urgent":"#C53030","primary-fixed":"#a3f5b2","surface-container":"#e5f0eb","inverse-surface":"#28332f","tertiary":"#01505e","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#ffb77a","on-surface-variant":"#404940","surface":"#f1fcf7","on-background":"#141e1b","status-maintenance-bg":"#FEF3E7","on-tertiary-container":"#a8e5f6","secondary-container":"#fea047","status-booked-bg":"#EFEFEF","tertiary-fixed":"#afecfd","on-error":"#ffffff","status-maintenance":"#D9822B","sky-tint":"#E8F4F8","status-booked":"#616E68","soil-slate":"#475953","surface-tint":"#196c37","outline-variant":"#bfc9bd","sprout-green":"#58A359","tertiary-fixed-dim":"#94d0e0","secondary-fixed":"#ffdcc2","status-available-bg":"#EAF5EE","surface-container-low":"#ebf6f1","on-error-container":"#93000a","primary-fixed-dim":"#88d898","on-secondary-fixed":"#2e1500","error-container":"#ffdad6","on-secondary-fixed-variant":"#6d3a00","outline":"#707a6f","primary-container":"#1b6e39","on-surface":"#141e1b","tertiary-container":"#286877","surface-bright":"#f1fcf7","cream-surface":"#FBFBF7","harvest-amber":"#F4A228","border-soft":"#DDE3DA","on-tertiary":"#ffffff","on-tertiary-fixed":"#001f26","leaf-green":"#2E8B57","secondary":"#8f4e00","primary":"#005426","surface-dim":"#d1ddd8","on-tertiary-fixed-variant":"#004e5c","background":"#f1fcf7","on-secondary-container":"#6d3a00","surface-container-high":"#dfebe6","inverse-primary":"#88d898","error":"#ba1a1a","inverse-on-surface":"#e8f3ee","on-primary-container":"#9ceeab","on-primary":"#ffffff","status-available":"#1B6E39","on-primary-fixed-variant":"#005225","status-urgent-bg":"#FDE8E8","surface-container-highest":"#dae5e0"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"unit-md":"1rem","margin-desktop":"2rem","unit-sm":"0.75rem","margin-mobile":"1rem","unit-2xs":"0.25rem","gutter-desktop":"1.5rem","gutter-mobile":"1rem","unit-xl":"2rem","unit-xs":"0.5rem","touch-target-min":"48px","unit-lg":"1.5rem","unit-2xl":"3rem","unit-3xl":"4rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"label-md":["Space Grotesk"],"display-hero-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Space Grotesk"],"label-sm":["Space Grotesk"],"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"]},fontSize:{"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"0.01em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"0.08em",fontWeight:"600"}],"display-hero-mobile":["34px",{lineHeight:"42px",letterSpacing:"-0.01em",fontWeight:"800"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"0.02em",fontWeight:"700"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"0.04em",fontWeight:"700"}],"label-lg":["15px",{lineHeight:"20px",letterSpacing:"0.06em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.1em",fontWeight:"700"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"0.03em",fontWeight:"700"}],"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"800"}]}}}}</script></head><body class="bg-cream-surface font-body-md text-on-surface antialiased min-h-screen"><header class="fixed top-0 w-full z-50 bg-cream-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(26,36,33,0.05)] border-b border-border-soft/60"><div class="h-20 max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-unit-md"><a href="../index.html" class="flex items-center gap-unit-sm hover:opacity-90 transition-opacity"><img alt="logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-primary font-bold">UMAKONEKTA</span><span class="font-label-sm text-label-sm text-soil-slate uppercase tracking-wider hidden sm:inline">Agri Resource Exchange</span></div></a><nav class="hidden xl:flex items-center gap-unit-lg h-full" data-active-classes="text-primary font-bold border-b-2 border-primary"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="home" href="../umakonekta_home_landing_page_interactive_animated/code.html">Home</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="browse-directory" href="../umakonekta_farm_equipment_marketplace/code.html">Browse Directory</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="how-it-works" href="../umakonekta_how_it_works/code.html">How It Works</a><a aria-current="page" class="transition-colors py-2 text-primary font-bold border-b-2 border-primary" data-path="about" href="../umakonekta_printable_barangay_hall_guide_bulletin_notice/code.html">Barangay Notice</a></nav><div class="flex items-center gap-unit-sm"><a class="hidden md:inline-flex items-center justify-center min-h-[48px] px-unit-md rounded-lg border border-primary text-primary font-label-lg text-label-lg hover:bg-surface-container-low transition-colors" data-path="list-a-resource" href="../umakonekta_resource_detail_schedule_request/code.html">List a Resource</a><a class="inline-flex items-center justify-center min-h-[48px] px-unit-md rounded-lg bg-status-available text-on-primary font-label-lg text-label-lg shadow-sm hover:bg-primary transition-colors" data-path="portal-login" href="../umakonekta_secure_authentication_identity_verification/code.html">Portal Login</a><a href="../umakonekta_user_role_management_verification/code.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 hover:ring-2 hover:ring-primary/40 transition-all"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="w-full pt-20 bg-cream-surface"><div class="flex flex-col w-full">
+<!-- Interactive Top Control Toolbar (Screen only, excluded in clean print via print:hidden) -->
+<div class="w-full bg-surface-container-lowest shadow-sm print:hidden">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop py-unit-md flex flex-col xl:flex-row items-start xl:items-center justify-between gap-unit-md">
+<div class="flex flex-col gap-unit-2xs">
+<div class="flex items-center gap-unit-xs">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-status-available text-on-primary">
+<span class="material-symbols-outlined text-[16px]">print</span>
+</span>
+<span class="font-label-sm text-label-sm text-status-available uppercase tracking-wider">Barangay Hall Official Notice &amp; Bulletin Board Edition</span>
+<span class="font-label-sm text-label-sm text-soil-slate px-unit-2xs py-0.5 rounded bg-surface-container">Posting Auth #BB-POST-2024-NUEVA-ECIJA</span>
+</div>
+<div class="flex items-center gap-unit-sm text-soil-slate font-body-sm text-body-sm">
+<span>RA 11524 Agrarian Resilience Mandate</span>
+<span class="w-1 h-1 rounded-full bg-border-soft"></span>
+<span>Effective Cropping Cycle 2024–2025</span>
+<span class="w-1 h-1 rounded-full bg-border-soft"></span>
+<span class="text-field-ochre font-semibold">DA-LGU Region III Sync Active</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-unit-sm">
+<!-- Print Trigger -->
+<button class="inline-flex items-center justify-center gap-unit-xs min-h-[48px] px-unit-lg rounded-lg bg-status-available hover:bg-primary text-on-primary font-label-lg text-label-lg shadow-sm transition-all" onclick="window.print()">
+<span class="material-symbols-outlined text-[20px]">print</span>
+<span>Print Notice (A4/Letter)</span>
+</button>
+<!-- Download PDF simulation -->
+<button class="inline-flex items-center justify-center gap-unit-xs min-h-[48px] px-unit-md rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-lg text-label-lg transition-colors" onclick="alert('Generating official high-resolution vector PDF (A4 Document Format)...')">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Download PDF (.pdf)</span>
+</button>
+<!-- Language Toggle -->
+<div class="inline-flex rounded-lg bg-surface-container p-1 gap-1">
+<button class="px-unit-sm py-1.5 rounded text-primary font-label-sm text-label-sm bg-surface-container-lowest font-bold shadow-xs" id="btnTagalog" onclick="setNoticeLanguage('tagalog')">Tagalog-Ilokano</button>
+<button class="px-unit-sm py-1.5 rounded text-soil-slate font-label-sm text-label-sm hover:text-on-surface" id="btnEnglish" onclick="setNoticeLanguage('english')">English Notice</button>
+</div>
+<!-- High-Contrast / Ink-Saver Toggle & Direct Eco Version Link -->
+<button class="inline-flex items-center justify-center gap-unit-2xs px-unit-sm py-2 rounded-lg bg-cream-surface text-soil-slate font-label-sm text-label-sm hover:text-primary transition-colors" id="inkSaverBtn" onclick="toggleInkSaver()">
+<span class="material-symbols-outlined text-[18px]">contrast</span>
+<span id="inkSaverLabel">Quick Eco Preview</span>
+</button>
+<a href="../umakonekta_printable_barangay_hall_guide_eco_monochrome_print_preview/code.html" class="inline-flex items-center justify-center gap-unit-2xs px-unit-sm py-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-[18px]">eco</span>
+<span>Dedicated Eco Print Preview</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Document Container / Printable Sheet -->
+<div class="w-full max-w-5xl mx-auto px-margin-mobile lg:px-margin-desktop py-unit-lg">
+<div class="w-full bg-surface-container-lowest p-6 sm:p-10 shadow-md transition-all" id="printableDocument">
+<!-- Top Republic Seal & Official Letterhead -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-unit-md pb-unit-md mb-unit-lg bg-surface-subtle p-unit-md rounded-lg">
+<div class="flex items-center gap-unit-sm">
+<img alt="UMAKONEKTA logo" class="w-16 h-16 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5KqCfcDJRcfUnVtoMVsT5JEqR8xThJJOfWCI7-eqmWLFcaagkI_4KMWIH04JPXx7zve2e5KgzmLRUg856Ok6cwZYToPeOpHxdKY8yS26yl7XtQv_px2HPfWNBVfVHWH3JBTKEfhAFo6ShB_5-pC1FdOPvHKmuSgHP3_fi9AfrLycxhKrZwmC_MzlVQ03eEh9x1J4HUbU7dQ1BBDqlg_rPZxC-VHL4i74mLMhiAaotdo7IDJlr0RBgXOT6uaMfEmDErQ"/>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-soil-slate tracking-widest uppercase">Republika ng Pilipinas • Kagawaran ng Pagsasaka</span>
+<span class="font-headline-sm text-headline-sm text-primary font-black uppercase tracking-tight">UMAKONEKTA • Pambansang Hub ng Makinarya</span>
+<span class="font-label-md text-label-md text-field-ochre">Municipal Agriculture Office (MAO) &amp; FCA Physical Extension Network</span>
+</div>
+</div>
+<div class="flex flex-row sm:flex-col items-end gap-1 text-right">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-status-available font-bold bg-status-available-bg px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>OPISYAL NA PAUNAWANG PAMBARANGAY</span>
+</span>
+<span class="font-body-sm text-body-sm text-soil-slate">Posting Form Ref: <span class="font-semibold text-on-surface">DA-BARANGAY-2024-V4</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Panahon ng Ani: Nobyembre 2024 – Marso 2025</span>
+</div>
+</div>
+<!-- Main Poster Title Banner -->
+<div class="bg-primary text-on-primary p-unit-lg rounded-xl mb-unit-lg shadow-sm">
+<div class="flex flex-col gap-unit-2xs">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<span class="font-label-sm text-label-sm bg-on-primary text-primary font-bold px-unit-xs py-0.5 rounded uppercase">Para sa mga Magbubukid na Walang Smartphone</span>
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider font-semibold">WALANG ONLINE PAYMENT • BAYAD SA PILAPIL O PASSBOOK</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-black tracking-tight text-on-primary" id="posterTitle">
+            GABAY SA BARANGAY: UMAKONEKTA PHYSICAL COORDINATION &amp; PROXY REQUEST WORKFLOW
+          </h1>
+<p class="font-body-md text-body-md text-inverse-on-surface max-w-3xl" id="posterSubtitle">
+            Opisyal na patnubay para sa mga Agrarian Reform Beneficiaries (ARBs), miyembro ng Kooperatiba (FCA), at maliliit na magsasaka upang makapagrehistro ng iskedyul ng traktora, harvester, at solar dryer gamit ang Barangay Agriculture Desk.
+          </p>
+</div>
+</div>
+<!-- 3-Step Walk-In Service Flow -->
+<div class="mb-unit-xl">
+<div class="flex items-center justify-between mb-unit-sm">
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-field-ochre">alt_route</span>
+<span>Tatlong Hakbang sa Pagkuha ng Makinarya sa Barangay Hall</span>
+</h2>
+<span class="font-label-sm text-label-sm text-soil-slate font-semibold">Tugon sa loob ng 24 Oras</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-unit-md">
+<!-- Step 1 -->
+<div class="p-unit-md rounded-xl bg-cream-surface flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-unit-xs">
+<div class="flex items-center justify-between">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center font-bold">1</span>
+<span class="font-label-sm text-label-sm text-status-available font-bold uppercase bg-status-available-bg px-2 py-0.5 rounded">Personal Walk-in</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Pumunta sa Barangay Hall o FCA Co-op Desk</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Lumapit sa itinalagang <strong>Barangay Agriculture Officer</strong> o <strong>FCA Proxy Secretary</strong>. Dalhin ang iyong RSBSA Enrollment Stub, Control #, sukat ng bukiran (Hectares), at target na linggo ng anihan.
+              </p>
+</div>
+<div class="mt-unit-sm pt-unit-xs bg-surface-container-lowest p-unit-xs rounded">
+<span class="font-label-sm text-label-sm text-field-ochre font-bold uppercase">Kailangan:</span>
+<span class="font-body-sm text-body-sm text-soil-slate">RSBSA ID / Barangay Certificate of Farming Status</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="p-unit-md rounded-xl bg-cream-surface flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-unit-xs">
+<div class="flex items-center justify-between">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center font-bold">2</span>
+<span class="font-label-sm text-label-sm text-field-ochre font-bold uppercase bg-status-maintenance-bg px-2 py-0.5 rounded">Digital Encoding</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">I-encode ng Desk Secretary ang Text Window</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Ie-encode ng Secretary ang iyong iskedyul (hal. <em>"Nob 24-27 Umaga"</em>). Kung banta ang bagyo o tubig-baha, agad ikakabit ang <strong>Urgent Spoilage Priority Tag</strong> para sa agaran at parehong-araw na dispatch.
+              </p>
+</div>
+<div class="mt-unit-sm pt-unit-xs bg-surface-container-lowest p-unit-xs rounded">
+<span class="font-label-sm text-label-sm text-status-urgent font-bold uppercase">SMS Mirror:</span>
+<span class="font-body-sm text-body-sm text-soil-slate">Makakatanggap ng regular text ang keypad cellphone mo</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="p-unit-md rounded-xl bg-cream-surface flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-unit-xs">
+<div class="flex items-center justify-between">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center font-bold">3</span>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase bg-surface-container px-2 py-0.5 rounded">Bayad sa Pilapil</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Tanggapin ang Slip &amp; Magbayad sa Pilapil</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Hawakan ang physical dispatch slip. Pagdating ng makinarya sa pilapil, saka lamang magbabayad nang subsidized cash o gamit ang FCA Passbook/Palay-Share matapos matapos ang araro o anihan.
+              </p>
+</div>
+<div class="mt-unit-sm pt-unit-xs bg-surface-container-lowest p-unit-xs rounded">
+<span class="font-label-sm text-label-sm text-status-available font-bold uppercase">Polisiya:</span>
+<span class="font-body-sm text-body-sm text-soil-slate">Walang e-wallet fee; walang singil kung hindi nagampanan</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Official Municipal Subsidized Rate Tally Table -->
+<div class="mb-unit-xl">
+<div class="flex items-center justify-between mb-unit-xs">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold uppercase">
+              Talaan ng Subsidized Rates at Kasangkapang Pang-Agrikultura
+            </h2>
+<p class="font-body-sm text-body-sm text-soil-slate">Inaprubahan ng Municipal Agriculture Office (MAO) at Samahang Magsasaka</p>
+</div>
+<span class="font-label-sm text-label-sm bg-status-available-bg text-status-available font-bold px-2 py-1 rounded">
+            LGU Capped Pricing 2024
+          </span>
+</div>
+<div class="overflow-x-auto rounded-xl bg-cream-surface p-2">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-high text-on-surface">
+<th class="p-3 font-label-md text-label-md uppercase font-bold rounded-l-lg">Makinarya / Pasilidad</th>
+<th class="p-3 font-label-md text-label-md uppercase font-bold">Subsidized Member Fee</th>
+<th class="p-3 font-label-md text-label-md uppercase font-bold">Inklusyon (Krudo &amp; Operator)</th>
+<th class="p-3 font-label-md text-label-md uppercase font-bold rounded-r-lg">Paraan ng Pagbabayad</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-soft/60">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3">
+<div class="font-bold text-on-surface">Combine Harvester (Kubota DC-70 / DC-95)</div>
+<div class="font-label-sm text-label-sm text-soil-slate">May track para sa basang pilapil; palay cleaning included</div>
+</td>
+<td class="p-3">
+<span class="font-headline-sm text-headline-sm text-primary font-black">₱1,200</span>
+<span class="font-label-sm text-label-sm text-soil-slate">/ Hektarya</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 text-status-available font-semibold">
+<span class="material-symbols-outlined text-[16px]">check</span> Kasama ang TESDA NC-II Operator &amp; Krudo
+                  </span>
+</td>
+<td class="p-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium bg-surface-container px-2 py-1 rounded">Cash sa Pilapil o 7% Palay-Share</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3">
+<div class="font-bold text-on-surface">Multi-Purpose Solar Drying Pavement (MPDP)</div>
+<div class="font-label-sm text-label-sm text-soil-slate">Barangay Hall / Municipal Plaza solar dryer beds</div>
+</td>
+<td class="p-3">
+<span class="font-headline-sm text-headline-sm text-field-ochre font-black">LIBRE (₱0.00)</span>
+<span class="font-label-sm text-label-sm text-soil-slate">/ Slot booking</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 text-soil-slate">
+                    May kasamang panalok at protective trapapal covers
+                  </span>
+</td>
+<td class="p-3">
+<span class="font-label-sm text-label-sm text-status-available font-bold bg-status-available-bg px-2 py-1 rounded">Barangay Hall Endorsement Slip</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3">
+<div class="font-bold text-on-surface">4WD Tractor (Rotavator &amp; Disc Plow Setup)</div>
+<div class="font-label-sm text-label-sm text-soil-slate">Pagbubungkal, pagpapatag, at basag-lupa</div>
+</td>
+<td class="p-3">
+<span class="font-headline-sm text-headline-sm text-primary font-black">₱2,200</span>
+<span class="font-label-sm text-label-sm text-soil-slate">/ Araw (8 oras)</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 text-status-available font-semibold">
+<span class="material-symbols-outlined text-[16px]">check</span> Rehistradong Operator kasama
+                  </span>
+</td>
+<td class="p-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium bg-surface-container px-2 py-1 rounded">FCA Passbook Deduction</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3">
+<div class="font-bold text-on-surface">Agricultural Drone Precision Spraying</div>
+<div class="font-label-sm text-label-sm text-soil-slate">Para sa bio-fertilizer, pamatay peste, at micronutrients</div>
+</td>
+<td class="p-3">
+<span class="font-headline-sm text-headline-sm text-primary font-black">₱650</span>
+<span class="font-label-sm text-label-sm text-soil-slate">/ Hektarya</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 text-status-available font-semibold">
+<span class="material-symbols-outlined text-[16px]">check</span> CAAP Licensed Drone Pilot &amp; Batirya
+                  </span>
+</td>
+<td class="p-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium bg-surface-container px-2 py-1 rounded">Cash on Service Completion</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Emergency Impending Spoilage / Typhoon Protocol Box -->
+<div class="mb-unit-xl p-unit-md rounded-xl bg-status-urgent-bg">
+<div class="flex items-start gap-unit-sm">
+<div class="p-unit-xs rounded-full bg-status-urgent text-on-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div class="flex flex-col gap-unit-2xs">
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-status-urgent font-bold uppercase">
+                Protokol sa Bantang Bagyo, Baha, o Nabubulok na Ani (Urgent Spoilage Tag)
+              </h3>
+<span class="font-label-sm text-label-sm bg-status-urgent text-on-error px-2 py-0.5 rounded font-bold uppercase">Priority Dispatch Override</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Kung may parating na bagyo o nakalubog sa baha ang palay na dapat anihin sa loob ng <strong>48 oras</strong>, agad lumapit sa <strong>Punong Barangay</strong> o sa <strong>MAO VHF Radio Operator</strong>. Ipapaskil ang iyong request bilang <span class="font-bold text-status-urgent">"URGENT / SPOILAGE CRITICAL"</span>. Lahat ng available na FCA at LGU combine harvesters sa karatig-barangay ay bibigyan ng direktiba upang unahin ang iyong sakahan bago bumuhos ang malakas na ulan.
+            </p>
+<div class="flex items-center gap-unit-md pt-unit-xs text-soil-slate font-label-sm text-label-sm">
+<span>Direktang Hotline sa Emergency: <strong>(02) 8928-8741 Local 104</strong></span>
+<span>VHF Radio Frequency: <strong>144.750 MHz (AgriNet)</strong></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Hotlines & Municipal Assistance Directory -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-unit-md mb-unit-xl">
+<div class="p-unit-sm rounded-lg bg-surface-container flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">Tanggapan ng Agrikultura (MAO)</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">(044) 940-2101</span>
+<span class="font-body-sm text-body-sm text-soil-slate">Lunes hanggang Sabado, 7:00 AM – 5:00 PM</span>
+</div>
+<div class="p-unit-sm rounded-lg bg-surface-container flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">FCA Federation Operations Desk</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">0917-844-AGRI (2474)</span>
+<span class="font-body-sm text-body-sm text-soil-slate">Tumatanggap ng SMS o tawag mula sa keypad phones</span>
+</div>
+<div class="p-unit-sm rounded-lg bg-surface-container flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">UMAKONEKTA National Helpline</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">(02) 8928-8741</span>
+<span class="font-body-sm text-body-sm text-soil-slate">DA Central Agrarian Machinery Registry Hotline</span>
+</div>
+</div>
+<!-- Printable Cut-Out / Tear-off Booking Stubs -->
+<div class="pt-unit-md">
+<div class="flex items-center justify-between pb-unit-xs mb-unit-sm">
+<div class="flex items-center gap-unit-xs text-soil-slate">
+<span class="material-symbols-outlined text-[18px]">content_cut</span>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider">Tear-Off Physical Booking Slips / Gupitin sa Tuldok-Tuldok na Linya</span>
+</div>
+<span class="font-label-sm text-label-sm text-soil-slate">Validado ng Barangay Agriculture Desk Seal</span>
+</div>
+<!-- 3 Perforated Stubs Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-unit-sm">
+<!-- Stub 1: Farmer Copy -->
+<div class="p-unit-sm rounded-lg bg-surface-subtle flex flex-col justify-between">
+<div class="flex flex-col gap-unit-2xs">
+<div class="flex justify-between items-center bg-primary text-on-primary px-2 py-1 rounded text-center">
+<span class="font-label-sm text-label-sm font-bold uppercase">KOPYA NG MAGSASAKA</span>
+<span class="font-label-sm text-label-sm">STUB #1</span>
+</div>
+<div class="space-y-1 font-body-sm text-body-sm pt-2">
+<div>Pangalan: <span class="text-soil-slate">______________________</span></div>
+<div>RSBSA #: <span class="text-soil-slate">_______________________</span></div>
+<div>Purok / Sitwasyon: <span class="text-soil-slate">_______________</span></div>
+<div>Makinarya: <span class="text-soil-slate">[ ] Harvester  [ ] Traktora</span></div>
+<div>Petsa ng Trabaho: <span class="text-soil-slate">_______________</span></div>
+<div>Halaga / Share: <span class="text-soil-slate">___________________</span></div>
+</div>
+</div>
+<div class="pt-2 text-[10px] text-soil-slate uppercase tracking-wider text-center">
+              Ipakita sa Makinarya Bago Pumasok sa Lupa
+            </div>
+</div>
+<!-- Stub 2: Operator Copy -->
+<div class="p-unit-sm rounded-lg bg-surface-subtle flex flex-col justify-between">
+<div class="flex flex-col gap-unit-2xs">
+<div class="flex justify-between items-center bg-field-ochre text-on-primary px-2 py-1 rounded text-center">
+<span class="font-label-sm text-label-sm font-bold uppercase">KOPYA NG OPERATOR</span>
+<span class="font-label-sm text-label-sm">STUB #2</span>
+</div>
+<div class="space-y-1 font-body-sm text-body-sm pt-2">
+<div>Pangalan ng Operator: <span class="text-soil-slate">_____________</span></div>
+<div>Makinarya Plate/Reg #: <span class="text-soil-slate">___________</span></div>
+<div>Kabuuang Hektarya: <span class="text-soil-slate">______________</span></div>
+<div>Oras Nagsimula: <span class="text-soil-slate">_____ Natapos: ____</span></div>
+<div>Lagda ng Magsasaka: <span class="text-soil-slate">____________</span></div>
+<div>Bayad Natanggap: <span class="text-soil-slate">_________________</span></div>
+</div>
+</div>
+<div class="pt-2 text-[10px] text-soil-slate uppercase tracking-wider text-center">
+              Isuko sa FCA Secretary Para sa Liquidation
+            </div>
+</div>
+<!-- Stub 3: Barangay Hall Archive -->
+<div class="p-unit-sm rounded-lg bg-surface-subtle flex flex-col justify-between">
+<div class="flex flex-col gap-unit-2xs">
+<div class="flex justify-between items-center bg-soil-slate text-on-primary px-2 py-1 rounded text-center">
+<span class="font-label-sm text-label-sm font-bold uppercase">BARANGAY / MAO AUDIT</span>
+<span class="font-label-sm text-label-sm">STUB #3</span>
+</div>
+<div class="space-y-1 font-body-sm text-body-sm pt-2">
+<div>Barangay Desk Officer: <span class="text-soil-slate">___________</span></div>
+<div>Encoding Timestamp: <span class="text-soil-slate">_____________</span></div>
+<div>Urgent Flag Activated: <span class="text-soil-slate">[ ] OO  [ ] HINDI</span></div>
+<div>Target Lot Coordinate/Sitio: <span class="text-soil-slate">_______</span></div>
+<div>Dispatch Status: <span class="text-soil-slate">__________________</span></div>
+<div>Lagda ng Opisyal: <span class="text-soil-slate">_______________</span></div>
+</div>
+</div>
+<div class="pt-2 text-[10px] text-soil-slate uppercase tracking-wider text-center">
+              Itabi sa Barangay Archive Folder
+            </div>
+</div>
+</div>
+</div>
+<!-- Footer Stamp & Authenticity Seals -->
+<div class="mt-unit-lg pt-unit-md flex flex-col sm:flex-row items-center justify-between gap-unit-md bg-cream-surface p-unit-md rounded-lg">
+<div class="flex items-center gap-unit-sm">
+<div class="w-12 h-12 rounded-full bg-status-available-bg flex items-center justify-center text-status-available">
+<span class="material-symbols-outlined text-[28px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold uppercase text-primary">Certified Official Public Notice</span>
+<span class="font-body-sm text-body-sm text-soil-slate">Approved for Display on All Municipal &amp; Barangay Boards</span>
+</div>
+</div>
+<!-- Simulated Stamp / Badge -->
+<div class="px-unit-md py-unit-xs rounded bg-surface-container text-right">
+<div class="font-label-sm text-label-sm font-bold text-field-ochre uppercase">DA-FCA ACCREDITATION SEAL</div>
+<div class="font-label-sm text-label-sm text-soil-slate">SERIES 2024 • R.A. 11524 COMPLIANT</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive script for client actions -->
+<script>
+    let isInkSaver = false;
+    let currentLang = 'tagalog';
+
+    function setNoticeLanguage(lang) {
+      currentLang = lang;
+      const title = document.getElementById('posterTitle');
+      const subtitle = document.getElementById('posterSubtitle');
+      const btnTag = document.getElementById('btnTagalog');
+      const btnEng = document.getElementById('btnEnglish');
+
+      if (lang === 'english') {
+        title.innerText = "BARANGAY FIELD NOTICE: UMAKONEKTA PHYSICAL COORDINATION & PROXY SCHEDULING";
+        subtitle.innerText = "Official field bulletin for smallholder farmers, Agrarian Reform Beneficiaries (ARBs), and co-op members without smartphones. Zero digital transactions • Pay on the dike or cooperative passbook.";
+        btnEng.className = "px-unit-sm py-1.5 rounded text-primary font-label-sm text-label-sm bg-surface-container-lowest font-bold shadow-xs";
+        btnTag.className = "px-unit-sm py-1.5 rounded text-soil-slate font-label-sm text-label-sm hover:text-on-surface";
+      } else {
+        title.innerText = "GABAY SA BARANGAY: UMAKONEKTA PHYSICAL COORDINATION & PROXY REQUEST WORKFLOW";
+        subtitle.innerText = "Opisyal na patnubay para sa mga Agrarian Reform Beneficiaries (ARBs), miyembro ng Kooperatiba (FCA), at maliliit na magsasaka upang makapagrehistro ng iskedyul ng traktora, harvester, at solar dryer gamit ang Barangay Agriculture Desk.";
+        btnTag.className = "px-unit-sm py-1.5 rounded text-primary font-label-sm text-label-sm bg-surface-container-lowest font-bold shadow-xs";
+        btnEng.className = "px-unit-sm py-1.5 rounded text-soil-slate font-label-sm text-label-sm hover:text-on-surface";
+      }
+    }
+
+    function toggleInkSaver() {
+      const doc = document.getElementById('printableDocument');
+      const label = document.getElementById('inkSaverLabel');
+      isInkSaver = !isInkSaver;
+
+      if (isInkSaver) {
+        doc.classList.add('grayscale', 'contrast-125');
+        label.innerText = "Full Color Mode";
+      } else {
+        doc.classList.remove('grayscale', 'contrast-125');
+        label.innerText = "Eco Monochrome Mode";
+      }
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-border-soft mt-unit-3xl"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop py-unit-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-unit-xl"><div class="lg:col-span-2 flex flex-col gap-unit-sm"><a href="../index.html" class="flex items-center gap-unit-xs"><img alt="logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3"/><span class="font-headline-sm text-headline-sm text-primary font-bold">UMAKONEKTA</span></a><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Empowering Filipino agricultural producers, cooperatives (FCAs), and LGUs through direct, accessible machinery, storage, land, and service connectivity across every municipality.</p><div class="p-unit-sm rounded-lg bg-status-available-bg border border-border-soft inline-flex items-center gap-unit-xs max-w-xs mt-unit-xs"><span class="material-symbols-outlined text-status-available">verified</span><span class="font-label-sm text-label-sm text-status-available uppercase">National FCA &amp; LGU Networked</span></div></div><div><h4 class="font-label-lg text-label-lg text-primary font-bold uppercase tracking-wider mb-unit-md">Core Pillars</h4><ul class="flex flex-col gap-unit-xs"><li><a href="../umakonekta_farm_equipment_marketplace/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Agricultural Equipment</a></li><li><a href="../umakonekta_farm_equipment_marketplace/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Farm Lots &amp; Land</a></li><li><a href="../umakonekta_resource_detail_schedule_request/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Solar Dryers &amp; Storage</a></li><li><a href="../umakonekta_field_repair_on_site_mechanics_booking_flow/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Technical Services &amp; Operators</a></li></ul></div><div><h4 class="font-label-lg text-label-lg text-primary font-bold uppercase tracking-wider mb-unit-md">Role Portals</h4><ul class="flex flex-col gap-unit-xs"><li><a href="../umakonekta_farmer_requestor_dashboard/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Farmer &amp; Member Hub</a></li><li><a href="../umakonekta_resource_provider_dashboard/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Provider Dashboard</a></li><li><a href="../umakonekta_operator_field_dispatch_slip_job_ticket/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">LGU Admin &amp; Dispatch</a></li><li><a href="../umakonekta_user_role_management_verification/code.html" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Cooperative Proxy Portal</a></li></ul></div><div><h4 class="font-label-lg text-label-lg text-primary font-bold uppercase tracking-wider mb-unit-md">Co-op Assistance</h4><p class="font-body-sm text-body-sm text-on-surface-variant mb-unit-xs">Need offline scheduling or proxy listing assistance? Reach your municipal desk:</p><a href="../umakonekta_critical_agricultural_emergency_contacts_hotline_directory/code.html" class="font-label-md text-label-md text-field-ochre font-semibold hover:underline block">Hotline: (02) 8928-8741</a><p class="font-body-sm text-body-sm text-on-surface-variant">support@umakonekta.gov.ph</p></div></div><div class="border-t border-border-soft mt-unit-xl pt-unit-md flex flex-col md:flex-row items-center justify-between gap-unit-sm text-on-surface-variant font-body-sm text-body-sm"><span>© 2025 UMAKONEKTA. Designed for Rural Filipino Agricultural Resilience.</span><div class="flex gap-unit-md"><span class="cursor-pointer hover:text-on-surface">Republic Act 11524 Compliance</span><a href="../index.html" class="hover:text-on-surface">Master Screen Portal</a></div></div></div></footer><script src="../shared/nav-dock.js"></script>
+</body></html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <title>UMAKONEKTA - Secure Identity & Role Login Portal</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "leaf-green": "#2E8B57",
+            "on-surface-variant": "#404940",
+            "sky-tint": "#E8F4F8",
+            "on-tertiary": "#ffffff",
+            "surface-container-high": "#dfebe6",
+            "inverse-surface": "#28332f",
+            "status-available": "#1B6E39",
+            "tertiary": "#01505e",
+            "primary-fixed": "#a3f5b2",
+            "surface-bright": "#f1fcf7",
+            "on-surface": "#141e1b",
+            "outline": "#707a6f",
+            "surface-variant": "#dae5e0",
+            "on-primary": "#ffffff",
+            "field-ochre": "#C26D1A",
+            "surface-subtle": "#F3F4EE",
+            "surface-container-lowest": "#ffffff",
+            "status-urgent-bg": "#FDE8E8",
+            "surface-container": "#e5f0eb",
+            "soil-slate": "#475953",
+            "harvest-amber": "#F4A228",
+            "status-maintenance-bg": "#FEF3E7",
+            "status-maintenance": "#D9822B",
+            "error": "#ba1a1a",
+            "status-available-bg": "#EAF5EE",
+            "border-soft": "#DDE3DA",
+            "primary": "#005426",
+            "primary-container": "#1b6e39",
+            "surface-container-low": "#ebf6f1",
+            "cream-surface": "#FBFBF7"
+          },
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "sans-serif"],
+            display: ["'Plus Jakarta Sans'", "sans-serif"],
+            mono: ["'Space Grotesk'", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-color: #FBFBF7;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .auth-bg-gradient {
+      background: linear-gradient(145deg, #003618 0%, #005426 50%, #01505e 100%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .tab-btn.active {
+      background: #005426;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 84, 38, 0.25);
+    }
+    .tab-btn {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+
+<body class="bg-cream-surface text-on-surface flex flex-col min-h-screen antialiased selection:bg-primary selection:text-white">
+  
+  <main class="flex flex-col relative w-full min-h-[calc(100vh-80px)] lg:flex-row bg-cream-surface">
+    
+    <!-- LEFT SIDE: Brand Showcase & Institutional Trust Section -->
+    <div class="relative lg:w-5/12 xl:w-1/2 flex flex-col justify-between p-6 sm:p-10 lg:p-14 auth-bg-gradient text-white overflow-hidden min-h-[420px] lg:min-h-full">
+      <!-- Ambient Visual Elements & Terraces Backdrop -->
+      <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-25" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjnjwLahM6I7kDU5jPoOYwKB4odFq0pSKkVIe8FaoQLXvrcXEoqGNoU8HQdaF8ni_XzRo5azewzZmMeYhXM0BvVvx5R-pBQR2u5lvEWeZK1aiOlPHGpeZtlHYcLQthm8bCxChjvuA2nBCDe1g-L1edtOLFayJUhaHsXi-QIevFB5dYgoGfpi1jiKMzaYSjdatCuCHDXkqhRCbUrSHC48tTXKk2w8dmYQiJmSsr1ChjZjHgN9sx3JQYGAuauD9_TpBkKQ');"></div>
+      <div class="absolute -top-32 -left-32 w-80 h-80 bg-sprout-green/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-harvest-amber/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Top Branding Strip -->
+      <div class="relative z-10 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2.5">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3" alt="UMAKONEKTA Emblem" class="h-9 w-auto object-contain drop-shadow" />
+          <div class="flex flex-col">
+            <span class="font-bold text-lg tracking-tight text-white leading-none">UMAKONEKTA</span>
+            <span class="text-[10px] text-primary-fixed uppercase tracking-widest font-mono mt-0.5">National Agri Exchange</span>
+          </div>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-primary-fixed font-semibold">
+          <span class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></span>
+          <span>RA 11524 Network</span>
+        </div>
+      </div>
+
+      <!-- Center Hero Message & Pillars -->
+      <div class="relative z-10 my-auto py-8 lg:py-12 max-w-xl">
+        <span class="inline-block px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold uppercase tracking-wider text-primary-fixed mb-4">
+          Universal Access Gate
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] mb-4">
+          Connecting Every Farmer, <br/><span class="text-primary-fixed">Securing Every Harvest.</span>
+        </h1>
+        <p class="text-white/85 text-sm sm:text-base leading-relaxed mb-8">
+          Sign in to request combine harvesters, manage municipal machinery depots, dispatch mobile repair technicians, or proxy-file physical SACCO scale tickets.
+        </p>
+
+        <!-- Dynamic Trust Features Bento -->
+        <div class="grid grid-cols-2 gap-3 max-w-md">
+          <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col gap-1">
+            <div class="flex items-center gap-2 text-primary-fixed">
+              <span class="material-symbols-outlined text-[20px]">verified_user</span>
+              <span class="text-xs font-bold uppercase tracking-wider">RSBSA & FCA</span>
+            </div>
+            <span class="text-xs text-white/80">Direct Registry Identity Sync</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col gap-1">
+            <div class="flex items-center gap-2 text-primary-fixed">
+              <span class="material-symbols-outlined text-[20px]">money_off</span>
+              <span class="text-xs font-bold uppercase tracking-wider">₱0 Digital Fee</span>
+            </div>
+            <span class="text-xs text-white/80">Physical Cash/Palay Passbook</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Status Strip -->
+      <div class="relative z-10 flex items-center justify-between text-xs text-white/70 pt-6 border-t border-white/15 font-mono">
+        <span class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px] text-primary-fixed">lock_clock</span>
+          DA-PhilMech 256-Bit TLS End-to-End
+        </span>
+        <span class="hidden sm:inline">PWA v2.4 • Offline Ready</span>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: Multi-Role Interactive Login Portal -->
+    <div class="flex-1 flex items-center justify-center p-4 sm:p-8 lg:p-12 xl:p-16">
+      <div class="w-full max-w-lg glass-card rounded-2xl p-6 sm:p-8 lg:p-10 shadow-[0_8px_32px_rgba(0,84,38,0.08)] border border-border-soft flex flex-col gap-6">
+        
+        <!-- Portal Role Selector Tabs -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-primary">Select Account Portal</span>
+            <span class="text-[11px] text-soil-slate flex items-center gap-1 bg-surface-container-low px-2 py-0.5 rounded-full font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-status-available"></span> Active Network
+            </span>
+          </div>
+
+          <div class="grid grid-cols-4 gap-1.5 p-1 bg-surface-container rounded-xl border border-border-soft/80" id="role-tab-group">
+            <button type="button" class="tab-btn active py-2 px-1 rounded-lg text-xs font-bold flex flex-col items-center gap-1" data-role="farmer" onclick="selectRoleTab('farmer')">
+              <span class="material-symbols-outlined text-[18px]">person</span>
+              <span>Farmer</span>
+            </button>
+            <button type="button" class="tab-btn py-2 px-1 rounded-lg text-xs font-medium text-soil-slate hover:text-on-surface flex flex-col items-center gap-1" data-role="provider" onclick="selectRoleTab('provider')">
+              <span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+              <span>Provider</span>
+            </button>
+            <button type="button" class="tab-btn py-2 px-1 rounded-lg text-xs font-medium text-soil-slate hover:text-on-surface flex flex-col items-center gap-1" data-role="mechanic" onclick="selectRoleTab('mechanic')">
+              <span class="material-symbols-outlined text-[18px]">handyman</span>
+              <span>Mechanic</span>
+            </button>
+            <button type="button" class="tab-btn py-2 px-1 rounded-lg text-xs font-medium text-soil-slate hover:text-on-surface flex flex-col items-center gap-1" data-role="admin" onclick="selectRoleTab('admin')">
+              <span class="material-symbols-outlined text-[18px]">shield_person</span>
+              <span>Admin</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Context Header -->
+        <div class="border-b border-border-soft/80 pb-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight" id="role-heading">
+              🌾 Farmer & Requestor Login
+            </h2>
+            <span id="role-badge" class="px-2.5 py-0.5 rounded-full bg-status-available-bg text-status-available text-xs font-bold uppercase">
+              RSBSA Auth
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-on-surface-variant mt-1" id="role-subtext">
+            Enter your RSBSA Registry ID or Barangay FCA Member Passbook number to schedule farm machinery and review dispatches.
+          </p>
+        </div>
+
+        <!-- Intent Banner (If coming from listing request) -->
+        <div id="intent-banner" class="hidden p-3 rounded-xl bg-status-available-bg text-status-available text-xs font-semibold flex items-center gap-2 border border-status-available/20">
+          <span class="material-symbols-outlined text-[18px]">info</span>
+          <span id="intent-message">Log in or create an account to finalize your request.</span>
+        </div>
+
+        <!-- Interactive Form -->
+        <form class="space-y-4" id="login-form" onsubmit="handleLoginSubmit(event)">
+          
+          <!-- Primary Identifier Input -->
+          <div class="space-y-1.5">
+            <label class="block text-xs font-bold uppercase tracking-wider text-on-surface" for="auth-identifier" id="label-identifier">
+              RSBSA ID Number / Member Passbook ID
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-soil-slate">
+                <span class="material-symbols-outlined text-[20px]" id="icon-identifier">badge</span>
+              </span>
+              <input 
+                type="text" 
+                id="auth-identifier" 
+                required 
+                placeholder="e.g., 03-49-12-00841"
+                class="w-full pl-11 pr-4 py-3 bg-white text-on-surface text-sm rounded-xl border border-border-soft focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none font-mono transition-all placeholder:text-soil-slate/60"
+              />
+            </div>
+            <p class="text-[11px] text-soil-slate" id="help-identifier">
+              Printed on your physical DA RSBSA enrollment slip or FCA passbook.
+            </p>
+          </div>
+
+          <!-- Secondary Password or PIN Input -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label class="block text-xs font-bold uppercase tracking-wider text-on-surface" for="auth-password" id="label-password">
+                4-Digit Security PIN / Token
+              </label>
+              <button type="button" onclick="fillDemoCredentials()" class="text-[11px] text-primary font-bold hover:underline">
+                Auto-fill Demo
+              </button>
+            </div>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-soil-slate">
+                <span class="material-symbols-outlined text-[20px]">pin</span>
+              </span>
+              <input 
+                type="password" 
+                id="auth-password" 
+                required 
+                placeholder="••••"
+                maxlength="16"
+                class="w-full pl-11 pr-11 py-3 bg-white text-on-surface text-sm rounded-xl border border-border-soft focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none font-mono transition-all"
+              />
+              <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-soil-slate hover:text-on-surface">
+                <span class="material-symbols-outlined text-[18px]" id="eye-icon">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Municipal Jurisdiction Select -->
+          <div class="space-y-1.5">
+            <label class="block text-xs font-bold uppercase tracking-wider text-on-surface" for="auth-location">
+              Municipal Cluster / Hub
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-soil-slate">
+                <span class="material-symbols-outlined text-[20px]">location_on</span>
+              </span>
+              <select id="auth-location" class="w-full pl-11 pr-10 py-3 bg-white text-on-surface text-sm rounded-xl border border-border-soft focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none appearance-none transition-all cursor-pointer">
+                <option value="talavera" selected>Talavera, Nueva Ecija (Region III Hub)</option>
+                <option value="sanjose">San Jose City, Nueva Ecija</option>
+                <option value="munoz">Science City of Muñoz, Nueva Ecija</option>
+                <option value="guimba">Guimba, Nueva Ecija</option>
+                <option value="cabanatuan">Cabanatuan City Center</option>
+              </select>
+              <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-soil-slate">
+                <span class="material-symbols-outlined text-[20px]">expand_more</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Low Bandwidth Toggle Strip -->
+          <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-border-soft">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-primary text-[20px]">speed</span>
+              <div>
+                <span class="block text-xs font-bold text-on-surface">2G / Low-Data Light Mode</span>
+                <span class="block text-[11px] text-soil-slate">Streamlines UI for remote farm plots</span>
+              </div>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="low-data-switch" class="sr-only peer" />
+              <div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+            </label>
+          </div>
+
+          <!-- Primary Submit Button -->
+          <button 
+            type="submit" 
+            id="auth-submit-btn" 
+            class="w-full py-3.5 px-6 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-[20px]">login</span>
+            <span id="auth-submit-text">Verify Identity & Enter Farmer Dashboard</span>
+          </button>
+        </form>
+
+        <!-- Quick 1-Click Role Direct Launch -->
+        <div class="pt-4 border-t border-border-soft">
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-[11px] font-bold text-soil-slate uppercase tracking-wider">Direct Role Showcase Access</span>
+            <a href="../umakonekta_how_it_works/code.html" class="text-[11px] text-primary font-bold hover:underline">How It Works →</a>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+            <a href="../umakonekta_farmer_requestor_dashboard/code.html" class="py-2 px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-white text-on-surface text-xs font-semibold border border-border-soft transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">person</span>
+              <span>Farmer</span>
+            </a>
+            <a href="../umakonekta_resource_provider_dashboard/code.html" class="py-2 px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-white text-on-surface text-xs font-semibold border border-border-soft transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">corporate_fare</span>
+              <span>Provider</span>
+            </a>
+            <a href="../umakonekta_mobile_repair_field_mechanics_portal/code.html" class="py-2 px-2 rounded-lg bg-surface-container hover:bg-field-ochre hover:text-white text-on-surface text-xs font-semibold border border-border-soft transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">handyman</span>
+              <span>Mechanic</span>
+            </a>
+            <a href="../umakonekta_administrator_portal_moderation/code.html" class="py-2 px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-white text-on-surface text-xs font-semibold border border-border-soft transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">shield_person</span>
+              <span>Admin</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Offline Assistance & Emergency Hotline Footer -->
+        <div class="bg-surface-subtle p-3 rounded-xl flex items-center justify-between text-xs text-soil-slate">
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-field-ochre text-[18px]">support_agent</span>
+            Barangay Desk Assistance:
+          </span>
+          <a href="../umakonekta_critical_agricultural_emergency_contacts_hotline_directory/code.html" class="font-bold text-status-urgent hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-[15px]">emergency</span> Hotline 1343
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Shared Navigation Dock -->
+  <script src="../shared/nav-dock.js"></script>
+
+  <!-- Interactive Client-side Script -->
+  <script>
+    let activeRole = 'farmer';
+
+    const roleConfigs = {
+      farmer: {
+        heading: '🌾 Farmer & Requestor Login',
+        badge: 'RSBSA Auth',
+        subtext: 'Enter your RSBSA Registry ID or Barangay FCA Member Passbook number to schedule farm machinery and review dispatches.',
+        idLabel: 'RSBSA ID Number / Member Passbook ID',
+        idPlaceholder: 'e.g., 03-49-12-00841',
+        idHelp: 'Printed on your physical DA RSBSA enrollment slip or FCA passbook.',
+        idIcon: 'badge',
+        pwdLabel: '4-Digit Security PIN / SMS Code',
+        demoId: '03-49-12-00841',
+        demoPwd: '4092',
+        btnText: 'Verify Identity & Enter Farmer Dashboard',
+        targetUrl: '../umakonekta_farmer_requestor_dashboard/code.html'
+      },
+      provider: {
+        heading: '🚜 Resource Provider Depot Login',
+        badge: 'FCA Depot Auth',
+        subtext: 'Sign in with your Cooperative SEC / CDA registration number to manage depot machinery, review incoming requests, and dispatch combine harvesters.',
+        idLabel: 'Cooperative Registration (CDA/SEC) or Provider ID',
+        idPlaceholder: 'e.g., CDA-FCA-2024-9140',
+        idHelp: 'Accredited DA-RFO III Depot & Machinery Pool certificate number.',
+        idIcon: 'domain',
+        pwdLabel: 'Depot Security Keycode',
+        demoId: 'CDA-FCA-2024-9140',
+        demoPwd: 'TalaveraAdmin2024!',
+        btnText: 'Authenticate & Access Provider Hub',
+        targetUrl: '../umakonekta_resource_provider_dashboard/code.html'
+      },
+      mechanic: {
+        heading: '🔧 Mobile Repair & Mechanic Dispatch',
+        badge: 'TESDA NC-II',
+        subtext: 'Technician access for real-time field breakdowns, spare parts requisitions, emergency machinery rescue, and daily job logs.',
+        idLabel: 'Technician ID / TESDA Mechanic License',
+        idPlaceholder: 'e.g., MECH-TESDA-889',
+        idHelp: 'Authorized Agricultural Machinery Servicing NC-II ID.',
+        idIcon: 'handyman',
+        pwdLabel: 'Field Terminal Access PIN',
+        demoId: 'MECH-TESDA-889',
+        demoPwd: '8890',
+        btnText: 'Open Field Mechanics Portal',
+        targetUrl: '../umakonekta_mobile_repair_field_mechanics_portal/code.html'
+      },
+      admin: {
+        heading: '🛡️ LGU & Municipal Admin Moderation',
+        badge: 'Gov Admin',
+        subtext: 'Restricted to Municipal Agriculture Office (MAO) officers and Regional Supervising Officers for policy enforcement and dispatch audits.',
+        idLabel: 'Government Employee ID / MAO Dispatch ID',
+        idPlaceholder: 'e.g., GOV-MAO-R3-0042',
+        idHelp: 'Official @da.gov.ph or municipal officer credentials.',
+        idIcon: 'admin_panel_settings',
+        pwdLabel: 'Multi-Factor Hardware / Security Token',
+        demoId: 'GOV-MAO-R3-0042',
+        demoPwd: 'MAO-Command-9912',
+        btnText: 'Enter Admin Moderation Command',
+        targetUrl: '../umakonekta_administrator_portal_moderation/code.html'
+      }
+    };
+
+    function selectRoleTab(role) {
+      activeRole = role;
+      const config = roleConfigs[role];
+      if (!config) return;
+
+      // Update Tab Styles
+      document.querySelectorAll('#role-tab-group .tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-role') === role) {
+          btn.className = 'tab-btn active py-2 px-1 rounded-lg text-xs font-bold flex flex-col items-center gap-1';
+        } else {
+          btn.className = 'tab-btn py-2 px-1 rounded-lg text-xs font-medium text-soil-slate hover:text-on-surface flex flex-col items-center gap-1';
+        }
+      });
+
+      // Update Form Content
+      document.getElementById('role-heading').innerText = config.heading;
+      document.getElementById('role-badge').innerText = config.badge;
+      document.getElementById('role-subtext').innerText = config.subtext;
+      document.getElementById('label-identifier').innerText = config.idLabel;
+      document.getElementById('auth-identifier').placeholder = config.idPlaceholder;
+      document.getElementById('help-identifier').innerText = config.idHelp;
+      document.getElementById('icon-identifier').innerText = config.idIcon;
+      document.getElementById('label-password').innerText = config.pwdLabel;
+      document.getElementById('auth-submit-text').innerText = config.btnText;
+
+      // Clear or preset demo fields
+      document.getElementById('auth-identifier').value = '';
+      document.getElementById('auth-password').value = '';
+    }
+
+    function fillDemoCredentials() {
+      const config = roleConfigs[activeRole];
+      if (config) {
+        document.getElementById('auth-identifier').value = config.demoId;
+        document.getElementById('auth-password').value = config.demoPwd;
+      }
+    }
+
+    function togglePasswordVisibility() {
+      const input = document.getElementById('auth-password');
+      const icon = document.getElementById('eye-icon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.innerText = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.innerText = 'visibility';
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const config = roleConfigs[activeRole];
+      const submitBtn = document.getElementById('auth-submit-btn');
+      const originalContent = submitBtn.innerHTML;
+
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">sync</span><span>Verifying Credentials with LGU Registry...</span>';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Identity Verified! Redirecting...</span>';
+        setTimeout(() => {
+          const params = new URLSearchParams(window.location.search);
+          const intent = params.get('intent');
+          if (intent === 'request' && activeRole === 'farmer') {
+            window.location.href = `../umakonekta_farmer_requestor_dashboard/code.html?${params.toString()}`;
+          } else {
+            window.location.href = config.targetUrl;
+          }
+        }, 600);
+      }, 700);
+    }
+
+    // Check query params on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const role = params.get('role');
+      if (role && roleConfigs[role]) {
+        selectRoleTab(role);
+      }
+
+      const intent = params.get('intent');
+      const asset = params.get('asset');
+      if (intent === 'request' && asset) {
+        document.getElementById('intent-banner').classList.remove('hidden');
+        document.getElementById('intent-message').innerText = `Log in to finalize booking for ${asset}.`;
+      }
+    });
+  </script>
+</body>
+</html>

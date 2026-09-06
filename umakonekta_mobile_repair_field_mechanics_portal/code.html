@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f1fcf7;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "leaf-green": "#2E8B57", "on-surface-variant": "#404940", "sky-tint": "#E8F4F8", "on-tertiary": "#ffffff", "surface-container-high": "#dfebe6", "inverse-surface": "#28332f", "status-available": "#1B6E39", "tertiary": "#01505e", "on-tertiary-fixed": "#001f26", "primary-fixed": "#a3f5b2", "surface-bright": "#f1fcf7", "on-surface": "#141e1b", "outline": "#707a6f", "surface-variant": "#dae5e0", "on-primary": "#ffffff", "field-ochre": "#C26D1A", "on-secondary-container": "#6d3a00", "status-booked": "#616E68", "outline-variant": "#bfc9bd", "inverse-primary": "#88d898", "surface-subtle": "#F3F4EE", "inverse-on-surface": "#e8f3ee", "tertiary-fixed": "#afecfd", "error-container": "#ffdad6", "secondary-container": "#fea047", "secondary-fixed-dim": "#ffb77a", "surface-container-lowest": "#ffffff", "status-urgent-bg": "#FDE8E8", "surface-container": "#e5f0eb", "soil-slate": "#475953", "surface-container-highest": "#dae5e0", "harvest-amber": "#F4A228", "on-tertiary-fixed-variant": "#004e5c", "on-error": "#ffffff", "on-secondary": "#ffffff", "surface": "#f1fcf7", "on-secondary-fixed": "#2e1500", "secondary": "#8f4e00", "on-error-container": "#93000a", "on-primary-fixed": "#00210b", "background": "#f1fcf7", "on-background": "#141e1b", "sprout-green": "#58A359", "status-maintenance": "#D9822B", "status-maintenance-bg": "#FEF3E7", "error": "#ba1a1a", "on-tertiary-container": "#a8e5f6", "status-available-bg": "#EAF5EE", "on-secondary-fixed-variant": "#6d3a00", "tertiary-container": "#286877", "tertiary-fixed-dim": "#94d0e0", "border-soft": "#DDE3DA", "primary": "#005426", "secondary-fixed": "#ffdcc2", "status-urgent": "#C53030", "surface-tint": "#196c37", "on-primary-container": "#9ceeab", "status-booked-bg": "#EFEFEF", "on-primary-fixed-variant": "#005225", "primary-container": "#1b6e39", "surface-container-low": "#ebf6f1", "primary-fixed-dim": "#88d898", "cream-surface": "#FBFBF7", "surface-dim": "#d1ddd8" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-desktop": "2rem", "unit-2xl": "3rem", "unit-sm": "0.75rem", "unit-2xs": "0.25rem", "unit-md": "1rem", "unit-lg": "1.5rem", "touch-target-min": "48px", "gutter-desktop": "1.5rem", "unit-xl": "2rem", "gutter-mobile": "1rem", "unit-xs": "0.5rem", "unit-3xl": "4rem", "margin-mobile": "1rem" }, fontFamily: { "headline-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Space Grotesk"], "body-lg": ["Plus Jakarta Sans"], "display-hero": ["Plus Jakarta Sans"], "label-md": ["Space Grotesk"], "display-hero-mobile": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-lg": ["Space Grotesk"], "body-sm": ["Plus Jakarta Sans"] }, fontSize: { "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "0.03em", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.1em", "fontWeight": "700" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "600" }], "display-hero-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.01em", "fontWeight": "800" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.06em", "fontWeight": "600" }], "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-unit-xs"><a href="../index.html" class="flex items-center gap-unit-xs min-w-0 flex-1"><img alt="logo.png" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3"/><div class="flex flex-col min-w-0"><span class="font-label-sm text-label-sm uppercase text-primary leading-none tracking-wider truncate">UMAKONEKTA</span><h1 class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Mobile Repair &amp; Mechanics Portal</h1></div></a><div class="flex items-center gap-unit-xs shrink-0"><a aria-label="Agri Emergency Hotline" class="min-h-touch-target-min min-w-touch-target-min px-unit-xs py-unit-2xs rounded-lg bg-status-urgent-bg text-status-urgent flex items-center gap-1 transition-all active:scale-95" href="../umakonekta_hotline_emergency_dispatch/code.html"><span class="material-symbols-outlined text-[20px]">emergency</span><span class="font-label-sm text-label-sm hidden sm:inline uppercase">Hotline</span></a><a href="../umakonekta_secure_authentication_identity_verification/code.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 hover:opacity-90"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full max-w-[1280px] mx-auto px-gutter-mobile md:px-margin-desktop py-unit-lg gap-unit-2xl">
+<!-- 1. Header & Banner -->
+<section class="relative overflow-hidden rounded-xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low p-unit-lg md:p-unit-2xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-unit-lg">
+<div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-harvest-amber/10 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-unit-xs max-w-2xl relative z-10">
+<div class="flex items-center gap-unit-xs flex-wrap">
+<span class="px-unit-xs py-unit-2xs bg-status-maintenance-bg text-status-maintenance font-label-sm text-label-sm rounded-full uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">build_circle</span> Emergency &amp; Maintenance Field Dispatch
+</span>
+<span class="px-unit-xs py-unit-2xs bg-primary/10 text-primary font-label-sm text-label-sm rounded-full uppercase">
+UMAKONEKTA Mobile Repair
+</span>
+</div>
+<h1 class="font-display-hero-mobile md:font-headline-lg text-on-surface tracking-tight leading-tight">
+Field Mechanics &amp; Machinery Rescue
+</h1>
+<p class="font-body-md text-on-surface-variant">
+Rapid dispatch for combine harvesters, tractors, and irrigation pumps across local farming clusters. Real-time GPS routing, parts requisition, and direct field job logging.
+</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-unit-xs relative z-10 w-full md:w-auto shrink-0">
+<a class="h-touch-target-min px-unit-lg bg-primary text-on-primary font-label-lg rounded-lg flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-primary-container active:scale-95" href="../umakonekta_field_repair_on_site_mechanics_booking_flow/code.html">
+<span class="material-symbols-outlined text-[20px]">add_box</span>
+Request On-Site Service
+</a>
+<a class="h-touch-target-min px-unit-md bg-white border border-border-soft hover:bg-surface-container text-on-surface font-label-lg rounded-lg flex items-center justify-center gap-2 transition-all active:scale-95" href="../umakonekta_operator_field_dispatch_slip_job_ticket/code.html">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+Dispatch Slips
+</a>
+</div>
+</section>
+
+<!-- Tab Navigation Bar -->
+<div class="flex items-center gap-2 border-b border-border-soft pb-2 overflow-x-auto" id="mechanic-tab-bar">
+  <button onclick="switchMechanicTab('dispatch')" id="tab-btn-dispatch" class="px-5 py-2.5 rounded-lg font-label-md text-sm flex items-center gap-2 font-bold bg-primary text-white shadow-sm transition-all">
+    <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+    1. Active Dispatch & Route Map (3)
+  </button>
+  <button onclick="switchMechanicTab('inventory')" id="tab-btn-inventory" class="px-5 py-2.5 rounded-lg font-label-md text-sm flex items-center gap-2 font-medium bg-white text-on-surface-variant border border-border-soft hover:bg-surface-container transition-all">
+    <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+    2. Service History & Parts Stock
+  </button>
+  <button onclick="switchMechanicTab('earnings')" id="tab-btn-earnings" class="px-5 py-2.5 rounded-lg font-label-md text-sm flex items-center gap-2 font-medium bg-white text-on-surface-variant border border-border-soft hover:bg-surface-container transition-all">
+    <span class="material-symbols-outlined text-[18px]">payments</span>
+    3. Earnings & Performance SLA
+  </button>
+</div>
+
+<!-- ================= TAB 1: ACTIVE DISPATCH QUEUE & ROUTE MAP ================= -->
+<div id="view-dispatch" class="flex flex-col gap-unit-xl">
+  <!-- Active Status Bar -->
+  <section class="rounded-xl bg-white p-unit-md md:p-unit-lg shadow-sm border border-border-soft flex flex-col lg:flex-row items-start lg:items-center justify-between gap-unit-md relative overflow-hidden">
+    <div class="absolute left-0 top-0 bottom-0 w-2 bg-harvest-amber"></div>
+    <div class="flex items-center gap-unit-md">
+      <div class="w-12 h-12 rounded-full bg-status-maintenance-bg text-status-maintenance flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-[24px] animate-pulse">local_shipping</span>
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-unit-xs">
+          <span class="font-label-sm text-label-sm uppercase text-status-maintenance tracking-wider font-bold">Active Priority Dispatch</span>
+          <span class="px-2 py-0.5 bg-status-urgent-bg text-status-urgent font-label-sm text-[11px] rounded font-bold uppercase">🚨 Spoilage Risk</span>
+        </div>
+        <h2 class="font-headline-sm text-on-surface font-bold">Kubota DC-70G Combine Harvester — Broken Header Belt</h2>
+        <p class="font-body-sm text-on-surface-variant">Farmer: Mang Danilo Soriano • Sitio Bagong Silang, Brgy. San Ricardo (Sector 4)</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-unit-md w-full lg:w-auto justify-between lg:justify-end border-t lg:border-t-0 pt-unit-xs lg:pt-0 border-border-soft">
+      <div class="flex flex-col text-left lg:text-right">
+        <span class="font-label-sm text-label-sm uppercase text-outline">ETA to Field</span>
+        <span class="font-headline-md text-primary font-bold">18 mins (4.2 km)</span>
+      </div>
+      <button class="h-10 px-unit-md bg-primary text-white font-label-md rounded-lg flex items-center gap-1.5 shadow-sm hover:bg-primary-container transition-colors" onclick="alert('Launching offline GPS turn-by-turn route to Sitio Bagong Silang (Sector 4)...')">
+        <span class="material-symbols-outlined text-[18px]">navigation</span>
+        Start GPS Route
+      </button>
+    </div>
+  </section>
+
+  <!-- Nearby Mobile Technicians Directory Grid -->
+  <section class="flex flex-col gap-unit-md">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-unit-xs">
+      <div>
+        <span class="font-label-sm text-label-sm uppercase text-primary font-bold">Field Queue</span>
+        <h2 class="font-headline-md text-on-surface font-bold">Assigned Breakdown Tickets & Technicians</h2>
+      </div>
+      <div class="flex items-center gap-unit-xs w-full sm:w-auto overflow-x-auto pb-1">
+        <button class="px-unit-sm py-unit-xs bg-primary text-on-primary font-label-md rounded-lg text-xs shrink-0 font-bold">All Jobs</button>
+        <button class="px-unit-sm py-unit-xs bg-surface-container text-on-surface-variant font-label-md rounded-lg text-xs shrink-0 hover:bg-surface-container-high">Harvesters</button>
+        <button class="px-unit-sm py-unit-xs bg-surface-container text-on-surface-variant font-label-md rounded-lg text-xs shrink-0 hover:bg-surface-container-high">Tractors</button>
+        <button class="px-unit-sm py-unit-xs bg-surface-container text-on-surface-variant font-label-md rounded-lg text-xs shrink-0 hover:bg-surface-container-high">Pumps</button>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-unit-md">
+      <!-- Tech Card 1 -->
+      <div class="bg-white rounded-xl p-unit-lg shadow-sm border border-border-soft flex flex-col justify-between gap-unit-md hover:shadow-md transition-shadow">
+        <div class="flex flex-col gap-unit-xs">
+          <div class="flex justify-between items-start">
+            <span class="px-unit-xs py-0.5 bg-status-available-bg text-status-available font-label-sm text-xs rounded-full uppercase font-bold">Active Lead</span>
+            <span class="font-label-sm text-xs text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">near_me</span> 4.2 km away</span>
+          </div>
+          <div class="flex items-center gap-unit-sm mt-1">
+            <img class="w-14 h-14 rounded-full object-cover bg-surface-container" data-alt="Portrait of an experienced Filipino mechanic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH53f-YB6bcEj5OUToAuQxyiOt0taGaghOjwZ4JHxmWSqyqy6MDbUMkowX1HpYfJq3utb7auknM6RZMTVfPUbpGA8lsGRvUABBdjogf-LkFbnYMpktCIi1DUVFaPdzG2nKXD_uT6FpP80P9npTLbCZmjV4aTkhS1cZ3Na76oWInKDDjITU6sc6DFYIYzoBpFw-oiykxr6kJMORN2ioUd08yvlZW-hsicdi6Fg1uKlNd05vv4TMdLpl"/>
+            <div>
+              <h3 class="font-headline-sm text-base text-on-surface font-bold">Mang Roberto "Bobby" Cruz</h3>
+              <p class="font-body-sm text-xs text-on-surface-variant">Senior Field Lead • Mobile Van #04</p>
+            </div>
+          </div>
+          <div class="mt-2 flex flex-wrap gap-1">
+            <span class="px-unit-xs py-0.5 bg-surface-subtle text-soil-slate text-xs rounded font-medium">Hydraulics</span>
+            <span class="px-unit-xs py-0.5 bg-surface-subtle text-soil-slate text-xs rounded font-medium">Heavy Diesel</span>
+          </div>
+        </div>
+        <div class="pt-unit-xs border-t border-border-soft flex items-center justify-between">
+          <div class="flex items-center text-harvest-amber">
+            <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-label-md text-xs ml-1 text-on-surface font-bold">4.9 (124 jobs)</span>
+          </div>
+          <button class="h-9 px-unit-md bg-primary text-white font-label-md rounded-lg text-xs flex items-center gap-1 transition-colors" onclick="alert('Assigning additional technician to Unit PB-2024-889...')">
+            Dispatch Support
+          </button>
+        </div>
+      </div>
+
+      <!-- Tech Card 2 -->
+      <div class="bg-white rounded-xl p-unit-lg shadow-sm border border-border-soft flex flex-col justify-between gap-unit-md hover:shadow-md transition-shadow">
+        <div class="flex flex-col gap-unit-xs">
+          <div class="flex justify-between items-start">
+            <span class="px-unit-xs py-0.5 bg-status-maintenance-bg text-status-maintenance font-label-sm text-xs rounded-full uppercase font-bold">En Route (Job #892)</span>
+            <span class="font-label-sm text-xs text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">near_me</span> 8.5 km away</span>
+          </div>
+          <div class="flex items-center gap-unit-sm mt-1">
+            <img class="w-14 h-14 rounded-full object-cover bg-surface-container" data-alt="Portrait of young technician" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArq3cMrscGMDf8TEKRulw__jpZM_AYkwl6Qxum-o5cMv1v7SwQUtHAaOMHjdoQJ1xqcQ6y0yB9sRXaak2qbYT01Q3ZrLSjQ0yjdq_hO2wF0NJJm0tmiYGW-NSqSQgi2mvlsBKrmSnVoXQUynoQ7GQ--nEkIZhyP5GA9OE4A_ka3jjFTbTu18DGAYCnATDZk7zktWBdXYSqT1EIh7Mfvzf57984rY4TNJGb1JdmgCwPtCp-7IIYgF63"/>
+            <div>
+              <h3 class="font-headline-sm text-base text-on-surface font-bold">Engr. Danilo "Danny" Ramos</h3>
+              <p class="font-body-sm text-xs text-on-surface-variant">Mechatronics Specialist • Moto-Kit #02</p>
+            </div>
+          </div>
+          <div class="mt-2 flex flex-wrap gap-1">
+            <span class="px-unit-xs py-0.5 bg-surface-subtle text-soil-slate text-xs rounded font-medium">ECU Diagnostics</span>
+            <span class="px-unit-xs py-0.5 bg-surface-subtle text-soil-slate text-xs rounded font-medium">Sensors</span>
+          </div>
+        </div>
+        <div class="pt-unit-xs border-t border-border-soft flex items-center justify-between">
+          <div class="flex items-center text-harvest-amber">
+            <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-label-md text-xs ml-1 text-on-surface font-bold">4.8 (98 jobs)</span>
+          </div>
+          <button class="h-9 px-unit-md bg-surface-container text-on-surface font-label-md rounded-lg text-xs flex items-center gap-1 hover:bg-surface-container-high" onclick="alert('Viewing Danilo\'s route telematics...')">
+            View Live Route
+          </button>
+        </div>
+      </div>
+
+      <!-- Tech Card 3 -->
+      <div class="bg-white rounded-xl p-unit-lg shadow-sm border border-border-soft flex flex-col justify-between gap-unit-md hover:shadow-md transition-shadow">
+        <div class="flex flex-col gap-unit-xs">
+          <div class="flex justify-between items-start">
+            <span class="px-unit-xs py-0.5 bg-status-available-bg text-status-available font-label-sm text-xs rounded-full uppercase font-bold">Available Standby</span>
+            <span class="font-label-sm text-xs text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">near_me</span> 11.0 km away</span>
+          </div>
+          <div class="flex items-center gap-unit-sm mt-1">
+            <img class="w-14 h-14 rounded-full object-cover bg-surface-container" data-alt="Female mechanic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx1kxFPWtsxVGb4WI9KlMqQ9Nlmz0P831WVdqJtMMyAfMSUeH5BZ8RcwfRcKuUrNcPdDQVaZj6Bc5kc_iChQaPhr187yjKoMdoBQXf96vLRuaTPp4FsM2d5Fa4EU4XBGlgLUSLxN3KrH8xw3wQcmWfehg-cn334oONv7lVGz_TaeITlajz_Z0WTxYAQUCL5REfZuvEpY0GN3qfHG83oWkWaUO-5imckoP6cdSy_TJRhTR3dNytuMm7"/>
+            <div>
+              <h3 class="font-headline-sm text-base text-on-surface font-bold">Aling Marites "Tess" Villamor</h3>
+              <p class="font-body-sm text-xs text-on-surface-variant">Pumps & Fabrication • Mobile Van #01</p>
+            </div>
+          </div>
+          <div class="mt-2 flex flex-wrap gap-1">
+            <span class="px-unit-xs py-0.5 bg-surface-subtle text-soil-slate text-xs rounded font-medium">Welding & Motor</span>
+            <span class="px-unit-xs py-0.5 bg-surface-subtle text-soil-slate text-xs rounded font-medium">Impeller</span>
+          </div>
+        </div>
+        <div class="pt-unit-xs border-t border-border-soft flex items-center justify-between">
+          <div class="flex items-center text-harvest-amber">
+            <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-label-md text-xs ml-1 text-on-surface font-bold">5.0 (210 jobs)</span>
+          </div>
+          <button class="h-9 px-unit-md bg-primary text-white font-label-md rounded-lg text-xs flex items-center gap-1 hover:bg-primary-container" onclick="alert('Assigning Tess to next pending pump dispatch...')">
+            Assign Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 'Request On-Site Service' Form Section -->
+  <section class="rounded-2xl bg-white p-unit-lg md:p-unit-xl shadow-md border border-border-soft grid grid-cols-1 lg:grid-cols-12 gap-unit-xl" id="dispatch-form">
+    <div class="lg:col-span-5 flex flex-col justify-between gap-unit-lg">
+      <div class="flex flex-col gap-unit-xs">
+        <span class="px-unit-xs py-0.5 bg-status-maintenance-bg text-status-maintenance font-label-sm text-xs rounded uppercase w-fit font-bold">Emergency Dispatch Form</span>
+        <h2 class="font-headline-md text-on-surface font-bold">Book an On-Site Mobile Mechanic</h2>
+        <p class="font-body-md text-on-surface-variant">
+          Provide your current breakdown details, machinery model, and exact location. Our local FCA dispatch will route the nearest available mechanic with genuine replacement parts.
+        </p>
+      </div>
+      <div class="rounded-xl bg-surface-container p-unit-md flex flex-col gap-unit-xs">
+        <div class="flex items-center gap-2 text-primary font-label-md font-bold">
+          <span class="material-symbols-outlined text-[20px]">verified_user</span>
+          <span>LGU &amp; FCA Subsidized Rates</span>
+        </div>
+        <p class="font-body-sm text-on-surface-variant">
+          Emergency field service fees are subsidized up to 40% for registered UMAKONEKTA cooperative members. Standard diagnostic fee applies upon arrival.
+        </p>
+      </div>
+    </div>
+    <form class="lg:col-span-7 flex flex-col gap-unit-md" onsubmit="event.preventDefault(); alert('Emergency service request successfully dispatched! Redirecting to Operator Field Dispatch Slip...'); window.location.href='../umakonekta_operator_field_dispatch_slip_job_ticket/code.html';">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-unit-md">
+        <div class="flex flex-col gap-unit-2xs">
+          <label class="font-label-md text-xs uppercase text-on-surface font-bold">Machinery Type</label>
+          <select class="h-10 px-unit-sm rounded-lg bg-white border border-border-soft text-on-surface focus:outline-none focus:ring-2 focus:ring-primary font-body-md">
+            <option>Combine Harvester</option>
+            <option>Four-Wheel Tractor</option>
+            <option>Irrigation Water Pump</option>
+            <option>Rice Mill / Thresher</option>
+            <option>Walking Tractor / Kuliglig</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-unit-2xs">
+          <label class="font-label-md text-xs uppercase text-on-surface font-bold">Urgency Level</label>
+          <select class="h-10 px-unit-sm rounded-lg bg-white border border-border-soft text-on-surface focus:outline-none focus:ring-2 focus:ring-primary font-body-md">
+            <option>🚨 Critical Spoilage Risk (Immediate Dispatch)</option>
+            <option>⚠️ Urgent Breakdown (Within 2 Hours)</option>
+            <option>📅 Routine Field Maintenance (Schedule Later)</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex flex-col gap-unit-2xs">
+        <label class="font-label-md text-xs uppercase text-on-surface font-bold">Breakdown Symptoms / Description</label>
+        <textarea class="p-unit-sm rounded-lg bg-white border border-border-soft text-on-surface focus:outline-none focus:ring-2 focus:ring-primary font-body-md" placeholder="e.g., Hydraulic fluid leaking near main arm cylinder, engine cranks but will not start during threshing..." rows="2"></textarea>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-unit-md">
+        <div class="flex flex-col gap-unit-2xs">
+          <label class="font-label-md text-xs uppercase text-on-surface font-bold">Barangay / Location Name</label>
+          <input class="h-10 px-unit-sm rounded-lg bg-white border border-border-soft text-on-surface focus:outline-none focus:ring-2 focus:ring-primary font-body-md" placeholder="e.g., Brgy. San Isidro, Purok 4 Field Area" type="text"/>
+        </div>
+        <div class="flex flex-col gap-unit-2xs">
+          <label class="font-label-md text-xs uppercase text-on-surface font-bold">Contact Mobile Number</label>
+          <input class="h-10 px-unit-sm rounded-lg bg-white border border-border-soft text-on-surface focus:outline-none focus:ring-2 focus:ring-primary font-body-md" placeholder="0912 345 6789" type="tel"/>
+        </div>
+      </div>
+      <button class="h-11 w-full bg-harvest-amber hover:bg-harvest-amber/90 text-white font-label-lg rounded-lg flex items-center justify-center gap-2 shadow-sm transition-all font-bold mt-1" type="submit">
+        <span class="material-symbols-outlined text-[20px]">send</span>
+        Dispatch Mobile Mechanic Now
+      </button>
+    </form>
+  </section>
+</div>
+
+<!-- ================= TAB 2: SERVICE HISTORY & PARTS STOCK ================= -->
+<div id="view-inventory" class="hidden flex flex-col gap-unit-xl">
+  <!-- Parts Stock Inventory -->
+  <section class="bg-white rounded-xl border border-border-soft p-unit-lg shadow-sm">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-unit-md">
+      <div>
+        <span class="font-label-sm text-xs uppercase text-primary font-bold">Spare Parts Depot</span>
+        <h2 class="font-headline-md text-on-surface font-bold">Mobile Service Van Inventory Stock</h2>
+      </div>
+      <button class="px-4 py-2 bg-primary text-white rounded-lg font-label-md text-xs flex items-center gap-1.5" onclick="alert('Requisitioning restock batch from Central LGU Agri-Hub...')">
+        <span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+        Requisition Restock
+      </button>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-surface-container text-soil-slate font-label-sm uppercase text-xs">
+          <tr>
+            <th class="p-3">Part Name & SKU</th>
+            <th class="p-3">Compatible Equipment</th>
+            <th class="p-3">Current In-Van Stock</th>
+            <th class="p-3">Co-op Subsidized Price</th>
+            <th class="p-3">Status</th>
+            <th class="p-3 text-right">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border-soft font-body-sm">
+          <tr class="hover:bg-cream-surface">
+            <td class="p-3 font-bold text-on-surface">Kubota V-Belt (B-Type 82") <div class="text-xs text-soil-slate font-normal">SKU: KUB-VBLT-82</div></td>
+            <td class="p-3">DC-70G / DC-60 Harvester</td>
+            <td class="p-3 font-bold text-primary">6 units</td>
+            <td class="p-3 font-bold">₱1,450</td>
+            <td class="p-3"><span class="px-2 py-0.5 rounded bg-status-available-bg text-status-available text-xs font-bold">In Stock</span></td>
+            <td class="p-3 text-right"><button class="px-2.5 py-1 text-xs bg-surface-subtle hover:bg-surface-container rounded font-bold" onclick="alert('Logged 1 unit for current ticket.')">Log Use</button></td>
+          </tr>
+          <tr class="hover:bg-cream-surface">
+            <td class="p-3 font-bold text-on-surface">Hydraulic High-Pressure Seal Kit <div class="text-xs text-soil-slate font-normal">SKU: HYD-SEAL-44</div></td>
+            <td class="p-3">4WD Tractor Boom / Lifter</td>
+            <td class="p-3 font-bold text-field-ochre">2 units</td>
+            <td class="p-3 font-bold">₱850</td>
+            <td class="p-3"><span class="px-2 py-0.5 rounded bg-status-maintenance-bg text-status-maintenance text-xs font-bold">Low Stock</span></td>
+            <td class="p-3 text-right"><button class="px-2.5 py-1 text-xs bg-surface-subtle hover:bg-surface-container rounded font-bold" onclick="alert('Logged 1 unit for current ticket.')">Log Use</button></td>
+          </tr>
+          <tr class="hover:bg-cream-surface">
+            <td class="p-3 font-bold text-on-surface">Diesel Fuel Injector Nozzle <div class="text-xs text-soil-slate font-normal">SKU: NOZ-YAN-3T</div></td>
+            <td class="p-3">Yanmar EF494T / Kubota L5018</td>
+            <td class="p-3 font-bold text-status-urgent">0 units</td>
+            <td class="p-3 font-bold">₱2,200</td>
+            <td class="p-3"><span class="px-2 py-0.5 rounded bg-status-urgent-bg text-status-urgent text-xs font-bold">Out of Stock</span></td>
+            <td class="p-3 text-right"><button class="px-2.5 py-1 text-xs bg-harvest-amber text-white hover:opacity-90 rounded font-bold" onclick="alert('Rush order sent to Regional Warehouse!')">Rush Order</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Recent Service Log History -->
+  <section class="bg-white rounded-xl border border-border-soft p-unit-lg shadow-sm">
+    <div class="flex justify-between items-center mb-unit-md">
+      <div>
+        <span class="font-label-sm text-xs uppercase text-primary font-bold">Completed Jobs</span>
+        <h2 class="font-headline-md text-on-surface font-bold">Recent Field Service Logs</h2>
+      </div>
+      <span class="text-xs text-soil-slate">Showing past 7 days</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-unit-md">
+      <div class="p-4 rounded-lg bg-surface-subtle border border-border-soft flex flex-col justify-between gap-2">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="font-bold text-on-surface">#REP-2024-814: Thresher Bearing Overhaul</div>
+            <div class="text-xs text-soil-slate">Farmer: Aling Corazon • Talavera, Sector 2</div>
+          </div>
+          <span class="px-2 py-0.5 bg-status-available-bg text-status-available text-xs font-bold rounded">Completed (Nov 18)</span>
+        </div>
+        <div class="text-xs text-on-surface-variant">Replaced 2x Pillow Block Bearings and tensioned primary drive belt. Field test passed.</div>
+        <div class="pt-2 border-t border-border-soft/60 flex justify-between items-center text-xs">
+          <span class="font-bold text-primary">Labor: ₱1,800 • Subsidized</span>
+          <span class="text-soil-slate">Duration: 2.5 hrs</span>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-lg bg-surface-subtle border border-border-soft flex flex-col justify-between gap-2">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="font-bold text-on-surface">#REP-2024-809: Hydraulic Hose Crimping</div>
+            <div class="text-xs text-soil-slate">Farmer: Mang Pedro • Brgy. Andal Aliaga</div>
+          </div>
+          <span class="px-2 py-0.5 bg-status-available-bg text-status-available text-xs font-bold rounded">Completed (Nov 17)</span>
+        </div>
+        <div class="text-xs text-on-surface-variant">On-site hose crimp and replenished 5L ISO VG 68 hydraulic oil.</div>
+        <div class="pt-2 border-t border-border-soft/60 flex justify-between items-center text-xs">
+          <span class="font-bold text-primary">Labor: ₱1,200 • Subsidized</span>
+          <span class="text-soil-slate">Duration: 1.2 hrs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= TAB 3: EARNINGS & PERFORMANCE SLA ================= -->
+<div id="view-earnings" class="hidden flex flex-col gap-unit-xl">
+  <!-- Earnings Summary Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-unit-md">
+    <div class="bg-white p-unit-md rounded-xl border border-border-soft shadow-sm flex flex-col justify-between">
+      <span class="font-label-sm text-xs uppercase text-soil-slate">Weekly Field Payout</span>
+      <div class="text-2xl font-bold text-primary mt-1">₱18,450.00</div>
+      <div class="text-xs text-status-available font-semibold mt-2 flex items-center gap-1">
+        <span class="material-symbols-outlined text-[16px]">trending_up</span> +14% vs last harvest week
+      </div>
+    </div>
+    <div class="bg-white p-unit-md rounded-xl border border-border-soft shadow-sm flex flex-col justify-between">
+      <span class="font-label-sm text-xs uppercase text-soil-slate">Avg. Response Time</span>
+      <div class="text-2xl font-bold text-on-surface mt-1">24.5 mins</div>
+      <div class="text-xs text-status-available font-semibold mt-2 flex items-center gap-1">
+        <span class="material-symbols-outlined text-[16px]">check_circle</span> Well within 45m SLA
+      </div>
+    </div>
+    <div class="bg-white p-unit-md rounded-xl border border-border-soft shadow-sm flex flex-col justify-between">
+      <span class="font-label-sm text-xs uppercase text-soil-slate">Jobs Completed This Month</span>
+      <div class="text-2xl font-bold text-on-surface mt-1">38 Repairs</div>
+      <div class="text-xs text-soil-slate font-semibold mt-2">Zero return warranty defects</div>
+    </div>
+    <div class="bg-white p-unit-md rounded-xl border border-border-soft shadow-sm flex flex-col justify-between">
+      <span class="font-label-sm text-xs uppercase text-soil-slate">Farmer Rating</span>
+      <div class="text-2xl font-bold text-harvest-amber mt-1 flex items-center gap-1">
+        <span>4.94</span>
+        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+      </div>
+      <div class="text-xs text-soil-slate font-semibold mt-2">Based on 142 post-repair surveys</div>
+    </div>
+  </div>
+
+  <!-- SLA & Payout Ledger -->
+  <section class="bg-white rounded-xl border border-border-soft p-unit-lg shadow-sm flex flex-col gap-unit-md">
+    <div class="flex justify-between items-center">
+      <div>
+        <span class="font-label-sm text-xs uppercase text-primary font-bold">Financial Settlement</span>
+        <h2 class="font-headline-md text-on-surface font-bold">LGU Cooperative Mechanic Compensation Ledger</h2>
+      </div>
+      <button class="px-4 py-2 bg-surface-subtle hover:bg-surface-container text-on-surface rounded-lg font-label-md text-xs flex items-center gap-1.5" onclick="alert('Downloading official earnings slip PDF...')">
+        <span class="material-symbols-outlined text-[16px]">download</span>
+        Export Statement
+      </button>
+    </div>
+    <div class="p-4 rounded-xl bg-surface-container-low border border-border-soft flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary text-[32px]">account_balance_wallet</span>
+        <div>
+          <div class="font-bold text-on-surface text-sm">Next Payout Schedule: Friday, Nov 22</div>
+          <div class="text-xs text-soil-slate">Direct physical voucher disbursement at Mayapyap Sur Cooperative Hall</div>
+        </div>
+      </div>
+      <span class="px-3 py-1 bg-primary text-white rounded-full text-xs font-bold uppercase tracking-wider">Ready for Release</span>
+    </div>
+  </section>
+</div>
+
+<!-- Tab Switcher Script -->
+<script>
+function switchMechanicTab(tab) {
+  const views = ['dispatch', 'inventory', 'earnings'];
+  views.forEach(v => {
+    const el = document.getElementById('view-' + v);
+    const btn = document.getElementById('tab-btn-' + v);
+    if (v === tab) {
+      el.classList.remove('hidden');
+      btn.className = 'px-5 py-2.5 rounded-lg font-label-md text-sm flex items-center gap-2 font-bold bg-primary text-white shadow-sm transition-all';
+    } else {
+      el.classList.add('hidden');
+      btn.className = 'px-5 py-2.5 rounded-lg font-label-md text-sm flex items-center gap-2 font-medium bg-white text-on-surface-variant border border-border-soft hover:bg-surface-container transition-all';
+    }
+  });
+}
+</script>
+</div></main><script src="../shared/nav-dock.js"></script>
+</body></html>

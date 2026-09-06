@@ -1,0 +1,899 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-subtle":"#F3F4EE","on-secondary":"#ffffff","on-primary-fixed":"#00210b","surface-variant":"#dae5e0","field-ochre":"#C26D1A","status-urgent":"#C53030","primary-fixed":"#a3f5b2","surface-container":"#e5f0eb","inverse-surface":"#28332f","tertiary":"#01505e","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#ffb77a","on-surface-variant":"#404940","surface":"#f1fcf7","on-background":"#141e1b","status-maintenance-bg":"#FEF3E7","on-tertiary-container":"#a8e5f6","secondary-container":"#fea047","status-booked-bg":"#EFEFEF","tertiary-fixed":"#afecfd","on-error":"#ffffff","status-maintenance":"#D9822B","sky-tint":"#E8F4F8","status-booked":"#616E68","soil-slate":"#475953","surface-tint":"#196c37","outline-variant":"#bfc9bd","sprout-green":"#58A359","tertiary-fixed-dim":"#94d0e0","secondary-fixed":"#ffdcc2","status-available-bg":"#EAF5EE","surface-container-low":"#ebf6f1","on-error-container":"#93000a","primary-fixed-dim":"#88d898","on-secondary-fixed":"#2e1500","error-container":"#ffdad6","on-secondary-fixed-variant":"#6d3a00","outline":"#707a6f","primary-container":"#1b6e39","on-surface":"#141e1b","tertiary-container":"#286877","surface-bright":"#f1fcf7","cream-surface":"#FBFBF7","harvest-amber":"#F4A228","border-soft":"#DDE3DA","on-tertiary":"#ffffff","on-tertiary-fixed":"#001f26","leaf-green":"#2E8B57","secondary":"#8f4e00","primary":"#005426","surface-dim":"#d1ddd8","on-tertiary-fixed-variant":"#004e5c","background":"#f1fcf7","on-secondary-container":"#6d3a00","surface-container-high":"#dfebe6","inverse-primary":"#88d898","error":"#ba1a1a","inverse-on-surface":"#e8f3ee","on-primary-container":"#9ceeab","on-primary":"#ffffff","status-available":"#1B6E39","on-primary-fixed-variant":"#005225","status-urgent-bg":"#FDE8E8","surface-container-highest":"#dae5e0"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"unit-md":"1rem","margin-desktop":"2rem","unit-sm":"0.75rem","margin-mobile":"1rem","unit-2xs":"0.25rem","gutter-desktop":"1.5rem","gutter-mobile":"1rem","unit-xl":"2rem","unit-xs":"0.5rem","touch-target-min":"48px","unit-lg":"1.5rem","unit-2xl":"3rem","unit-3xl":"4rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"label-md":["Space Grotesk"],"display-hero-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Space Grotesk"],"label-sm":["Space Grotesk"],"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"]},fontSize:{"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"0.01em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"0.08em",fontWeight:"600"}],"display-hero-mobile":["34px",{lineHeight:"42px",letterSpacing:"-0.01em",fontWeight:"800"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"0.02em",fontWeight:"700"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"0.04em",fontWeight:"700"}],"label-lg":["15px",{lineHeight:"20px",letterSpacing:"0.06em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.1em",fontWeight:"700"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"0.03em",fontWeight:"700"}],"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"800"}]}}}}</script></head><body class="bg-cream-surface font-body-md text-on-surface antialiased min-h-screen"><div aria-hidden="true" class="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center"><img alt="" class="w-full h-full object-cover select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-ml_0ro9DirZIXN0w3rYn2rnUXHqRl4Kf1Lr5_xzlf3-0xnTVhD5ifzQFutGwoddSXzaUqEjr9jhdGAOvmspLZw8CZHbGoJdb4kNDcLVST7rSo_ObVJ0LzTIh5BHNROBmNBCobush4DovY2zEcwc--lrDAaohxKQtJMS7iu_CJeiy1-vgPbZ92JhUMkCHyUPZ3FnI63KfyB41PtioyebkICRZRc97q27_LiBXOSY-z76JrxdLGZjCu6_dq76_Kmgqog" style="opacity: 0.07; filter: saturate(0.85);"></div><header class="fixed top-0 w-full z-50 bg-cream-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(26,36,33,0.05)] border-b border-border-soft/60"><div class="h-16 max-w-full mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-unit-md"><a href="../index.html" class="flex items-center gap-unit-sm"><img alt="logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3"><div class="flex items-center gap-unit-xs"><span class="font-headline-sm text-headline-sm tracking-tight text-primary font-bold">UMAKONEKTA</span><span class="px-unit-xs py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm uppercase tracking-wider">Admin &amp; Moderation</span></div></a><div class="flex items-center gap-unit-md"><span class="hidden md:inline-flex items-center gap-unit-2xs text-soil-slate font-label-md text-label-md"><span class="w-2 h-2 rounded-full bg-status-available"></span>National LGU Dispatch Live</span><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="../index.html">Exit to Public Portal</a><a href="../umakonekta_secure_authentication_identity_verification/code.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 hover:opacity-90"><span class="material-symbols-outlined text-on-primary text-[18px]">shield_person</span></a></div></div><div class="w-full bg-surface-subtle border-t border-b border-border-soft/60 px-margin-mobile lg:px-margin-desktop"><nav class="flex items-center gap-unit-lg overflow-x-auto h-12" data-active-classes="text-primary font-bold border-b-2 border-primary"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-3 whitespace-nowrap" href="../umakonekta_user_role_management_verification/code.html">User Management</a><a aria-current="page" class="transition-colors py-3 whitespace-nowrap text-primary font-bold border-b-2 border-primary" href="../umakonekta_administrator_portal_moderation/code.html">Listing Moderation</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-3 whitespace-nowrap" href="../umakonekta_offline_sync_connectivity_status/code.html">Policy &amp; Compliance</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-3 whitespace-nowrap" href="../umakonekta_sacco_thermal_pos_harvest_split_receipt_standard/code.html">Audit Logs</a></nav></div></header><main class="w-full pt-28 bg-cream-surface relative"><div class="flex flex-col w-full">
+<!-- Command Header & Operational Security Context -->
+<div class="w-full bg-cream-surface border-b border-border-soft px-margin-mobile lg:px-margin-desktop py-unit-lg shadow-sm">
+<div class="max-w-[1400px] mx-auto flex flex-col gap-unit-md">
+<!-- Overline Registry Banner -->
+<div class="flex flex-wrap items-center justify-between gap-unit-sm">
+<div class="flex items-center gap-unit-xs">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">assured_workload</span>
+            Admin Command
+          </span>
+<span class="text-soil-slate font-label-md text-label-md">Republic of the Philippines • Department of Agriculture (DA-LGU Network)</span>
+</div>
+<div class="inline-flex items-center gap-2 px-unit-sm py-1.5 rounded-full bg-status-available-bg text-status-available font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-status-available animate-pulse"></span>
+<span class="">SYSTEM GUARD ACTIVE: ZERO DIGITAL PAYMENTS POLICY ENFORCED</span>
+</div>
+</div>
+<!-- Identity & Security Posture Strip -->
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-unit-md pt-unit-xs">
+<div class="flex items-center gap-unit-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="font-headline-md text-headline-md text-on-surface">Engr. Aris Mendoza</h1>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Supervising Regional Admin</span>
+</div>
+<p class="font-body-sm text-body-sm text-soil-slate">Central Luzon Agri-Industrial Hub • Region III Cluster (Nueva Ecija Dispatch Control)</p>
+</div>
+</div>
+<div class="flex items-center gap-unit-sm w-full lg:w-auto">
+<button class="flex-1 lg:flex-none inline-flex items-center justify-center gap-2 px-unit-md h-touch-target-min rounded-lg bg-surface-subtle border border-border-soft hover:bg-surface-container-low text-on-surface font-label-md text-label-md transition-colors" onclick="runPolicyScan()">
+<span class="material-symbols-outlined text-[20px] text-soil-slate">policy</span>
+<span class="">Run Deep Regex Scanner</span>
+</button>
+<button class="flex-1 lg:flex-none inline-flex items-center justify-center gap-2 px-unit-md h-touch-target-min rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-colors" onclick="exportAuditReport()">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span class="">Export LGU Ledger (.CSV)</span>
+</button>
+</div>
+</div>
+<!-- Real-Time Operational KPI Metrics -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-unit-sm pt-unit-xs">
+<div class="bg-surface-container-lowest p-unit-sm rounded-lg border border-border-soft shadow-sm">
+<div class="flex items-center justify-between text-soil-slate mb-1">
+<span class="font-label-sm text-label-sm uppercase">Total Directory Users</span>
+<span class="material-symbols-outlined text-[18px]">groups</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface font-bold">3,420</div>
+<p class="font-body-sm text-body-sm text-soil-slate truncate">2.8k Farmers • 520 FCAs • 60 Admins</p>
+</div>
+<div class="bg-surface-container-lowest p-unit-sm rounded-lg border border-border-soft shadow-sm">
+<div class="flex items-center justify-between text-soil-slate mb-1">
+<span class="font-label-sm text-label-sm uppercase">Pending Role Verification</span>
+<span class="material-symbols-outlined text-[18px] text-status-maintenance">how_to_reg</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface font-bold flex items-baseline gap-1.5">
+<span class="">14</span>
+<span class="font-label-sm text-label-sm text-status-maintenance font-semibold">+3 today</span>
+</div>
+<p class="font-body-sm text-body-sm text-soil-slate truncate">RSBSA &amp; Coop Charters</p>
+</div>
+<div class="bg-surface-container-lowest p-unit-sm rounded-lg border border-border-soft shadow-sm">
+<div class="flex items-center justify-between text-soil-slate mb-1">
+<span class="font-label-sm text-label-sm uppercase">Moderation Queue</span>
+<span class="material-symbols-outlined text-[18px] text-primary">fact_check</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface font-bold flex items-baseline gap-1.5">
+<span class="">8</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Active Review</span>
+</div>
+<p class="font-body-sm text-body-sm text-soil-slate truncate">4 Equipment • 2 Drying • 2 Lots</p>
+</div>
+<div class="bg-surface-container-lowest p-unit-sm rounded-lg border border-status-urgent/40 shadow-sm bg-status-urgent-bg/30">
+<div class="flex items-center justify-between text-status-urgent mb-1">
+<span class="font-label-sm text-label-sm uppercase font-bold">Violations Flagged</span>
+<span class="material-symbols-outlined text-[18px] text-status-urgent">gavel</span>
+</div>
+<div class="font-headline-md text-headline-md text-status-urgent font-bold flex items-baseline gap-1.5">
+<span class="">2</span>
+<span class="font-label-sm text-label-sm bg-status-urgent text-on-error px-1.5 rounded">Action Req.</span>
+</div>
+<p class="font-body-sm text-body-sm text-soil-slate truncate">Prohibited Payment Link Detected</p>
+</div>
+<div class="col-span-2 md:col-span-1 lg:col-span-1 bg-surface-container-lowest p-unit-sm rounded-lg border border-border-soft shadow-sm">
+<div class="flex items-center justify-between text-soil-slate mb-1">
+<span class="font-label-sm text-label-sm uppercase">Cash Ledger Integrity</span>
+<span class="material-symbols-outlined text-[18px] text-status-available">verified</span>
+</div>
+<div class="font-headline-md text-headline-md text-status-available font-bold">100% Offline</div>
+<p class="font-body-sm text-body-sm text-soil-slate truncate">₱0 App Fees • Co-op Verified</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Space -->
+<div class="w-full max-w-[1400px] mx-auto px-margin-mobile lg:px-margin-desktop py-unit-xl flex flex-col gap-unit-xl">
+<!-- View Nav & Administrative Filters -->
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-unit-md bg-surface-container-lowest p-unit-md rounded-xl border border-border-soft shadow-sm">
+<!-- Primary Tabs -->
+<div class="flex items-center gap-unit-xs overflow-x-auto pb-1 lg:pb-0" id="admin-tabs">
+<button class="px-unit-md h-10 rounded-lg font-label-md text-label-md flex items-center gap-2 whitespace-nowrap bg-primary text-on-primary" id="tab-btn-moderation" onclick="switchTab('moderation')">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+          Listing Moderation (8 Pending)
+        </button>
+<button class="px-unit-md h-10 rounded-lg font-label-md text-label-md flex items-center gap-2 whitespace-nowrap bg-surface-subtle text-on-surface-variant hover:bg-surface-container transition-colors" id="tab-btn-users" onclick="switchTab('users')">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+          User &amp; Proxy Management (14)
+        </button>
+<button class="px-unit-md h-10 rounded-lg font-label-md text-label-md flex items-center gap-2 whitespace-nowrap bg-surface-subtle text-on-surface-variant hover:bg-surface-container transition-colors" id="tab-btn-audit" onclick="switchTab('audit')">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+          System Audit Log
+        </button>
+</div>
+<!-- High-Density Search & Municipality Filter Group -->
+<div class="flex flex-wrap items-center gap-unit-sm">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-soil-slate text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-unit-sm bg-cream-surface border border-border-soft rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary" id="filter-keyword" placeholder="Search listing ID, RSBSA, or keyword..." type="text">
+</div>
+<select class="h-10 px-unit-sm bg-cream-surface border border-border-soft rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:border-primary" id="filter-lgu">
+<option value="all">All LGU Clusters (Nueva Ecija)</option>
+<option value="talavera">Talavera Cluster</option>
+<option value="sanjose">San Jose City</option>
+<option value="munoz">Science City of Muñoz</option>
+<option value="guimba">Guimba Ag-Hub</option>
+</select>
+<select class="h-10 px-unit-sm bg-cream-surface border border-border-soft rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:border-primary" id="filter-pillar">
+<option value="all">All 4 Pillars</option>
+<option value="machinery">1. Farm Machinery</option>
+<option value="lots">2. Agricultural Lots</option>
+<option value="storage">3. Solar Drying &amp; Storage</option>
+<option value="services">4. Labor &amp; Ag-Services</option>
+</select>
+</div>
+</div>
+<!-- TAB 1: LISTING MODERATION QUEUE -->
+<div class="flex flex-col gap-unit-lg" id="view-moderation">
+<!-- Regulatory Warning Banner -->
+<div class="bg-status-maintenance-bg border border-harvest-amber/50 rounded-xl p-unit-md flex items-start gap-unit-md">
+<div class="w-10 h-10 rounded-full bg-harvest-amber/20 flex items-center justify-center text-status-maintenance shrink-0">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-sm text-headline-sm text-on-secondary-fixed">Platform Integrity Enforcement Standard (Section 4.1)</h2>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed/90 mt-1">
+            UMAKONEKTA prohibits in-app payment transactions, platform escrow, digital subscriptions, credit card forms, or digital wallet links (such as GCash, Maya, Bank Transfer). All financial compensation must occur strictly via physical cash-on-receipt, cooperative ledgers, or official municipal cashier receipts. Flagged items must be stripped of electronic payment links before directory broadcast.
+          </p>
+</div>
+<button class="text-soil-slate hover:text-on-surface p-1" onclick="dismissBanner(this)">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Moderation Items Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-unit-lg">
+<!-- CARD 1: CRITICAL POLICY VIOLATION (GCash Link Flag) -->
+<div class="bg-surface-container-lowest rounded-xl border-2 border-status-urgent p-unit-md flex flex-col justify-between shadow-sm relative overflow-hidden" id="card-violation-1">
+<div class="absolute top-0 right-0 bg-status-urgent text-on-error px-unit-md py-1 rounded-bl-lg font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">error</span>
+            Restricted: Online Payment Detected
+          </div>
+<div>
+<div class="flex items-center gap-unit-xs mb-unit-xs">
+<span class="px-2 py-0.5 rounded bg-status-urgent-bg text-status-urgent font-label-sm text-label-sm">Flagged Listing #DS-8842</span>
+<span class="text-soil-slate font-label-sm text-label-sm">• Talavera, Nueva Ecija</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Kubota L5018 4WD Tractor with Rotary Tiller</h3>
+<p class="font-body-sm text-body-sm text-status-urgent font-semibold mt-1">Stated Rate: ₱2,500/Ha — "Downpayment via GCash 0917-882-XXXX required to secure slot"</p>
+<div class="my-unit-md p-unit-sm rounded-lg bg-status-urgent-bg/50 border border-status-urgent/30">
+<div class="flex items-center gap-1.5 text-status-urgent font-label-md text-label-md mb-1">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="">Automated Scanner Regex Match: `gcash\.me|09\d{9}\s*(gcash|paymaya)`</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                Provider <strong class="text-on-surface">Danilo's Custom Tilling Services</strong> inserted direct digital remittance instructions in description payload. This violates offline co-op settlement compliance.
+              </p>
+</div>
+<div class="grid grid-cols-2 gap-unit-xs text-soil-slate font-body-sm text-body-sm mb-unit-md">
+<div class=""><strong>Provider:</strong> Private Non-FCA Account</div>
+<div class=""><strong>Audit Timestamp:</strong> Today, 10:14 AM</div>
+<div class=""><strong>Pillar:</strong> Farm Machinery (Pillar 1)</div>
+<div class=""><strong>Reported By:</strong> Automated Policy Daemon</div>
+</div>
+</div>
+<div class="pt-unit-sm border-t border-border-soft flex flex-wrap items-center justify-between gap-unit-xs">
+<div class="flex items-center gap-unit-xs">
+<button class="px-unit-sm h-10 rounded-lg bg-status-available-bg text-status-available border border-status-available/40 font-label-md text-label-md hover:bg-status-available hover:text-on-primary transition-colors flex items-center gap-1.5" onclick="stripAndApprove('card-violation-1', '#DS-8842')">
+<span class="material-symbols-outlined text-[16px]">cleaning_services</span>
+                Strip Link &amp; Approve
+              </button>
+<button class="px-unit-sm h-10 rounded-lg bg-surface-subtle border border-border-soft text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="rejectWithNotice('#DS-8842', 'GCash / Electronic Wallet strictly prohibited')">
+                Issue Notice
+              </button>
+</div>
+<button class="px-unit-sm h-10 rounded-lg bg-status-urgent text-on-error font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-1" onclick="suspendProvider('Danilo Custom Tilling')">
+<span class="material-symbols-outlined text-[16px]">block</span>
+              Suspend Account
+            </button>
+</div>
+</div>
+<!-- CARD 2: PENDING STANDARD AUDIT (FCA Verified Seedling Nursery) -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-soft p-unit-md flex flex-col justify-between shadow-sm" id="card-pending-2">
+<div>
+<div class="flex items-center justify-between gap-unit-xs mb-unit-xs">
+<div class="flex items-center gap-unit-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm">Listing #DS-8849</span>
+<span class="px-2 py-0.5 rounded bg-status-available-bg text-status-available font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+                  FCA Verified Coop ID Attached
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-soil-slate">Submitted 1h ago</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Multi-Tray Certified Seedling Nursery (12,000 Capacity)</h3>
+<p class="font-body-sm text-body-sm text-soil-slate mt-1">Talavera Rice Producers Cooperative (TRPC) • Talavera Central Nursery Compound</p>
+<div class="my-unit-md p-unit-sm rounded-lg bg-cream-surface border border-border-soft">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface-variant mb-1">
+<span class="">Proposed Rate: ₱1.20 / Tray Maintenance per day</span>
+<span class="text-leaf-green">Cooperative Ledger Settlement</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                Includes automated mist irrigation, organic trichoderma soil treatment, and 14-day vegetative nursery monitoring. Managed directly by TRPC Agri-technicians.
+              </p>
+</div>
+<div class="grid grid-cols-2 gap-unit-xs text-soil-slate font-body-sm text-body-sm mb-unit-md">
+<div class=""><strong>Cooperative ID:</strong> CDA-9520-004128</div>
+<div class=""><strong>Pillar:</strong> Ag Services &amp; Nursery (Pillar 4)</div>
+<div class=""><strong>Dispatch Officer:</strong> Elena Santos (FCA Proxy)</div>
+<div class=""><strong>Compliance Check:</strong> Passed (No E-Wallet)</div>
+</div>
+</div>
+<div class="pt-unit-sm border-t border-border-soft flex items-center justify-end gap-unit-sm">
+<button class="px-unit-md h-10 rounded-lg bg-surface-subtle border border-border-soft text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="requestRevision('#DS-8849')">
+              Request Revision
+            </button>
+<button class="px-unit-lg h-10 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-2" onclick="approveListing('card-pending-2', '#DS-8849')">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+              Approve &amp; Publish
+            </button>
+</div>
+</div>
+<!-- CARD 3: URGENT HARVEST SPOILAGE EXPEDITED APPROVAL -->
+<div class="bg-surface-container-lowest rounded-xl border-2 border-harvest-amber p-unit-md flex flex-col justify-between shadow-sm relative overflow-hidden" id="card-urgent-3">
+<div class="absolute top-0 right-0 bg-harvest-amber text-on-surface px-unit-md py-1 rounded-bl-lg font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] animate-bounce">priority_high</span>
+            Urgent Harvest Spoilage Relief
+          </div>
+<div>
+<div class="flex items-center gap-unit-xs mb-unit-xs">
+<span class="px-2 py-0.5 rounded bg-status-maintenance-bg text-status-maintenance font-label-sm text-label-sm">Fast-Track Request #DS-8851</span>
+<span class="text-soil-slate font-label-sm text-label-sm">• San Jose City LGU Flat</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Emergency San Jose Solar Drying Bay #4 (Post-Flood Allocation)</h3>
+<p class="font-body-sm text-body-sm text-soil-slate mt-1">San Jose City Agriculture Office (MAO) Subsidized Facility</p>
+<div class="my-unit-md p-unit-sm rounded-lg bg-status-maintenance-bg/60 border border-harvest-amber/40">
+<div class="flex items-center gap-1.5 text-field-ochre font-label-md text-label-md mb-1">
+<span class="material-symbols-outlined text-[16px]">cyclone</span>
+<span class="">Incoming Storm Alert: 400 cavans of freshly harvested palay at risk of mold germination</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                Allocated for smallholders from flooded Zone 3 Purok Pag-asa. Flat rate: ₱0.00 (100% LGU Subsidized). Requires priority broadcast to nearby farmers.
+              </p>
+</div>
+<div class="grid grid-cols-2 gap-unit-xs text-soil-slate font-body-sm text-body-sm mb-unit-md">
+<div class=""><strong>Capacity:</strong> 500 sqm (800 Cavans)</div>
+<div class=""><strong>Pillar:</strong> Drying &amp; Storage (Pillar 3)</div>
+<div class=""><strong>Designated Desk:</strong> San Jose MAO Danilo Ramos</div>
+<div class=""><strong>LGU Subsidy:</strong> Certified Ordinance #44-B</div>
+</div>
+</div>
+<div class="pt-unit-sm border-t border-border-soft flex items-center justify-between gap-unit-sm">
+<div class="inline-flex items-center gap-1 font-label-sm text-label-sm text-soil-slate">
+<span class="w-2 h-2 rounded-full bg-harvest-amber"></span>
+              SLA Timeout: 45 minutes
+            </div>
+<div class="flex items-center gap-unit-xs">
+<button class="px-unit-sm h-10 rounded-lg bg-surface-subtle border border-border-soft text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="verifyCapacity('#DS-8851')">
+                Verify Bay Capacity
+              </button>
+<button class="px-unit-md h-10 rounded-lg bg-field-ochre hover:bg-secondary text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1.5" onclick="fastTrackApprove('card-urgent-3', '#DS-8851')">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                Fast-Track Approval
+              </button>
+</div>
+</div>
+</div>
+<!-- CARD 4: MISCATEGORIZED ASSET WARNING -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-soft p-unit-md flex flex-col justify-between shadow-sm" id="card-miscategorized-4">
+<div>
+<div class="flex items-center justify-between gap-unit-xs mb-unit-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-soil-slate font-label-sm text-label-sm">Listing #DS-8853</span>
+<span class="px-2 py-0.5 rounded bg-status-maintenance-bg text-status-maintenance font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">reorder</span>
+                Misclassified Pillar
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">10-Wheeler Isuzu Giga Farm Hauler with Flatbed Trailer</h3>
+<p class="font-body-sm text-body-sm text-soil-slate mt-1">Science City of Muñoz • Agro-Logistics Association</p>
+<div class="my-unit-md p-unit-sm rounded-lg bg-cream-surface border border-border-soft">
+<div class="font-label-md text-label-md text-soil-slate mb-1">
+                Current Assigned Pillar: <span class="text-status-urgent line-through">3. Drying &amp; Storage Spaces</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                The provider submitted transport haulage logistics under storage warehouse space. Farmers searching for tractors and transport equipment will fail to index this resource.
+              </p>
+</div>
+<div class="grid grid-cols-2 gap-unit-xs text-soil-slate font-body-sm text-body-sm mb-unit-md">
+<div class=""><strong>Haulage Capacity:</strong> 18 Metric Tons</div>
+<div class=""><strong>Target Pillar:</strong> 1. Agricultural Machinery</div>
+<div class=""><strong>Standard Ledger:</strong> ₱3,200 per haul trip</div>
+<div class=""><strong>Operator Included:</strong> Yes (Licensed)</div>
+</div>
+</div>
+<div class="pt-unit-sm border-t border-border-soft flex items-center justify-end gap-unit-sm">
+<button class="w-full sm:w-auto px-unit-lg h-10 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center justify-center gap-2" onclick="recategorizeAndPublish('card-miscategorized-4', '#DS-8853', 'Machinery')">
+<span class="material-symbols-outlined text-[18px]">drive_file_move</span>
+              Recategorize to Pillar 1 &amp; Approve
+            </button>
+</div>
+</div>
+</div>
+<!-- Quick Summary Table of Remaining Queued Items -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-soft p-unit-md shadow-sm">
+<div class="flex items-center justify-between mb-unit-sm">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Awaiting Second-Level Inspection (4 additional items)</h3>
+<p class="font-body-sm text-body-sm text-soil-slate">High-density backlog awaiting mechanical safety certificates &amp; land title validation</p>
+</div>
+<span class="px-2.5 py-1 rounded bg-surface-subtle font-label-sm text-label-sm text-soil-slate">Queue ID: BATCH-03-91</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="border-b border-border-soft text-soil-slate font-label-sm text-label-sm uppercase bg-surface-subtle/50">
+<th class="p-unit-sm">ID</th>
+<th class="p-unit-sm">Pillar &amp; Asset Name</th>
+<th class="p-unit-sm">Provider / FCA</th>
+<th class="p-unit-sm">Municipality</th>
+<th class="p-unit-sm">Stated Rate</th>
+<th class="p-unit-sm">Settlement Mechanism</th>
+<th class="p-unit-sm text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-soft">
+<tr class="hover:bg-cream-surface/60 transition-colors">
+<td class="p-unit-sm font-label-md text-label-md text-primary">#DS-8854</td>
+<td class="p-unit-sm font-semibold">Baler Machine - New Holland Roll-Belt</td>
+<td class="p-unit-sm">Guimba Farmers Co-op</td>
+<td class="p-unit-sm">Guimba, NE</td>
+<td class="p-unit-sm">₱35 / Straw Bale</td>
+<td class="p-unit-sm"><span class="px-2 py-0.5 rounded bg-status-available-bg text-status-available font-label-sm text-label-sm">Co-op Passbook</span></td>
+<td class="p-unit-sm text-right">
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container" onclick="approveRow(this, '#DS-8854')">Approve</button>
+</td>
+</tr>
+<tr class="hover:bg-cream-surface/60 transition-colors">
+<td class="p-unit-sm font-label-md text-label-md text-primary">#DS-8855</td>
+<td class="p-unit-sm font-semibold">1.5 Hectare Lowland Rice Lot (Irrigated)</td>
+<td class="p-unit-sm">Talavera Agrarian Reform Beneficiaries</td>
+<td class="p-unit-sm">Talavera, NE</td>
+<td class="p-unit-sm">18% Palay Crop Share</td>
+<td class="p-unit-sm"><span class="px-2 py-0.5 rounded bg-status-available-bg text-status-available font-label-sm text-label-sm">DAR Share Contract</span></td>
+<td class="p-unit-sm text-right">
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container" onclick="approveRow(this, '#DS-8855')">Approve</button>
+</td>
+</tr>
+<tr class="hover:bg-cream-surface/60 transition-colors">
+<td class="p-unit-sm font-label-md text-label-md text-primary">#DS-8856</td>
+<td class="p-unit-sm font-semibold">Rice Milling Service (Satake Compact 1-Ton/hr)</td>
+<td class="p-unit-sm">Muñoz Modern Grains Facility</td>
+<td class="p-unit-sm">Muñoz, NE</td>
+<td class="p-unit-sm">₱110 / Cavan Milled</td>
+<td class="p-unit-sm"><span class="px-2 py-0.5 rounded bg-status-available-bg text-status-available font-label-sm text-label-sm">Physical Cashier</span></td>
+<td class="p-unit-sm text-right">
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container" onclick="approveRow(this, '#DS-8856')">Approve</button>
+</td>
+</tr>
+<tr class="hover:bg-cream-surface/60 transition-colors">
+<td class="p-unit-sm font-label-md text-label-md text-primary">#DS-8857</td>
+<td class="p-unit-sm font-semibold">Drone Spraying Team (5-Man Precision Rig)</td>
+<td class="p-unit-sm">Central Luzon Drone Flight Service</td>
+<td class="p-unit-sm">San Jose City</td>
+<td class="p-unit-sm">₱650 / Hectare</td>
+<td class="p-unit-sm"><span class="px-2 py-0.5 rounded bg-status-available-bg text-status-available font-label-sm text-label-sm">On-Field Cash</span></td>
+<td class="p-unit-sm text-right">
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container" onclick="approveRow(this, '#DS-8857')">Approve</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- TAB 2: USER & ROLE MANAGEMENT -->
+<div class="hidden flex-col gap-unit-lg" id="view-users">
+<!-- Role Management Overview Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-soft p-unit-md shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-unit-sm mb-unit-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Registered Stakeholders &amp; Proxy Authority Verification</h2>
+<p class="font-body-sm text-body-sm text-soil-slate">Managing RSBSA validation, Cooperative Proxy authorizations, and Municipal Agriculture Officer (MAO) dispatchers</p>
+</div>
+<div class="flex items-center gap-unit-xs">
+<button class="px-unit-md h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors flex items-center gap-1.5" onclick="showInviteModal()">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+              Provision MAO Desk Officer
+            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="border-b border-border-soft text-soil-slate font-label-sm text-label-sm uppercase bg-surface-subtle">
+<th class="p-unit-sm">Member Identity</th>
+<th class="p-unit-sm">Assigned Role (DESIGN.md)</th>
+<th class="p-unit-sm">Government Registry / Proof</th>
+<th class="p-unit-sm">Municipality</th>
+<th class="p-unit-sm">Access Status</th>
+<th class="p-unit-sm text-right">Administrative Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-soft" id="user-rows-container">
+<!-- USER 1: FARMER / REQUESTOR -->
+<tr class="hover:bg-cream-surface/60 transition-colors">
+<td class="p-unit-sm">
+<div class="font-semibold text-on-surface">Mang Juanito Dela Cruz</div>
+<div class="text-soil-slate font-label-sm text-label-sm">Joined Oct 2023 • Mobile: 0918-441-2091</div>
+</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                    Farmer / Requestor
+                  </span>
+</td>
+<td class="p-unit-sm">
+<div class="inline-flex items-center gap-1 text-primary font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">fingerprint</span>
+                    RSBSA #03-49-12-00841
+                  </div>
+<div class="text-soil-slate text-[12px]">DA Registry Cleared (Lowland Palay)</div>
+</td>
+<td class="p-unit-sm font-medium">Talavera (Brgy. Matias)</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded-full bg-status-available-bg text-status-available font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-available"></span>
+                    Verified Member
+                  </span>
+</td>
+<td class="p-unit-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2.5 py-1.5 rounded border border-border-soft text-soil-slate font-label-sm text-label-sm hover:bg-surface-subtle" onclick="viewUserHistory('Mang Juanito')">Activity History</button>
+<button class="px-2.5 py-1.5 rounded bg-surface-subtle text-primary font-label-sm text-label-sm hover:bg-primary hover:text-on-primary" onclick="toggleProxy('Mang Juanito', this)">Make Proxy</button>
+</div>
+</td>
+</tr>
+<!-- USER 2: PROVIDER & COOPERATIVE PROXY -->
+<tr class="hover:bg-cream-surface/60 transition-colors">
+<td class="p-unit-sm">
+<div class="font-semibold text-on-surface">Gng. Elena Santos (Talavera Rice Producers Co-op)</div>
+<div class="text-soil-slate font-label-sm text-label-sm">FCA Secretariat Lead • 420 Member Famers</div>
+</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded bg-harvest-amber/20 text-field-ochre font-label-sm text-label-sm font-semibold">
+                    Cooperative Proxy Desk
+                  </span>
+</td>
+<td class="p-unit-sm">
+<div class="inline-flex items-center gap-1 text-on-surface font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">corporate_fare</span>
+                    CDA Reg #9520-004128
+                  </div>
+<div class="text-soil-slate text-[12px]">Authorized Proxy Resolution 2024-08</div>
+</td>
+<td class="p-unit-sm font-medium">Talavera Hub</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded-full bg-status-available-bg text-status-available font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-available"></span>
+                    Active FCA Proxy Desk
+                  </span>
+</td>
+<td class="p-unit-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2.5 py-1.5 rounded border border-border-soft text-soil-slate font-label-sm text-label-sm hover:bg-surface-subtle" onclick="manageProxyQuota('Talavera Rice Producers')">Audit Quotas</button>
+<button class="px-2.5 py-1.5 rounded border border-status-urgent/40 text-status-urgent font-label-sm text-label-sm hover:bg-status-urgent hover:text-on-error" onclick="revokeRole('Gng. Elena Santos', this)">Revoke Proxy</button>
+</div>
+</td>
+</tr>
+<!-- USER 3: MUNICIPAL AG OFFICER / LGU ADMIN -->
+<tr class="hover:bg-cream-surface/60 transition-colors">
+<td class="p-unit-sm">
+<div class="font-semibold text-on-surface">Danilo Ramos (San Jose City MAO Desk)</div>
+<div class="text-soil-slate font-label-sm text-label-sm">Municipal Ag Officer • Public Dispatch Unit</div>
+</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">
+                    LGU Verified Dispatcher
+                  </span>
+</td>
+<td class="p-unit-sm">
+<div class="inline-flex items-center gap-1 text-primary font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">shield_person</span>
+                    LGU-NE-SJC-2022-901
+                  </div>
+<div class="text-soil-slate text-[12px]">Subsidized Tractor Fleet Supervisor</div>
+</td>
+<td class="p-unit-sm font-medium">San Jose City</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded-full bg-status-available-bg text-status-available font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-available"></span>
+                    Live Dispatch Gate
+                  </span>
+</td>
+<td class="p-unit-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2.5 py-1.5 rounded border border-border-soft text-soil-slate font-label-sm text-label-sm hover:bg-surface-subtle" onclick="viewLguJurisdiction('San Jose City')">Jurisdiction</button>
+<button class="px-2.5 py-1.5 rounded bg-surface-subtle text-soil-slate font-label-sm text-label-sm hover:bg-surface-container-high" onclick="suspendUser('Danilo Ramos')">Suspend</button>
+</div>
+</td>
+</tr>
+<!-- USER 4: PENDING PRIVATE PROVIDER -->
+<tr class="hover:bg-cream-surface/60 transition-colors bg-status-maintenance-bg/20">
+<td class="p-unit-sm">
+<div class="font-semibold text-on-surface">Bayanihan Agro Services Inc.</div>
+<div class="text-soil-slate font-label-sm text-label-sm">Commercial Provider Candidate • 6 Combine Harvesters</div>
+</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded bg-surface-subtle text-soil-slate font-label-sm text-label-sm font-semibold">
+                    Provider (Commercial)
+                  </span>
+</td>
+<td class="p-unit-sm">
+<div class="inline-flex items-center gap-1 text-status-maintenance font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">pending</span>
+                    Missing Barangay Clearance
+                  </div>
+<div class="text-soil-slate text-[12px]">DTI Reg attached • LGU Permit pending</div>
+</td>
+<td class="p-unit-sm font-medium">Science City of Muñoz</td>
+<td class="p-unit-sm">
+<span class="px-2.5 py-1 rounded-full bg-status-maintenance-bg text-status-maintenance font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-maintenance"></span>
+                    Pending Verification
+                  </span>
+</td>
+<td class="p-unit-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2.5 py-1.5 rounded border border-border-soft text-soil-slate font-label-sm text-label-sm hover:bg-surface-subtle" onclick="requestDocument('Bayanihan Agro')">Req. Clearance</button>
+<button class="px-2.5 py-1.5 rounded bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container" onclick="approveProviderRole(this, 'Bayanihan Agro')">Approve Role</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- TAB 3: AUDIT LOGS & SYSTEM LEDGER -->
+<div class="hidden flex-col gap-unit-lg" id="view-audit">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-unit-lg">
+<!-- Left: Real-Time Stream -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-border-soft p-unit-md shadow-sm">
+<div class="flex items-center justify-between mb-unit-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Administrative Activity Ledger</h2>
+<p class="font-body-sm text-body-sm text-soil-slate">Cryptographically sequenced chronological audit log of all directory modifications</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-status-available-bg text-status-available font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-status-available"></span>
+              Live Daemon Stream
+            </span>
+</div>
+<div class="space-y-unit-sm" id="audit-log-stream">
+<div class="p-unit-sm rounded-lg bg-status-urgent-bg/40 border border-status-urgent/30 flex items-start gap-unit-sm">
+<span class="material-symbols-outlined text-status-urgent text-[20px] shrink-0 mt-0.5">security_update_warning</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-status-urgent font-bold">AUTOMATED POLICY ENFORCER (RULE #P01)</span>
+<span class="font-label-sm text-label-sm text-soil-slate">10:14:22 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                  Interception Trigger: URL pattern containing <code class="text-status-urgent font-mono bg-status-urgent-bg px-1 rounded">gcash.me/pay-danilo</code> was rejected on draft listing <strong>#DS-8842</strong> (Kubota L5018). Listing withheld from directory feed.
+                </p>
+</div>
+</div>
+<div class="p-unit-sm rounded-lg bg-surface-container-low border border-border-soft flex items-start gap-unit-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">verified_user</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">COOPERATIVE PROXY CREDENTIAL ISSUED</span>
+<span class="font-label-sm text-label-sm text-soil-slate">09:42:10 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                  Admin <strong>Engr. Aris Mendoza</strong> validated CDA Board Resolution #2024-08 for <strong>Gng. Elena Santos</strong>. Elevated to Cooperative Proxy Desk with capacity for 420 member farmers.
+                </p>
+</div>
+</div>
+<div class="p-unit-sm rounded-lg bg-status-maintenance-bg/50 border border-harvest-amber/30 flex items-start gap-unit-sm">
+<span class="material-symbols-outlined text-field-ochre text-[20px] shrink-0 mt-0.5">thunderstorm</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-field-ochre font-bold">HARVEST SPOILAGE QUEUE ESCALATION</span>
+<span class="font-label-sm text-label-sm text-soil-slate">08:15:04 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                  PAGASA Alert Signal #1 triggered expedited SLA moderation threshold for <strong>San Jose City &amp; Guimba Clusters</strong>. Solar drying bay allocation priority elevated automatically.
+                </p>
+</div>
+</div>
+<div class="p-unit-sm rounded-lg bg-cream-surface border border-border-soft flex items-start gap-unit-sm">
+<span class="material-symbols-outlined text-soil-slate text-[20px] shrink-0 mt-0.5">swap_horiz</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">DISPATCH OVERLAP RESOLVED</span>
+<span class="font-label-sm text-label-sm text-soil-slate">Yesterday, 04:30 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                  LGU Desk Officer Danilo Ramos adjusted reservation schedule for <strong>Yanmar Harvester #EQ-09</strong>. Reassigned from Talavera Zone 2 to Zone 4 to prevent transport deadhead miles.
+                </p>
+</div>
+</div>
+<div class="p-unit-sm rounded-lg bg-cream-surface border border-border-soft flex items-start gap-unit-sm">
+<span class="material-symbols-outlined text-soil-slate text-[20px] shrink-0 mt-0.5">history_edu</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">RSBSA BATCH SYNC COMPLETED</span>
+<span class="font-label-sm text-label-sm text-soil-slate">Yesterday, 02:00 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                  Automated sync with Department of Agriculture Region 3 Master Registry. 48 new farmer accounts matched and verified without manual intervention.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Policy Compliance Snapshot -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-soft p-unit-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-unit-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Zero E-Wallet Enforcement</h3>
+<span class="material-symbols-outlined text-primary text-[22px]">verified_user</span>
+</div>
+<p class="font-body-sm text-body-sm text-soil-slate mb-unit-md">
+              Systemic metrics tracking adherence to physical co-op ledgers and cash settlement.
+            </p>
+<!-- Mini Compliance Visual / Radial Indicator -->
+<div class="p-unit-md rounded-xl bg-surface-container-low border border-border-soft text-center mb-unit-md">
+<div class="text-primary font-headline-lg text-headline-lg font-extrabold tracking-tight">100%</div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Zero In-App Payments Rate</div>
+<p class="font-body-sm text-body-sm text-soil-slate mt-1">4,912 Completed Bookings Settled via Physical Co-op Ledger</p>
+</div>
+<div class="space-y-unit-sm">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-soil-slate">Regex Patterns Actively Monitored:</span>
+<span class="font-mono font-bold text-on-surface">18 Rules</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-soil-slate">Blocked Payment Link Attempts (30d):</span>
+<span class="font-mono font-bold text-status-urgent">14 Blocked</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-soil-slate">LGU Cashier Receipt Verification:</span>
+<span class="font-mono font-bold text-status-available">98.6% Matched</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-soil-slate">Farmer Dispute Rate:</span>
+<span class="font-mono font-bold text-primary">&lt; 0.2%</span>
+</div>
+</div>
+</div>
+<div class="pt-unit-md mt-unit-md border-t border-border-soft">
+<button class="w-full h-11 rounded-lg bg-surface-subtle hover:bg-surface-container-high border border-border-soft text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition-colors" onclick="downloadPolicyPdf()">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span class="">Download Compliance Certificate</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-Interaction Confirmation Toast (Fixed Bottom) -->
+<div class="fixed bottom-6 right-6 hidden z-50 bg-inverse-surface text-inverse-on-surface px-unit-md py-unit-sm rounded-lg shadow-xl font-label-md text-label-md items-center gap-unit-sm animate-fade-in" id="admin-toast">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]" id="toast-icon">check_circle</span>
+<span id="toast-msg" class="">Listing approved and broadcast to Directory.</span>
+</div>
+<!-- Interactive Client-side Logic for Portal -->
+<script>
+    function switchTab(tabKey) {
+      const views = {
+        'moderation': document.getElementById('view-moderation'),
+        'users': document.getElementById('view-users'),
+        'audit': document.getElementById('view-audit')
+      };
+      
+      const buttons = {
+        'moderation': document.getElementById('tab-btn-moderation'),
+        'users': document.getElementById('tab-btn-users'),
+        'audit': document.getElementById('tab-btn-audit')
+      };
+
+      Object.keys(views).forEach(k => {
+        if (k === tabKey) {
+          views[k].classList.remove('hidden');
+          views[k].classList.add('flex');
+          buttons[k].className = 'px-unit-md h-10 rounded-lg font-label-md text-label-md flex items-center gap-2 whitespace-nowrap bg-primary text-on-primary';
+        } else {
+          views[k].classList.add('hidden');
+          views[k].classList.remove('flex');
+          buttons[k].className = 'px-unit-md h-10 rounded-lg font-label-md text-label-md flex items-center gap-2 whitespace-nowrap bg-surface-subtle text-on-surface-variant hover:bg-surface-container transition-colors';
+        }
+      });
+    }
+
+    function showToast(msg, type = 'success') {
+      if (window.showUmakonektaToast) {
+        window.showUmakonektaToast('Admin Moderation Audit 🛡️', msg, type);
+      } else {
+        const toast = document.getElementById('admin-toast');
+        if (toast) {
+          toast.classList.remove('hidden');
+          toast.classList.add('flex');
+          setTimeout(() => {
+            toast.classList.add('hidden');
+            toast.classList.remove('flex');
+          }, 3500);
+        }
+      }
+    }
+
+    function approveListing(cardId, listingId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.style.opacity = '0.5';
+        card.style.pointerEvents = 'none';
+        showToast(`Listing ${listingId} approved and published to public agricultural directory.`);
+      }
+    }
+
+    function stripAndApprove(cardId, listingId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.style.opacity = '0.5';
+        card.style.pointerEvents = 'none';
+        showToast(`Payment links stripped from ${listingId}. Physical Co-op Ledger tagged. Approved!`);
+        appendAuditEntry(`Admin stripped GCash URL from ${listingId} and approved listing for offline cash settlement.`);
+      }
+    }
+
+    function fastTrackApprove(cardId, listingId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.style.opacity = '0.5';
+        card.style.pointerEvents = 'none';
+        showToast(`Priority Fast-Track Activated: ${listingId} marked Live for Spoilage Relief!`);
+        appendAuditEntry(`Expedited flood-relief approval issued for Solar Drying Bay ${listingId}.`);
+      }
+    }
+
+    function recategorizeAndPublish(cardId, listingId, newCategory) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.style.opacity = '0.5';
+        card.style.pointerEvents = 'none';
+        showToast(`${listingId} reclassified to Pillar 1 (${newCategory}) and published.`);
+      }
+    }
+
+    function approveRow(btn, listingId) {
+      const row = btn.closest('tr');
+      if (row) {
+        row.style.opacity = '0.4';
+        btn.textContent = 'Approved';
+        btn.disabled = true;
+        btn.className = 'px-2.5 py-1 rounded bg-surface-subtle text-soil-slate font-label-sm text-label-sm cursor-not-allowed';
+        showToast(`Queue item ${listingId} verified and cleared.`);
+      }
+    }
+
+    function rejectWithNotice(listingId, reason) {
+      showToast(`Notice dispatched to provider of ${listingId}: ${reason}`, true);
+    }
+
+    function suspendProvider(providerName) {
+      if (confirm(`Are you sure you want to suspend account: ${providerName} for repeated e-wallet policy violations?`)) {
+        showToast(`Account for ${providerName} suspended. Notification sent to local MAO.`);
+        appendAuditEntry(`ADMIN ACTION: Suspended account for ${providerName} due to unapproved payment gateways.`);
+      }
+    }
+
+    function requestRevision(listingId) {
+      showToast(`Revision request sent to provider of ${listingId}.`);
+    }
+
+    function verifyCapacity(listingId) {
+      showToast(`San Jose City MAO ground telemetry confirms Bay #4 is dry & clear.`);
+    }
+
+    function dismissBanner(btn) {
+      btn.parentElement.style.display = 'none';
+    }
+
+    function toggleProxy(name, btn) {
+      showToast(`Proxy submission authorization toggled for ${name}.`);
+      btn.textContent = 'Proxy Active';
+      btn.className = 'px-2.5 py-1.5 rounded bg-status-available text-on-primary font-label-sm text-label-sm';
+    }
+
+    function revokeRole(name, btn) {
+      if (confirm(`Revoke cooperative proxy authorization for ${name}?`)) {
+        showToast(`Cooperative proxy rights revoked for ${name}.`, true);
+        btn.closest('tr').style.opacity = '0.5';
+      }
+    }
+
+    function approveProviderRole(btn, name) {
+      btn.textContent = 'Verified';
+      btn.className = 'px-2.5 py-1.5 rounded bg-status-available text-on-primary font-label-sm text-label-sm';
+      showToast(`Commercial registration for ${name} cleared.`);
+    }
+
+    function manageProxyQuota(coop) {
+      showToast(`Viewing active proxy scheduling limits for ${coop}.`);
+    }
+
+    function viewUserHistory(name) {
+      showToast(`Loading ledger audit timeline for ${name}...`);
+    }
+
+    function viewLguJurisdiction(city) {
+      showToast(`Displaying municipal boundary dispatch map for ${city}.`);
+    }
+
+    function requestDocument(name) {
+      showToast(`SMS Notice dispatched to ${name} requesting Barangay Business Clearance.`);
+    }
+
+    function showInviteModal() {
+      const name = prompt('Enter Designated MAO Desk Officer Full Name:');
+      if (name) {
+        showToast(`Provisioned temporary LGU Dispatch token for ${name}.`);
+        appendAuditEntry(`Admin Aris Mendoza provisioned LGU MAO token for ${name}.`);
+      }
+    }
+
+    function runPolicyScan() {
+      showToast('Scanning 3,420 listings for prohibited financial patterns...');
+      setTimeout(() => {
+        showToast('Scan complete: 0 new payment link violations discovered.');
+      }, 1400);
+    }
+
+    function exportAuditReport() {
+      showToast('Compiling Municipal Agricultural Ledger CSV for Region III...');
+      setTimeout(() => {
+        showToast('Audit report ready: UMAKONEKTA_LGU_Ledger_R3.csv downloaded.');
+      }, 1200);
+    }
+
+    function downloadPolicyPdf() {
+      showToast('Generating official Zero In-App Payment Certificate (DA Compliant)...');
+    }
+
+    function appendAuditEntry(text) {
+      const stream = document.getElementById('audit-log-stream');
+      if (!stream) return;
+      
+      const newEntry = document.createElement('div');
+      newEntry.className = 'p-unit-sm rounded-lg bg-status-available-bg/50 border border-status-available/30 flex items-start gap-unit-sm animate-fade-in';
+      newEntry.innerHTML = `
+        <span class="material-symbols-outlined text-status-available text-[20px] shrink-0 mt-0.5">shield</span>
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <span class="font-label-md text-label-md text-status-available font-bold">MANUAL OVERRIDE / AUDIT ACTION</span>
+            <span class="font-label-sm text-label-sm text-soil-slate">Just now</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface mt-0.5">${text}</p>
+        </div>
+      `;
+      stream.insertBefore(newEntry, stream.firstChild);
+    }
+
+    // Filter bar listener for demonstration
+    document.getElementById('filter-keyword')?.addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll('#view-moderation .grid > div');
+      cards.forEach(card => {
+        if (!q || card.innerText.toLowerCase().includes(q)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</div></main>
+
+<script src="../shared/nav-dock.js"></script>
+</body></html>

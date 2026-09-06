@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+/* Motion Design & Scroll Reveal styles */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #005426;
+  width: 0%;
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-float {
+    animation: none !important;
+  }
+  .scroll-progress-bar {
+    display: none;
+  }
+}
+</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-subtle":"#F3F4EE","on-secondary":"#ffffff","on-primary-fixed":"#00210b","surface-variant":"#dae5e0","field-ochre":"#C26D1A","status-urgent":"#C53030","primary-fixed":"#a3f5b2","surface-container":"#e5f0eb","inverse-surface":"#28332f","tertiary":"#01505e","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#ffb77a","on-surface-variant":"#404940","surface":"#f1fcf7","on-background":"#141e1b","status-maintenance-bg":"#FEF3E7","on-tertiary-container":"#a8e5f6","secondary-container":"#fea047","status-booked-bg":"#EFEFEF","tertiary-fixed":"#afecfd","on-error":"#ffffff","status-maintenance":"#D9822B","sky-tint":"#E8F4F8","status-booked":"#616E68","soil-slate":"#475953","surface-tint":"#196c37","outline-variant":"#bfc9bd","sprout-green":"#58A359","tertiary-fixed-dim":"#94d0e0","secondary-fixed":"#ffdcc2","status-available-bg":"#EAF5EE","surface-container-low":"#ebf6f1","on-error-container":"#93000a","primary-fixed-dim":"#88d898","on-secondary-fixed":"#2e1500","error-container":"#ffdad6","on-secondary-fixed-variant":"#6d3a00","outline":"#707a6f","primary-container":"#1b6e39","on-surface":"#141e1b","tertiary-container":"#286877","surface-bright":"#f1fcf7","cream-surface":"#FBFBF7","harvest-amber":"#F4A228","border-soft":"#DDE3DA","on-tertiary":"#ffffff","on-tertiary-fixed":"#001f26","leaf-green":"#2E8B57","secondary":"#8f4e00","primary":"#005426","surface-dim":"#d1ddd8","on-tertiary-fixed-variant":"#004e5c","background":"#f1fcf7","on-secondary-container":"#6d3a00","surface-container-high":"#dfebe6","inverse-primary":"#88d898","error":"#ba1a1a","inverse-on-surface":"#e8f3ee","on-primary-container":"#9ceeab","on-primary":"#ffffff","status-available":"#1B6E39","on-primary-fixed-variant":"#005225","status-urgent-bg":"#FDE8E8","surface-container-highest":"#dae5e0"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"unit-md":"1rem","margin-desktop":"2rem","unit-sm":"0.75rem","margin-mobile":"1rem","unit-2xs":"0.25rem","gutter-desktop":"1.5rem","gutter-mobile":"1rem","unit-xl":"2rem","unit-xs":"0.5rem","touch-target-min":"48px","unit-lg":"1.5rem","unit-2xl":"3rem","unit-3xl":"4rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"label-md":["Space Grotesk"],"display-hero-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Space Grotesk"],"label-sm":["Space Grotesk"],"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"]},fontSize:{"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"0.01em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"0.08em",fontWeight:"600"}],"display-hero-mobile":["34px",{lineHeight:"42px",letterSpacing:"-0.01em",fontWeight:"800"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"0.02em",fontWeight:"700"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"0.04em",fontWeight:"700"}],"label-lg":["15px",{lineHeight:"20px",letterSpacing:"0.06em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.1em",fontWeight:"700"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"0.03em",fontWeight:"700"}],"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"800"}]}}}}</script></head><body class="bg-cream-surface font-body-md text-on-surface antialiased min-h-screen">
+<div class="scroll-progress-bar" id="scroll-progress"></div>
+<div aria-hidden="true" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"><div class="w-full h-full bg-cover bg-center bg-no-repeat opacity-[0.07] mix-blend-overlay" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByIvSjXUHFGleKEGRJfIDrVQeKzexcAb2-zcu_V9Q3U47odESj5fXcQPXyrgaBdS2JKRdRQASn1ldH7DrTckINDgYJPxWLAWn0JAIVr5L8x0cwmAU_JsWM4KzrB4aKYq3FY2oLWyxjNtCwVFvoY_VWAciUZaTHsExgtmKBdoKK1YXRTizLbzme0Uh5MBnKcDHqYSWSBVPYxzd6Ja_qd7vwXPs95ajS-dbbsnzzNQlkHT1JGwITdoyR_fEgHbylzkww6g"); background-attachment: fixed;'></div></div><header class="fixed top-0 w-full z-50 bg-cream-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(26,36,33,0.05)] border-b border-border-soft/60"><div class="h-20 max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-unit-md"><div class="flex items-center gap-unit-sm cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})"><img alt="logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-primary font-bold">UMAKONEKTA</span><span class="font-label-sm text-label-sm text-soil-slate uppercase tracking-wider hidden sm:inline">Agri Resource Exchange</span></div></div><nav class="hidden xl:flex items-center gap-unit-lg h-full" data-active-classes="text-primary font-bold border-b-2 border-primary"><a aria-current="page" class="nav-link transition-colors py-2 text-primary font-bold border-b-2 border-primary cursor-pointer" data-target="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</a><a href="../umakonekta_farm_equipment_marketplace/code.html" class="nav-link font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2 cursor-pointer">Browse Directory</a><a href="../umakonekta_how_it_works/code.html" class="nav-link font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2 cursor-pointer">How It Works</a><a href="../umakonekta_critical_agricultural_emergency_contacts_hotline_directory/code.html" class="nav-link font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2 cursor-pointer">Hotlines & Support</a></nav><div class="flex items-center gap-unit-sm"><a href="../umakonekta_resource_provider_dashboard/code.html" class="hidden md:inline-flex items-center justify-center min-h-[48px] px-unit-md rounded-lg border border-primary text-primary font-label-lg text-label-lg hover:bg-surface-container-low transition-colors cursor-pointer">List a Resource</a><a href="../umakonekta_secure_authentication_identity_verification/code.html" class="inline-flex items-center justify-center min-h-[48px] px-unit-md rounded-lg bg-status-available text-on-primary font-label-lg text-label-lg shadow-sm hover:bg-primary transition-colors cursor-pointer">Portal Login</a><a href="../umakonekta_farmer_requestor_dashboard/code.html" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 cursor-pointer" title="Dashboard"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="w-full pt-20 bg-cream-surface"><div class="flex flex-col w-full">
+<!-- Interactive & Notification Bar: Cooperative Proxy Notice -->
+<aside aria-label="Network Broadcast" class="w-full bg-status-maintenance-bg text-field-ochre px-margin-mobile lg:px-margin-desktop py-2.5">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-unit-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-field-ochre text-[20px]">handshake</span>
+<span class="font-label-md text-label-md font-semibold text-field-ochre">FCA COOPERATIVE PROXY ACTIVE:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Registered co-op leaders can schedule machinery on behalf of offline member farmers.</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-soil-slate uppercase tracking-wider hidden sm:inline">PWA Cached • Offline Ready</span>
+<a class="font-label-md text-label-md text-field-ochre underline font-bold hover:text-secondary cursor-pointer" onclick="document.getElementById('fca-proxy').scrollIntoView({behavior:'smooth'})">Learn Proxy Desk →</a>
+</div>
+</div>
+</aside>
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden bg-cream-surface py-unit-2xl lg:py-unit-3xl" style='background: linear-gradient(135deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTzwMdZWDa14lJgYhmAIzEI6wp_RVD_Kzi5UQctW2e4dZWilSCa1kF2RWKzz_CWobEGo1gLO28in2bMo3foBSwG3hIC4bby_zKlisEgJKU6WEbemgDhtyEzTJy1Fz6wicjnSH3rmkrOtwaHvuu0e0DE_OXAvamD97Q9Tg5L3RtMhFYJGEdeUpQvUc4A-c2zf5989pHWIUIhB5e4pGillPVdXAc3Ro0QqpvPkhoKIqkMzEC1bVnDkVifv8UFOZ74yO76Q") center center / cover no-repeat;'>
+<!-- Ambient organic green gradients (non-GPU heavy) -->
+<div class="absolute -top-32 right-0 w-96 h-96 bg-sprout-green/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 -left-20 w-80 h-80 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-unit-xl items-center">
+<!-- Left Column: Copy & Search -->
+<div class="lg:col-span-7 flex flex-col gap-unit-md reveal-on-scroll">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-status-available-bg text-status-available self-start shadow-sm">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">National FCA &amp; Municipal LGU Networked</span>
+</div>
+<h1 class="font-display-hero text-display-hero-mobile lg:text-display-hero font-extrabold tracking-tight text-on-primary">
+            Bridging Philippine Agriculture Through <span class="underline decoration-sprout-green/40 text-white">Digital Resource Sharing</span>
+</h1>
+<p class="font-body-lg text-body-lg max-w-2xl text-cream-surface/90">
+            A community-driven directory connecting local farmers directly with available farm machinery, idle lots, solar dryers, cold storage units, and seasonal crews across every municipality.
+          </p>
+<!-- Dual CTA Buttons -->
+<div class="flex flex-wrap items-center gap-unit-sm pt-unit-xs">
+<a href="../umakonekta_farm_equipment_marketplace/code.html" class="inline-flex items-center justify-center gap-2 min-h-touch-target-min px-unit-lg rounded-lg bg-status-available text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-all cursor-pointer">
+<span class="">Browse Directory</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a href="../umakonekta_resource_provider_dashboard/code.html" class="inline-flex items-center justify-center gap-2 min-h-touch-target-min px-unit-lg rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg shadow-sm hover:bg-surface-container-low transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span class="">List Your Machinery / Facility</span>
+</a>
+</div>
+
+</div>
+<!-- Right Column: Visual Card with Image & Live Stats Widget -->
+<div class="lg:col-span-5 relative reveal-on-scroll">
+<!-- Main Hero Graphic Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden p-unit-md flex flex-col gap-unit-md backdrop-blur-md">
+<div class="relative w-full h-60 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Lush green Philippine rice terrace landscape with bright morning sunlight, showing a modern red harvester tractor positioned near hardworking Filipino farmers wearing straw hats, surrounded by fertile rolling hills under a vibrant blue sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfdFqApi79Jq2Z83oooa2sPi4EBxKVEJzTQ9ugUM7FM2iSvh8mhnOdwkA6yB2Twwn3iv7f10XDr1lBVoffCNlJ0gQ-5nBXWWJcrs37aAg4PgHyxmglnL6Ao3ijB9-Uhj6B7aIEf7llqtHZGerznA_E2gXjRz0jLaZnMoNwJGt4XL6nUDKdXkdQId8m1h6ziCf5gmBqoAIeZV-Gd1q5fYsnC5CxLMAKagwRCjfwtcYg3rSqAmehJ2h0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-primary">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary-fixed">Active Dispatch</span>
+<p class="font-headline-sm text-headline-sm font-bold leading-tight">Central Luzon Harvest Hub</p>
+</div>
+<div class="px-2.5 py-1 rounded-full bg-status-available text-on-primary font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-on-primary animate-ping"></span>
+<span class="">42 UNITS READY</span>
+</div>
+</div>
+</div>
+<!-- Fast Municipal Search Panel (Adheres strictly to text-search spec) -->
+<form class="flex flex-col gap-unit-xs" id="hero-quick-search" onsubmit="event.preventDefault(); window.runQuickFilter();">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm uppercase tracking-wider text-soil-slate font-bold" for="search-muni">Fast Resource Locator</label>
+<span class="font-label-sm text-label-sm text-field-ochre font-semibold">Text Search • Low-Data</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-unit-xs">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-3 text-soil-slate text-[20px]">pin_drop</span>
+<input class="w-full min-h-touch-target-min pl-10 pr-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" id="search-muni" placeholder="Enter Municipality (e.g., Talavera)" type="text" value="Talavera, Nueva Ecija"/>
+</div>
+<select class="min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary" id="search-cat">
+<option value="all">All 4 Pillars</option>
+<option selected="" value="machinery">Agricultural Equipment</option>
+<option value="lots">Farm Lots &amp; Land</option>
+<option value="storage">Storage &amp; Solar Dryers</option>
+<option value="services">Agricultural Services</option>
+</select>
+</div>
+<div class="flex flex-col sm:flex-row gap-unit-xs mt-1">
+<input class="flex-1 min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" id="search-time" placeholder="Date window (e.g., Nov 12 - 16 window)" type="text"/>
+<button class="min-h-touch-target-min px-unit-lg rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-status-available transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer" type="submit">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span class="">Search Assets</span>
+</button>
+</div>
+</form>
+<div class="pt-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-sprout-green">offline_pin</span>
+<span class="">Works 100% offline with SMS dispatch fallback</span>
+</span>
+<span class="text-soil-slate font-bold">2,140 Verified FCAs</span>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+<!-- The Four Resource Pillars Section -->
+<section class="w-full bg-surface-container-low py-unit-2xl reveal-on-scroll">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col gap-unit-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-unit-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">The Core Directory Architecture</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">The Four Agricultural Pillars</h2>
+<p class="font-body-md text-body-md text-soil-slate max-w-xl mt-1">
+            Standardized categories designed specifically around the seasonal rhythms of Filipino smallholders and farming federations.
+          </p>
+</div>
+<div class="flex items-center gap-unit-xs">
+<span class="font-label-md text-label-md text-soil-slate">All listings verified by Municipal Ag Officers (MAO)</span>
+</div>
+</div>
+<!-- Pillar Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-unit-md">
+<!-- Pillar 1: Equipment -->
+<div class="group bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between cursor-pointer" onclick="window.filterPillar('machinery')">
+<div class="flex flex-col gap-unit-sm">
+<div class="w-12 h-12 rounded-lg bg-status-available-bg text-status-available flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-[28px]">precision_manufacturing</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Agricultural Equipment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                Combine harvesters, 4WD tractors, walking hand tillers, mechanical rice transplanters, and multi-crop threshers.
+              </p>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle text-soil-slate font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-status-available"></span>
+<span class="font-semibold">318 Units Active in Luzon</span>
+</div>
+</div>
+<div class="pt-unit-md mt-unit-sm">
+<a href="../umakonekta_farm_equipment_marketplace/code.html" class="w-full min-h-touch-target-min rounded-lg bg-surface-container-low text-primary font-label-md text-label-md font-bold flex items-center justify-center gap-1 hover:bg-status-available hover:text-on-primary transition-colors">
+<span class="">Browse Equipment</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Pillar 2: Farm Lots -->
+<div class="group bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='../umakonekta_farm_equipment_marketplace/code.html'">
+<div class="flex flex-col gap-unit-sm">
+<div class="w-12 h-12 rounded-lg bg-sky-tint text-tertiary flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-[28px]">landscape</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-tertiary transition-colors">Farm Lots &amp; Idle Land</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                Irrigated rice paddies, rainfed upland plots, high-tunnel greenhouse beds, nursery locations, and seasonal crop shares.
+              </p>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle text-soil-slate font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-semibold">84 Hectares Available</span>
+</div>
+</div>
+<div class="pt-unit-md mt-unit-sm">
+<a href="../umakonekta_farm_equipment_marketplace/code.html" class="w-full min-h-touch-target-min rounded-lg bg-surface-container-low text-tertiary font-label-md text-label-md font-bold flex items-center justify-center gap-1 hover:bg-tertiary hover:text-on-tertiary transition-colors">
+<span class="">Browse Farmland</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Pillar 3: Storage Spaces -->
+<div class="group bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='../umakonekta_resource_detail_schedule_request/code.html'">
+<div class="flex flex-col gap-unit-sm">
+<div class="w-12 h-12 rounded-lg bg-status-maintenance-bg text-field-ochre flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-[28px]">warehouse</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-field-ochre transition-colors">Storage &amp; Solar Dryers</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                Solar drying pavements (MPDP), palay warehouse bays, onion cold chambers, and covered drying pavilions.
+              </p>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle text-soil-slate font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-field-ochre"></span>
+<span class="font-semibold">1,450 sqm Space Open</span>
+</div>
+</div>
+<div class="pt-unit-md mt-unit-sm">
+<a href="../umakonekta_resource_detail_schedule_request/code.html" class="w-full min-h-touch-target-min rounded-lg bg-surface-container-low text-secondary font-label-md text-label-md font-bold flex items-center justify-center gap-1 hover:bg-secondary hover:text-on-secondary transition-colors">
+<span class="">Browse Storage</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Pillar 4: Agricultural Services -->
+<div class="group bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='../umakonekta_field_repair_on_site_mechanics_booking_flow/code.html'">
+<div class="flex flex-col gap-unit-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-[28px]">handyman</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">Agricultural Services</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                Certified drone fertilizer spraying, diesel rotavator operators, land prep tractor teams, and seasonal harvest crews.
+              </p>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle text-soil-slate font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-leaf-green"></span>
+<span class="font-semibold">62 Service Teams Standing By</span>
+</div>
+</div>
+<div class="pt-unit-md mt-unit-sm">
+<a href="../umakonekta_field_repair_on_site_mechanics_booking_flow/code.html" class="w-full min-h-touch-target-min rounded-lg bg-surface-container-low text-primary font-label-md text-label-md font-bold flex items-center justify-center gap-1 hover:bg-status-available hover:text-on-primary transition-colors">
+<span class="">Browse Services</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Local Resources Section -->
+<section class="w-full bg-cream-surface py-unit-3xl reveal-on-scroll" id="directory-snapshot">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col gap-unit-xl">
+<!-- Section Header with Category Tabs -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-unit-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-available">radar</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-status-available font-bold">Direct Municipal Listings</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Featured Available Resources</h2>
+<p class="font-body-md text-body-md text-soil-slate mt-1">Real-time availability toggled directly by cooperatives, LGUs, and private machinery owners.</p>
+</div>
+<!-- Filter Pill Buttons -->
+<div class="flex flex-wrap items-center gap-unit-xs">
+<button class="filter-tab px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm cursor-pointer" id="tab-all" onclick="window.setActiveTab('all')">All Resources</button>
+<button class="filter-tab px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-primary font-label-md text-label-md font-medium shadow-sm cursor-pointer" id="tab-machinery" onclick="window.setActiveTab('machinery')">Equipment</button>
+<button class="filter-tab px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-primary font-label-md text-label-md font-medium shadow-sm cursor-pointer" id="tab-storage" onclick="window.setActiveTab('storage')">Dryers &amp; Storage</button>
+<button class="filter-tab px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-primary font-label-md text-label-md font-medium shadow-sm cursor-pointer" id="tab-services" onclick="window.setActiveTab('services')">Operators &amp; Land</button>
+</div>
+</div>
+<!-- Resource Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-unit-md" id="resource-cards-container">
+<!-- Card 1: Combine Harvester (FCA Verified) -->
+<div class="resource-card group bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden" data-category="machinery">
+<div class="relative h-44 w-full overflow-hidden bg-surface-subtle">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A clean modern Kubota DC-70 rice combine harvester parked beside an expanse of golden ripe palay grains ready for harvesting in Nueva Ecija, clear midday sunshine, documentary agricultural photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLCoQk270-kMRS1Bl6KD3wxpViuR71y2XWqAdXeqIrVTkGbqZvKEksK8sVolq1bhADU1DPcytUXCFKXfwMFITuq91TelxaY0El7iSlJyS91wl4Yh5_5uX48KYwSV8WFOL2jPQa4xvnsRPqx_D_kP91bLljwOD3F4NrNgU21AYKR0dAo_OMFwrxCUtGyIGFlJCjbMoLidT-KBKZ18bjfZWBw3AQGEhq8OwiVQkP-oOjccxdJdFQRgeY"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded-full bg-status-available-bg text-status-available font-label-sm text-label-sm font-bold uppercase shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-available animate-pulse"></span>
+<span class="">Available Now</span>
+</span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span class="">FCA Verified</span>
+</span>
+</div>
+</div>
+<div class="p-unit-md flex flex-col gap-unit-xs flex-1">
+<div class="flex items-center gap-1 text-soil-slate font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+<span class="">San Jose City, Nueva Ecija</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Kubota DC-70 Plus Combine Harvester
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Provided by San Jose Farmers Agriculture Cooperative (FCA). Complete with certified cooperative heavy operator.
+            </p>
+<div class="mt-auto pt-2">
+<div class="p-2 rounded-lg bg-surface-subtle flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-soil-slate block">Standard FCA Rate</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">₱1,200 / Ha equiv.</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-field-ochre font-semibold">Priority Dispatch</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Within 24 Hours</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-unit-md pt-0">
+<button class="w-full min-h-touch-target-min rounded-lg bg-status-available text-on-primary font-label-md text-label-md font-bold hover:bg-primary transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer" onclick="window.openRequestModal('Kubota DC-70 Plus Harvester', 'San Jose Farmers Agriculture Cooperative', 'San Jose City, Nueva Ecija')">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+<span class="">Request Schedule</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Solar Drying Pavement (LGU Subsidized) -->
+<div class="resource-card group bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden" data-category="storage">
+<div class="relative h-44 w-full overflow-hidden bg-surface-subtle">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Wide concrete municipal multi-purpose solar drying pavement with palay grains being turned by wooden rakes under open bright tropical blue sky in Isabela Philippines, clean rural community setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdr-fleUYEkUf4N7mByEs11v-TvQJdTQD41BVjSVeL4QDli6q_eulZgUvlIUQypQaJLBmQeKK6o0VwpULSZWeuB2HcqhO7OReKYbwCqTHXqHE5p84rnlaIwgubcKNK05NlH3hB-D1AGhmAuLlvPU9n1eFCWnRUa9Aiwee_0XLhOGlnVIf6J5QCu0m7r-G0dmDaNcOxPshy10JNbzuvNTjb9hIWf0vqhw_AYtFyR8Y-ps73sgTtC_4c"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded-full bg-status-available-bg text-status-available font-label-sm text-label-sm font-bold uppercase shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-available"></span>
+<span class="">Open for Booking</span>
+</span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">account_balance</span>
+<span class="">LGU Subsidized</span>
+</span>
+</div>
+</div>
+<div class="p-unit-md flex flex-col gap-unit-xs flex-1">
+<div class="flex items-center gap-1 text-soil-slate font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+<span class="">Roxas, Isabela</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Solar Multi-Purpose Drying Pavement (400 sqm)
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Municipal Agriculture Office facility. Clean concrete surface with rain-tarpaulin covers and nighttime security watchman.
+            </p>
+<div class="mt-auto pt-2">
+<div class="p-2 rounded-lg bg-surface-subtle flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-soil-slate block">Booking Fee</span>
+<span class="font-label-lg text-label-lg font-bold text-status-available">FREE (FCA Members)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-soil-slate">Capacity</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">80 Sacks / Day</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-unit-md pt-0">
+<button class="w-full min-h-touch-target-min rounded-lg bg-status-available text-on-primary font-label-md text-label-md font-bold hover:bg-primary transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer" onclick="window.openRequestModal('Solar Multi-Purpose Drying Pavement (400 sqm)', 'Municipal Agriculture Office - Roxas', 'Roxas, Isabela')">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+<span class="">Request Schedule</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Cold Storage Chamber -->
+<div class="resource-card group bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden" data-category="storage">
+<div class="relative h-44 w-full overflow-hidden bg-surface-subtle">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Interior of a modern post-harvest agricultural cold storage room with neatly stacked crates of red onions and garlic bulbs, humidity controlled environment, clean industrial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD02ldo7W2Dk4tHYxKZvvN0sWUE23BrmB1CQ8zN4UcAz3aopGafIy1dYxlxYVoPgLgjuylzkr3ah52ivvYuLpEdugtmUAnn9eDgnCYCM8-OBKY8bbhGMlYw7vIJYFPMTITyiPslPxwX-CJvtDPg3LamZDQCpfQ_2_Ej_-xzyb7wFtAycTus3QTPfnFzTDqVOav76tsg_hGB9bGyiX5K5xwUxFNUPWV4k5X3PHp72EUc0j0o4bP0yO_X"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded-full bg-sky-tint text-tertiary font-label-sm text-label-sm font-bold uppercase shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">ac_unit</span>
+<span class="">3 Bays Available</span>
+</span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-soil-slate font-label-sm text-label-sm font-bold shadow-sm">
+                Pallete Bays
+              </span>
+</div>
+</div>
+<div class="p-unit-md flex flex-col gap-unit-xs flex-1">
+<div class="flex items-center gap-1 text-soil-slate font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+<span class="">Tanauan, Batangas</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              High-Value Crop Cold Storage Unit (Chamber 2)
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Batangas Highlands Agritech Co-op. Optimized temperature humidity control for red onions, garlic, and leafy brassica crops.
+            </p>
+<div class="mt-auto pt-2">
+<div class="p-2 rounded-lg bg-surface-subtle flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-soil-slate block">Co-op Rental Rate</span>
+<span class="font-label-lg text-label-lg font-bold text-tertiary">₱45 / crate / mo</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-soil-slate">Controlled Temp</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">0°C - 4°C</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-unit-md pt-0">
+<button class="w-full min-h-touch-target-min rounded-lg bg-status-available text-on-primary font-label-md text-label-md font-bold hover:bg-primary transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer" onclick="window.openRequestModal('Cold Storage Unit - Chamber 2', 'Batangas Highlands Agritech Co-op', 'Tanauan, Batangas')">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+<span class="">Reserve Bay Window</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Heavy Land Prep Tractor (Private Owner) -->
+<div class="resource-card group bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden" data-category="services">
+<div class="relative h-44 w-full overflow-hidden bg-surface-subtle">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Heavy duty 4WD agricultural tractor equipped with disc plow cutting into fertile dark soil in a wide open field, rural farm environment in Tarlac, warm sunset light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb8WX8JdqmaELY-scQllI-qyY5eXM1jTmLrVSbIsb4MMDV6kcjDOEQjAGMLNTDWijraiAiX6e2szqFEP_1Mto9oAWfwvV86ZTr55D46Kcp9GahHcoa0WrX4PaKXlJTWHRy5TUsyl-BfFPOcsXzBJZWwFq8jfOVhURiaa9NOw-fCRoDnwubOSck6Z1vbZpcBgrGCCn7VUAlP3BVhvq_-sBi1w0iUKjTTWTm-hN_DaCsE6hYJi98YjsM"/>
+<div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded-full bg-status-maintenance-bg text-status-maintenance font-label-sm text-label-sm font-bold uppercase shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span class="">Next Slot: Thursday</span>
+</span>
+</div>
+<div class="absolute top-2.5 right-2.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-soil-slate font-label-sm text-label-sm font-bold shadow-sm">
+                Private Provider
+              </span>
+</div>
+</div>
+<div class="p-unit-md flex flex-col gap-unit-xs flex-1">
+<div class="flex items-center gap-1 text-soil-slate font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+<span class="">Concepcion, Tarlac</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Massey Ferguson 90HP 4WD Disc Plow + Operator
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Managed by Mang Juan Cruz (Verified Farm Leader). Full secondary tillage, rotavation, and paddy bund reshaping included.
+            </p>
+<div class="mt-auto pt-2">
+<div class="p-2 rounded-lg bg-surface-subtle flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-soil-slate block">Direct Rate</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">₱2,400 / Ha (Fuel incl.)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-soil-slate">Dispatched</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">Within 15km</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-unit-md pt-0">
+<button class="w-full min-h-touch-target-min rounded-lg bg-status-available text-on-primary font-label-md text-label-md font-bold hover:bg-primary transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer" onclick="window.openRequestModal('Massey Ferguson 90HP Disc Plow', 'Mang Juan Cruz', 'Concepcion, Tarlac')">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+<span class="">Request Schedule</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Notification Banner for Urgent Spoilage Tagging -->
+<div class="w-full bg-status-urgent-bg rounded-xl p-unit-md flex flex-col sm:flex-row items-center justify-between gap-unit-sm shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-status-urgent text-on-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg font-bold text-status-urgent">Imminent Harvest Weather Hazard or Spoilage Risk?</h4>
+<p class="font-body-sm text-body-sm text-on-surface">Farmers can activate the <strong class="text-status-urgent">Urgent Spoilage Tag</strong> during request submission to pin their listing to the top of cooperative leader inboxes.</p>
+</div>
+</div>
+<a class="whitespace-nowrap px-4 py-2 rounded-lg bg-status-urgent text-on-error font-label-md text-label-md font-bold shadow hover:bg-red-800 transition-colors cursor-pointer" onclick="window.openRequestModal('Emergency Priority Spoilage Dispatch', 'Municipal Urgent Taskforce', 'All Regions')">
+          View Urgent Tag Protocol
+        </a>
+</div>
+</div>
+</section>
+<!-- How It Works Section: 4-Step Simplified Workflow -->
+<section class="w-full bg-surface-container-low py-unit-3xl reveal-on-scroll" id="how-it-works">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col gap-unit-2xl">
+<div class="text-center max-w-3xl mx-auto">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Practical Agricultural Connectivity</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">How UMAKONEKTA Works</h2>
+<p class="font-body-lg text-body-lg text-soil-slate mt-2">
+          Designed specifically for rural Philippine agricultural conditions: zero digital wallet barriers, zero complex calendar integrations, and zero mandatory smartphone ownership.
+        </p>
+</div>
+<!-- Steps Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-unit-md relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-md transition-all flex flex-col gap-unit-sm relative">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-lg bg-status-available text-on-primary flex items-center justify-center font-bold text-headline-sm">
+              1
+            </div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Step 01</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Discover Local Assets</h3>
+<p class="font-body-sm text-body-sm text-soil-slate">
+            Search machinery, solar pavements, or cold storage directly by municipality text without consuming data on heavy GPS maps.
+          </p>
+<div class="mt-auto pt-2 flex items-center gap-1.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Works in 2G / low-signal areas</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-md transition-all flex flex-col gap-unit-sm relative">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center font-bold text-headline-sm">
+              2
+            </div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Step 02</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Review Terms &amp; Spec</h3>
+<p class="font-body-sm text-body-sm text-soil-slate">
+            Check the equipment capacity, fuel inclusion terms, operator availability, and verified FCA cooperative ratings before scheduling.
+          </p>
+<div class="mt-auto pt-2 flex items-center gap-1.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Transparent municipal rates</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-md transition-all flex flex-col gap-unit-sm relative">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-lg bg-harvest-amber text-on-primary flex items-center justify-center font-bold text-headline-sm">
+              3
+            </div>
+<span class="font-label-sm text-label-sm text-field-ochre font-bold uppercase tracking-wider">Step 03</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Submit Date String</h3>
+<p class="font-body-sm text-body-sm text-soil-slate">
+            Farmers simply type their harvest or planting window (e.g. <em>"Nov 15-18 morning shift"</em>) avoiding brittle time-pickers.
+          </p>
+<div class="mt-auto pt-2 flex items-center gap-1.5 text-field-ochre font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Single-field plain text form</span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-unit-lg shadow-sm hover:shadow-md transition-all flex flex-col gap-unit-sm relative">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-lg bg-status-available text-on-primary flex items-center justify-center font-bold text-headline-sm">
+              4
+            </div>
+<span class="font-label-sm text-label-sm text-status-available font-bold uppercase tracking-wider">Step 04</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Coordinate &amp; Cultivate</h3>
+<p class="font-body-sm text-body-sm text-soil-slate">
+            The provider toggles "Approved" in their coordination dashboard. Both parties connect via direct call or cooperative dispatch desk.
+          </p>
+<div class="mt-auto pt-2 flex items-center gap-1.5 text-status-available font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">No payment links or commissions</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Community Trust, Cooperative Proxy & Spoilage Mitigation Section -->
+<section class="w-full bg-cream-surface py-unit-3xl reveal-on-scroll" id="fca-proxy">
+<div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col gap-unit-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-unit-xl items-center">
+<!-- Left 6 cols: Deep dive into Cooperative Proxies -->
+<div class="lg:col-span-6 flex flex-col gap-unit-md">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-status-maintenance-bg text-field-ochre font-label-sm text-label-sm font-bold uppercase w-fit">
+<span class="material-symbols-outlined text-[16px]">handshake</span>
+<span class="">Inclusivity By Design</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+            Empowering Farmers' Cooperatives &amp; Associations (FCAs)
+          </h2>
+<p class="font-body-md text-body-md text-soil-slate">
+            In many rural agrarian reform communities, elder farmers may not own smartphones or have consistent data. UMAKONEKTA solves this through <strong>Digital Cooperative Proxies</strong>:
+          </p>
+<div class="flex flex-col gap-unit-sm">
+<div class="flex items-start gap-unit-sm p-3 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-primary text-[24px] shrink-0 mt-0.5">verified_user</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">FCA Leader Booking Proxies</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Accredited cooperative secretaries can log in and submit requests on behalf of up to 200 registered cooperative members with a single account.</p>
+</div>
+</div>
+<div class="flex items-start gap-unit-sm p-3 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-field-ochre text-[24px] shrink-0 mt-0.5">notification_important</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Crop Calendar Pre-Booking</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Plan entire seasonal planting windows weeks in advance, avoiding harvest-time equipment crunches caused by sudden typhoon patterns.</p>
+</div>
+</div>
+<div class="flex items-start gap-unit-sm p-3 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-status-available text-[24px] shrink-0 mt-0.5">cell_wifi</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">PWA Offline Mode Caching</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Browsed listings remain accessible on your mobile phone even when you walk deep into the fields where cell towers cannot reach.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right 6 cols: Realistic Community Testimonials & Metric Cards -->
+<div class="lg:col-span-6 flex flex-col gap-unit-md">
+<!-- Quote Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-unit-lg shadow-md flex flex-col gap-unit-sm relative">
+<div class="flex items-center gap-unit-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a senior Filipino farmer cooperative leader smiling warmly in the sunlight wearing a straw hat and polo shirt, background showing lush green rice fields." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtg4BO7N-3OUhk2GiFWQewKdBYMfVceX0KD8AGkeXzU3qBDWHWggIVin0Q0xtfA3Je0QdtT6zy6nv33WOII0RRy7Dry_N71Ql0zByQA73YocqtrPbzdd7qkCuzebIDKDSdjBhmnSAr9ag431Qt5L0f2QxKpD4mq_S-m3NnxE9Y0gApl57I5VxObKMVzUzGDip1D-uND_6bO3I-wPT66rDT5d-hCBnuc6bz_Ipvi57qdA_XpmjJPKCr"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Tatang Danilo Ramos</h4>
+<p class="font-label-sm text-label-sm text-soil-slate">Chairman, Talavera Rice Producers Cooperative (Nueva Ecija)</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+              "Bago nagka-UMAKONEKTA, nakatengga ang dalawang combine harvester ng kooperatiba kapag tapos na ang aming anihan. Ngayon, napapahiram namin sa karatig-bayan ng Aliaga at Zaragoza nang walang kahirap-hirap. Direct coordination, walang middlemen."
+            </p>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-sm text-label-sm text-status-available font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="">FCA Verified Partner</span>
+</span>
+<div class="flex items-center text-harvest-amber">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+</div>
+</div>
+<!-- Quote Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-unit-lg shadow-md flex flex-col gap-unit-sm relative">
+<div class="flex items-center gap-unit-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of an approachable female agricultural technician and municipal farm coordinator in the Philippines holding a clipboard in an agricultural office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuDTPP2c3BBv8yTWT_ms3Z1Ag5vfDeNEUEQVyNuWYYHimjl3TA1ovQkvtw0Hb_BPOsLXV0AApTWYw9U8QktmHagJ3hFwnBNNrqIHa7GjHiwZyy7yRuXOV6wM87DSp8HdM0alB61cLNCRq4ogrKEg1Fct-WeOynd2st9KD09R1EpGFeQleVZQN-7eSRV1NwRz-hCZkirj8Yf0Zeiy_4ZJxUNmdz3ipalP5ycPWuEGnk2tduO3s2B1dL"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Engr. Marites Villanueva</h4>
+<p class="font-label-sm text-label-sm text-soil-slate">Municipal Agricultural Officer (MAO) - Isabela Province</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+              "The solar drying pavements (MPDP) built under government funds used to sit empty due to lack of scheduling transparency. With UMAKONEKTA, every drying bay is booked sequentially, cutting post-harvest palay losses by 22% this season alone."
+            </p>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+<span class="">LGU Dispatch Hub</span>
+</span>
+<span class="font-label-sm text-label-sm text-soil-slate">Over 480 Tons Saved</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- High-Impact Community Call to Action Banner -->
+<section class="w-full bg-primary text-on-primary py-unit-3xl relative overflow-hidden reveal-on-scroll" style='background: linear-gradient(135deg, rgba(0, 84, 38, 0.94) 0%, rgba(0, 50, 20, 0.88) 50%, rgba(0, 30, 10, 0.92) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4bbAbZkzh6pIrmZXugb91o-lzsZQzpBj_Mu2jkW5ukCCDo4Xt9DjzciuLEBqdBd-1mg2y-18d8tcoN2kC8XSMdIo41MuhC7eaOPwVUVOFgUZ_9E9ErEebiVZx-r_d21e8to_gKqq0A2n4xeH1qhGbuxWrTqowp9D4_dRnDQb9Lji0YyeP2lWqlSO3Su3gLDv6Pe597teQjJnIvZg5GK0LH81xksCV4ujStnZE7nRWXeMSlqINu_nMnJqVbn7_APA-SA") center center / cover no-repeat;'>
+<!-- Subtle agricultural background pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-around">
+<span class="material-symbols-outlined text-[180px]">agriculture</span>
+<span class="material-symbols-outlined text-[220px]">warehouse</span>
+<span class="material-symbols-outlined text-[180px]">yard</span>
+</div>
+<div class="max-w-5xl mx-auto px-margin-mobile lg:px-margin-desktop text-center relative z-10 flex flex-col items-center gap-unit-lg">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase tracking-wider font-bold">
+<span class="">Bayanihan sa Agrikultura</span>
+</div>
+<h2 class="font-display-hero text-headline-lg lg:text-display-hero font-extrabold tracking-tight">
+        Have Idle Machinery, Solar Dryers, or Land?
+      </h2>
+<p class="font-body-lg text-body-lg text-cream-surface/90 max-w-2xl">
+        List your agricultural assets on UMAKONEKTA today. Connect directly with verified farmer federations in your municipality with zero platform transaction fees.
+      </p>
+<div class="flex flex-wrap items-center justify-center gap-unit-sm pt-unit-xs">
+<a class="min-h-touch-target-min px-unit-xl rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg font-bold shadow-lg hover:bg-cream-surface transition-transform hover:scale-105 flex items-center gap-2 cursor-pointer" onclick="window.openRegisterModal()">
+<span class="material-symbols-outlined text-[20px]">add_box</span>
+<span class="">Register as a Resource Provider</span>
+</a>
+<a class="min-h-touch-target-min px-unit-xl rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-bold hover:bg-leaf-green transition-colors flex items-center gap-2 cursor-pointer" onclick="document.getElementById('directory-snapshot').scrollIntoView({behavior:'smooth'})">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+<span class="">Explore Available Directory</span>
+</a>
+</div>
+<div class="pt-unit-md flex flex-wrap justify-center items-center gap-unit-lg text-cream-surface/80 font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">check_circle</span>
+<span class="">No automated land title requirements</span>
+</span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">check_circle</span>
+<span class="">No bank account or GCash required</span>
+</span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">check_circle</span>
+<span class="">Manual status control to avoid double booking</span>
+</span>
+</div>
+</div>
+</section>
+<!-- Interactive Scheduling Coordination Modal (Level 2 Elevation) -->
+<div class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-4" id="schedule-request-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-2xl max-w-lg w-full p-unit-lg flex flex-col gap-unit-md animate-fade-in relative">
+<!-- Modal Header -->
+<div class="flex items-center justify-between pb-unit-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-status-available font-bold">Simplified Booking Form</span>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface" id="modal-asset-name">Resource Request</h3>
+<p class="font-body-sm text-body-sm text-soil-slate" id="modal-provider-name">Provider</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-subtle text-soil-slate hover:text-on-surface flex items-center justify-center cursor-pointer" onclick="window.closeRequestModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Form Body -->
+<form class="flex flex-col gap-unit-sm" id="coordination-form" onsubmit="window.submitScheduleRequest(event)">
+<!-- Farmer or Co-op Proxy Name -->
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1" for="req-name">Your Name / Co-op Proxy Leader</label>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" id="req-name" placeholder="e.g., Juan dela Cruz (or Talavera Co-op Proxy)" required="" type="text"/>
+</div>
+<!-- Phone / SMS Contact -->
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1" for="req-contact">Mobile Phone (for Direct Provider SMS)</label>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" id="req-contact" placeholder="0917-XXX-XXXX" required="" type="tel"/>
+</div>
+<!-- Text-String Date/Time Window (Mandated by Design System to avoid fragile date pickers) -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate" for="req-window">Requested Date &amp; Time Window</label>
+<span class="font-label-sm text-label-sm text-field-ochre">Plain Text Input</span>
+</div>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" id="req-window" placeholder="e.g., Oct 24 - Oct 28 (Morning Harvest Shift)" required="" type="text"/>
+<span class="font-label-sm text-label-sm text-soil-slate mt-1 block">Describe the days or shift you require. The owner will review and confirm.</span>
+</div>
+<!-- Spoilage Emergency Checkbox -->
+<div class="p-3 rounded-lg bg-status-urgent-bg flex items-start gap-2.5">
+<input class="w-5 h-5 rounded text-status-urgent mt-0.5" id="req-urgent" type="checkbox"/>
+<div>
+<label class="font-label-md text-label-md font-bold text-status-urgent cursor-pointer" for="req-urgent">Tag as Urgent Spoilage Risk</label>
+<p class="font-body-sm text-body-sm text-soil-slate">Check this ONLY if heavy weather or imminent rot demands priority dispatch within 24-48 hours.</p>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-end gap-unit-xs pt-unit-xs">
+<button class="min-h-touch-target-min px-unit-md rounded-lg bg-surface-subtle text-soil-slate font-label-md text-label-md font-semibold cursor-pointer" onclick="window.closeRequestModal()" type="button">
+            Cancel
+          </button>
+<button class="min-h-touch-target-min px-unit-lg rounded-lg bg-status-available text-on-primary font-label-md text-label-md font-bold hover:bg-primary transition-colors flex items-center gap-1.5 shadow cursor-pointer" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span class="">Submit to Provider Inbox</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- List a Resource Modal -->
+<div class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-4" id="register-resource-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-2xl max-w-lg w-full p-unit-lg flex flex-col gap-unit-md animate-fade-in relative">
+<div class="flex items-center justify-between pb-unit-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">New Listing Registry</span>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">List Your Agricultural Asset</h3>
+<p class="font-body-sm text-body-sm text-soil-slate">Share equipment, storage, or land with local farmers</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-subtle text-soil-slate hover:text-on-surface flex items-center justify-center cursor-pointer" onclick="window.closeRegisterModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="flex flex-col gap-unit-sm" onsubmit="window.submitRegisterResource(event)">
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1">Asset Name / Equipment Type</label>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., John Deere 5050D Tractor" required="" type="text"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1">Municipality &amp; Location</label>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., Gapan City, Nueva Ecija" required="" type="text"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1">Category</label>
+<select class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary">
+<option value="machinery">Agricultural Equipment</option>
+<option value="lots">Farm Lots &amp; Land</option>
+<option value="storage">Storage &amp; Solar Dryers</option>
+<option value="services">Agricultural Services</option>
+</select>
+</div>
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1">Rental Rate / Terms</label>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., ₱1,500 / Ha or FREE for members" required="" type="text"/>
+</div>
+<div class="flex items-center justify-end gap-unit-xs pt-unit-xs">
+<button class="min-h-touch-target-min px-unit-md rounded-lg bg-surface-subtle text-soil-slate font-label-md text-label-md font-semibold cursor-pointer" onclick="window.closeRegisterModal()" type="button">Cancel</button>
+<button class="min-h-touch-target-min px-unit-lg rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-status-available transition-colors flex items-center gap-1.5 shadow cursor-pointer" type="submit">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>Publish Listing</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Portal Login Modal -->
+<div class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-4" id="login-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-2xl max-w-sm w-full p-unit-lg flex flex-col gap-unit-md animate-fade-in relative">
+<div class="flex items-center justify-between pb-unit-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-status-available font-bold">Secure Access</span>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Portal Login</h3>
+<p class="font-body-sm text-body-sm text-soil-slate">Farmer, FCA Leader, or LGU Admin</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-subtle text-soil-slate hover:text-on-surface flex items-center justify-center cursor-pointer" onclick="window.closeLoginModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="flex flex-col gap-unit-sm" onsubmit="window.submitLogin(event)">
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1">Mobile Number or FCA ID</label>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="0917-XXX-XXXX" required="" type="text"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm uppercase font-bold text-soil-slate block mb-1">PIN / Access Code</label>
+<input class="w-full min-h-touch-target-min px-3 rounded-lg bg-surface-subtle text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="••••" required="" type="password"/>
+</div>
+<div class="flex items-center justify-end gap-unit-xs pt-unit-xs">
+<button class="min-h-touch-target-min px-unit-md rounded-lg bg-surface-subtle text-soil-slate font-label-md text-label-md font-semibold cursor-pointer" onclick="window.closeLoginModal()" type="button">Cancel</button>
+<button class="min-h-touch-target-min px-unit-lg rounded-lg bg-status-available text-on-primary font-label-md text-label-md font-bold hover:bg-primary transition-colors flex items-center gap-1.5 shadow cursor-pointer" type="submit">
+<span class="material-symbols-outlined text-[18px]">login</span>
+<span>Sign In</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Success Notification Toast -->
+<div class="hidden fixed bottom-6 right-6 z-50 bg-surface-container-lowest rounded-xl shadow-2xl p-unit-md max-w-sm flex items-start gap-3" id="success-toast">
+<div class="w-10 h-10 rounded-full bg-status-available-bg text-status-available flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">check_circle</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-lg text-label-lg font-bold text-on-surface" id="toast-title">Action Successful!</h4>
+<p class="font-body-sm text-body-sm text-soil-slate mt-0.5" id="toast-desc">Your request or update has been processed successfully.</p>
+</div>
+<button class="text-soil-slate hover:text-on-surface cursor-pointer" onclick="document.getElementById('success-toast').classList.add('hidden')">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Embedded Interactive Scripts for Fast Filtering and Simple Scheduling Modal -->
+<script>
+  window.setActiveTab = function(category) {
+    const tabs = document.querySelectorAll('.filter-tab');
+    tabs.forEach(tab => {
+      tab.classList.remove('bg-primary', 'text-on-primary');
+      tab.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+    });
+
+    const activeTab = document.getElementById('tab-' + category);
+    if (activeTab) {
+      activeTab.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+      activeTab.classList.add('bg-primary', 'text-on-primary');
+    }
+
+    const cards = document.querySelectorAll('.resource-card');
+    cards.forEach(card => {
+      if (category === 'all' || card.getAttribute('data-category') === category) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  };
+
+  window.filterPillar = function(pillarKey) {
+    window.setActiveTab(pillarKey);
+    document.getElementById('directory-snapshot').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  window.runQuickFilter = function() {
+    const cat = document.getElementById('search-cat').value;
+    window.setActiveTab(cat);
+    const target = document.getElementById('directory-snapshot');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  window.openRequestModal = function(assetName, providerName, location) {
+    const params = new URLSearchParams({
+      intent: 'request',
+      asset: assetName,
+      provider: providerName,
+      location: location
+    });
+    window.location.href = `../umakonekta_secure_authentication_identity_verification/code.html?${params.toString()}`;
+  };
+
+  window.closeRequestModal = function() {
+    document.getElementById('schedule-request-modal').classList.add('hidden');
+  };
+
+  window.openRegisterModal = function() {
+    document.getElementById('register-resource-modal').classList.remove('hidden');
+  };
+
+  window.closeRegisterModal = function() {
+    document.getElementById('register-resource-modal').classList.add('hidden');
+  };
+
+  window.openLoginModal = function() {
+    document.getElementById('login-modal').classList.remove('hidden');
+  };
+
+  window.closeLoginModal = function() {
+    document.getElementById('login-modal').classList.add('hidden');
+  };
+
+  window.submitScheduleRequest = function(event) {
+    event.preventDefault();
+    window.closeRequestModal();
+    document.getElementById('toast-title').textContent = 'Schedule Request Dispatched!';
+    document.getElementById('toast-desc').textContent = 'Opening your Farmer Coordination Dashboard...';
+    const toast = document.getElementById('success-toast');
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      window.location.href = '../umakonekta_farmer_requestor_dashboard/code.html';
+    }, 1200);
+  };
+
+  window.submitRegisterResource = function(event) {
+    event.preventDefault();
+    window.closeRegisterModal();
+    document.getElementById('toast-title').textContent = 'Listing Published Successfully!';
+    document.getElementById('toast-desc').textContent = 'Opening Resource Provider Dashboard...';
+    const toast = document.getElementById('success-toast');
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      window.location.href = '../umakonekta_resource_provider_dashboard/code.html';
+    }, 1200);
+  };
+
+  window.submitLogin = function(event) {
+    event.preventDefault();
+    window.closeLoginModal();
+    document.getElementById('toast-title').textContent = 'Portal Login Successful!';
+    document.getElementById('toast-desc').textContent = 'Redirecting to your Dashboard...';
+    const toast = document.getElementById('success-toast');
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      window.location.href = '../umakonekta_farmer_requestor_dashboard/code.html';
+    }, 1200);
+  };
+
+  // Scroll progress bar and IntersectionObserver reveal animations
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    const bar = document.getElementById('scroll-progress');
+    if (bar) bar.style.width = scrolled + '%';
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-border-soft mt-unit-3xl reveal-on-scroll"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop py-unit-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-unit-xl"><div class="lg:col-span-2 flex flex-col gap-unit-sm"><div class="flex items-center gap-unit-xs cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})"><img alt="logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3"/><span class="font-headline-sm text-headline-sm text-primary font-bold">UMAKONEKTA</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Empowering Filipino agricultural producers, cooperatives (FCAs), and LGUs through direct, accessible machinery, storage, land, and service connectivity across every municipality.</p><div class="p-unit-sm rounded-lg bg-status-available-bg border border-border-soft inline-flex items-center gap-unit-xs max-w-xs mt-unit-xs"><span class="material-symbols-outlined text-status-available">verified</span><span class="font-label-sm text-label-sm text-status-available uppercase">National FCA &amp; LGU Networked</span></div></div><div><h4 class="font-label-lg text-label-lg text-primary font-bold uppercase tracking-wider mb-unit-md">Core Pillars</h4><ul class="flex flex-col gap-unit-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="window.location.href='../umakonekta_farm_equipment_marketplace/code.html'">Agricultural Equipment</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="window.location.href='../umakonekta_farm_equipment_marketplace/code.html'">Farm Lots &amp; Land</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="window.location.href='../umakonekta_resource_detail_schedule_request/code.html'">Solar Dryers &amp; Storage</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="window.location.href='../umakonekta_field_repair_on_site_mechanics_booking_flow/code.html'">Technical Services &amp; Operators</li></ul></div><div><h4 class="font-label-lg text-label-lg text-primary font-bold uppercase tracking-wider mb-unit-md">Role Portals</h4><ul class="flex flex-col gap-unit-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="../umakonekta_farmer_requestor_dashboard/code.html" class="block hover:underline">Farmer &amp; Member Hub</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="../umakonekta_resource_provider_dashboard/code.html" class="block hover:underline">Provider Dashboard</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="../umakonekta_administrator_portal_moderation/code.html" class="block hover:underline">LGU Admin &amp; Dispatch</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a href="../umakonekta_user_role_management_verification/code.html" class="block hover:underline">Cooperative Proxy Portal</a></li></ul></div><div><h4 class="font-label-lg text-label-lg text-primary font-bold uppercase tracking-wider mb-unit-md">Co-op Assistance</h4><p class="font-body-sm text-body-sm text-on-surface-variant mb-unit-xs">Need offline scheduling or proxy listing assistance? Reach your municipal desk:</p><a href="../umakonekta_critical_agricultural_emergency_contacts_hotline_directory/code.html" class="font-label-md text-label-md text-field-ochre font-semibold block hover:underline">Hotline: (02) 8928-8741</a><p class="font-body-sm text-body-sm text-on-surface-variant">support@umakonekta.gov.ph</p></div></div><div class="border-t border-border-soft mt-unit-xl pt-unit-md flex flex-col md:flex-row items-center justify-between gap-unit-sm text-on-surface-variant font-body-sm text-body-sm"><span class="">© 2025 UMAKONEKTA. Designed for Rural Filipino Agricultural Resilience.</span><div class="flex gap-unit-md"><span class="cursor-pointer hover:text-on-surface">Republic Act 11524 Compliance</span><span class="cursor-pointer hover:text-on-surface">Data Privacy Notice</span></div></div></div></footer>
+<script src="../shared/nav-dock.js"></script>
+</body></html>
