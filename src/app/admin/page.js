@@ -246,7 +246,7 @@ export default function AdminPage() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">receipt_long</span>
-            <span>Municipal Dispatch Audit Logs ({dispatchAuditLogs.length})</span>
+            <span>Directory Request & Audit Logs ({dispatchAuditLogs.length})</span>
           </button>
         </div>
 

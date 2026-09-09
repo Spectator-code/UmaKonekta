@@ -21,8 +21,6 @@ export default function FarmerIDCard({ farmer, customData = {} }) {
     barangayHotline: customData.barangayHotline || '(084) 216-4401 / 0920-111-9988',
     depotProviderName: customData.depotProviderName || 'Tagum FCA Machinery Depot (Engr. R. Dizon)',
     depotProviderPhone: customData.depotProviderPhone || '0919-445-1234 / 0928-882-9901',
-    daHotline: 'DA-LGU Action Hotline: 1343',
-    nationalEmergency: 'National Emergency: 911',
   };
 
   // SVG Barcode representation of RSBSA ID
@@ -244,12 +242,11 @@ export default function FarmerIDCard({ farmer, customData = {} }) {
               </div>
             </div>
 
-            {/* Back Footer Hotlines */}
+            {/* Back Footer Credential */}
             <div className="relative z-10 border-t border-border-soft pt-1.5 flex items-center justify-between text-[8px] font-mono text-soil-slate">
-              <div className="flex items-center gap-1 text-status-urgent font-bold">
-                <span className="material-symbols-outlined text-[12px]">phone_in_talk</span>
-                <span>DA Hotline: 1343 • 911</span>
-              </div>
+              <span className="font-semibold text-primary">
+                RSBSA Agri-Registry Verified
+              </span>
               <span className="text-right font-medium">
                 Official DA-LGU Passbook Credential
               </span>

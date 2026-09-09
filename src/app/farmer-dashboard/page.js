@@ -14,6 +14,7 @@ export default function FarmerDashboard() {
 
   // Quick Request Modal State
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [farmerUserId, setFarmerUserId] = useState('')
   const [selectedMachine, setSelectedMachine] = useState('Kubota DC-70 Plus Combine Harvester')
   const [parcelSector, setParcelSector] = useState('Purok 2 (Sitio Balite)')
   const [hectares, setHectares] = useState(2.0)
@@ -92,6 +93,7 @@ export default function FarmerDashboard() {
     if (status === 'unauthenticated') {
       router.push('/login?role=farmer')
     } else if (status === 'authenticated') {
+      setFarmerUserId(session?.user?.registryId || session?.user?.id || '03-49-12-00841');
       fetch('/api/dashboard')
         .then(res => res.json())
         .then(d => {
@@ -102,36 +104,56 @@ export default function FarmerDashboard() {
     }
   }, [status, router])
 
-  const handleCreateRequest = (e) => {
+  const handleCreateRequest = async (e) => {
     e.preventDefault();
-    const newReq = {
-      id: `REQ-${Date.now().toString().slice(-4)}`,
-      machineName: selectedMachine,
-      machineCategory: 'Harvester',
-      icon: 'agriculture',
-      driverName: 'Ka Nestor Panganiban (Assigned Operator)',
-      driverPhone: '0919-445-1234',
-      driverRating: '4.9 ★ (DA-Certified)',
-      depot: 'Tagum FCA Machinery Depot',
-      parcel: parcelSector,
-      hectares: Number(hectares),
-      date: scheduleDate,
-      timeSlot: '07:00 AM – 01:00 PM',
-      estimatedRate: `₱${(hectares * 2800).toLocaleString()} (Estimated)`,
-      fuelAllocation: `${Math.round(hectares * 18)}L Diesel`,
-      settlementType: 'Cash-on-Dike Settlement',
-      status: 'pending',
-      statusLabel: 'Pending Depot Verification',
-      statusBadge: 'bg-blue-50 text-blue-700 border-blue-200',
-      dispatchSlipUrl: '/dispatch-slip',
-    };
+    const ha = Number(hectares) || 1.0;
 
-    setRequestsList([newReq, ...requestsList]);
-    setRequestSubmitted(true);
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setRequestSubmitted(false);
-    }, 1200);
+    try {
+      const res = await fetch('/api/requests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          farmerUserId: farmerUserId || session?.user?.registryId || '03-49-12-00841',
+          machineName: selectedMachine,
+          parcelSector,
+          hectares: ha,
+          scheduleDate,
+          contactPhone,
+        }),
+      });
+
+      const json = await res.json();
+      const newReq = {
+        id: json?.request?.id ? `REQ-${json.request.id.slice(0, 8).toUpperCase()}` : `REQ-${Date.now().toString().slice(-4)}`,
+        machineName: selectedMachine,
+        machineCategory: 'Harvester',
+        icon: 'agriculture',
+        driverName: 'Ka Nestor Panganiban (Assigned Operator)',
+        driverPhone: contactPhone || '0919-445-1234',
+        driverRating: '4.9 ★ (DA-Certified)',
+        depot: 'Tagum FCA Machinery Depot',
+        parcel: parcelSector,
+        hectares: ha,
+        date: scheduleDate,
+        timeSlot: '07:00 AM – 01:00 PM',
+        estimatedRate: `₱${(ha * 2800).toLocaleString()} (Estimated)`,
+        fuelAllocation: `${Math.round(ha * 18)}L Diesel`,
+        settlementType: 'Cash-on-Dike Settlement',
+        status: 'pending',
+        statusLabel: 'Pending Depot Verification',
+        statusBadge: 'bg-blue-50 text-blue-700 border-blue-200',
+        dispatchSlipUrl: '/dispatch-slip',
+      };
+
+      setRequestsList([newReq, ...requestsList]);
+      setRequestSubmitted(true);
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setRequestSubmitted(false);
+      }, 1200);
+    } catch (err) {
+      console.error('Request creation error:', err);
+    }
   };
 
   const filteredRequests = requestsList.filter(item => {
@@ -183,42 +205,30 @@ export default function FarmerDashboard() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         
-        {/* 2. Top Metric Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="p-4 rounded-2xl bg-white border border-border-soft shadow-xs">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-soil-slate font-bold">SACCO Credit</span>
-              <span className="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span>
+        {/* 2. Top Metric Cards (Simplified) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div className="p-5 rounded-2xl bg-white border border-border-soft shadow-xs flex items-center justify-between">
+            <div>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-soil-slate font-bold block mb-1">Active Fleet Units</span>
+              <p className="text-2xl sm:text-3xl font-black text-primary font-mono">{requestsList.length} Units</p>
+              <p className="text-xs text-soil-slate mt-1 font-medium">Currently tracked machinery requests</p>
             </div>
-            <p className="text-xl sm:text-2xl font-black text-primary font-mono">₱18,450.00</p>
-            <p className="text-[10px] text-soil-slate mt-1">Available in Passbook</p>
+            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span className="material-symbols-outlined text-[28px]">agriculture</span>
+            </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-border-soft shadow-xs">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-soil-slate font-bold">Grain Reserve</span>
-              <span className="material-symbols-outlined text-field-ochre text-[18px]">inventory_2</span>
+          <div className="p-5 rounded-2xl bg-white border border-border-soft shadow-xs flex items-center justify-between">
+            <div>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-soil-slate font-bold block mb-1">Scheduled / In-Progress</span>
+              <p className="text-2xl sm:text-3xl font-black text-field-ochre font-mono">
+                {requestsList.filter(r => r.status === 'scheduled' || r.status === 'dispatched' || r.status === 'in_progress').length} Requests
+              </p>
+              <p className="text-xs text-soil-slate mt-1 font-medium">Reserved dates & en-route operators</p>
             </div>
-            <p className="text-xl sm:text-2xl font-black text-field-ochre font-mono">142 Sacks</p>
-            <p className="text-[10px] text-soil-slate mt-1">Clean & Dry Palay (MC 14%)</p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white border border-border-soft shadow-xs">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-soil-slate font-bold">Active Fleet</span>
-              <span className="material-symbols-outlined text-leaf-green text-[18px]">agriculture</span>
+            <div className="w-12 h-12 rounded-xl bg-harvest-amber/15 text-harvest-amber flex items-center justify-center">
+              <span className="material-symbols-outlined text-[28px]">event_available</span>
             </div>
-            <p className="text-xl sm:text-2xl font-black text-leaf-green font-mono">{requestsList.length} Units</p>
-            <p className="text-[10px] text-soil-slate mt-1">Scheduled / Dispatched</p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white border border-border-soft shadow-xs">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-soil-slate font-bold">DA Fuel Voucher</span>
-              <span className="material-symbols-outlined text-harvest-amber text-[18px]">local_gas_station</span>
-            </div>
-            <p className="text-xl sm:text-2xl font-black text-harvest-amber font-mono">₱3,000</p>
-            <p className="text-[10px] text-soil-slate mt-1">Claimable at Brgy. Hall</p>
           </div>
         </div>
 
@@ -226,11 +236,11 @@ export default function FarmerDashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border-soft mb-6">
           <div>
             <h2 className="text-xl font-black text-on-surface flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">local_shipping</span>
-              <span>Machinery & Assigned Driver Requests</span>
+              <span className="material-symbols-outlined text-primary">agriculture</span>
+              <span>My Equipment Requests & Status</span>
             </h2>
             <p className="text-xs text-soil-slate mt-0.5 font-medium">
-              Real-time driver contacts, hectare rates, and physical Cash-on-Dike slips.
+              Track submitted machinery requests, provider contacts, hectare rates, and scheduling.
             </p>
           </div>
 
@@ -389,6 +399,20 @@ export default function FarmerDashboard() {
               </div>
             ) : (
               <form onSubmit={handleCreateRequest} className="mt-5 space-y-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-on-surface mb-1">
+                    User ID / RSBSA Member ID
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={farmerUserId}
+                    onChange={(e) => setFarmerUserId(e.target.value)}
+                    placeholder="e.g., 03-49-12-00841"
+                    className="w-full px-3 py-2.5 rounded-xl border border-border-soft bg-white text-xs sm:text-sm font-bold text-on-surface font-mono focus:border-primary focus:outline-none"
+                  />
+                </div>
+
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-on-surface mb-1">
                     Select Farm Machinery

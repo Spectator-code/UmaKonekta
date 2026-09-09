@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import SmartCalendar from '@/components/SmartCalendar';
+import { useSession } from 'next-auth/react';
 
 export default function HomePage() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchSubmit = (e) => {
@@ -14,85 +15,57 @@ export default function HomePage() {
     router.push(`/marketplace?q=${encodeURIComponent(searchQuery)}`);
   };
 
+  // 4 Primary Directory Workflow Pillars (In-Scope)
   const featureCards = [
     {
-      title: 'Equipment Marketplace',
-      tagline: '4WD Tractors, Harvesters & Implements',
-      desc: 'Discover vetted agricultural machinery across neighboring barangays. Review operator inclusion, diesel terms, and transparent per-hectare rates.',
+      title: 'Resource Marketplace',
+      tagline: 'Search & Discover Farm Machinery',
+      desc: 'Location and category-based text search. Filter tractors, harvesters, transplanters, and implements across neighboring barangays with transparent per-hectare rates.',
       icon: 'agriculture',
       href: '/marketplace',
-      badge: '840+ Machines Active',
+      badge: 'Text & Category Search',
       color: 'border-primary/20 hover:border-primary',
       bgGradient: 'from-surface-container-low to-cream-surface',
       iconBg: 'bg-primary text-on-primary',
     },
     {
-      title: 'Farmer Passbook & Ledger',
-      tagline: 'Cooperative Balances & Booking History',
-      desc: 'View your RSBSA member balance, track upcoming tillage and harvesting requests, and inspect palay sack credits without needing internet banking.',
-      icon: 'account_balance_wallet',
+      title: 'Farmer Request Portal',
+      tagline: 'Simple Equipment Request Submissions',
+      desc: 'RSBSA registered farmers can submit simple machinery requests, specify parcel sectors and target dates, and review request statuses.',
+      icon: 'person',
       href: '/farmer-dashboard',
-      badge: 'Zero Transaction Fee',
+      badge: 'Simple Request Submission',
       color: 'border-secondary/20 hover:border-secondary',
       bgGradient: 'from-surface-container-low to-cream-surface',
       iconBg: 'bg-field-ochre text-white',
     },
     {
-      title: 'Operator Field Dispatch Slip',
-      tagline: 'Digital Job Tickets for Machine Drivers',
-      desc: 'Complete field slips with diesel tank readings, worked hectares, and client cash-on-dike collection verifications right from tractor cabs.',
-      icon: 'receipt_long',
-      href: '/dispatch-slip',
-      badge: 'Works 100% Offline',
+      title: 'Provider Resource Hub',
+      tagline: 'Manual Creation & Editing of Listings',
+      desc: 'Agrarian cooperatives and machinery owners can manually create, update specifications, adjust pricing, and manage equipment availability in real-time.',
+      icon: 'corporate_fare',
+      href: '/provider-dashboard',
+      badge: 'Manual Listing Management',
       color: 'border-soil-slate/20 hover:border-soil-slate',
       bgGradient: 'from-surface-container-low to-cream-surface',
       iconBg: 'bg-soil-slate text-cream-surface',
     },
     {
-      title: 'Palay SACCO Scale Ticket',
-      tagline: 'Grain Moisture & Harvest Split Thermal Receipt',
-      desc: 'Calculate gross, tare, and net weights with official moisture deductions (MC 14% base). Generates high-contrast thermal printable scale tickets.',
-      icon: 'scale',
-      href: '/sacco-receipt',
-      badge: 'Eco Print Ready',
+      title: 'Admin Directory & Roles',
+      tagline: 'User Registration & Role Management',
+      desc: 'LGU Municipal Agriculture Office oversight for registering farmers, creating official physical ID slips, and managing directory roles (Admin, Provider, Farmer).',
+      icon: 'shield_person',
+      href: '/admin',
+      badge: 'Role & User Management',
       color: 'border-leaf-green/20 hover:border-leaf-green',
       bgGradient: 'from-surface-container-low to-cream-surface',
       iconBg: 'bg-leaf-green text-white',
-    },
-    {
-      title: 'Barangay Hall Public Bulletin',
-      tagline: 'Official Rotation & Irrigation Schedules',
-      desc: 'Official DA-LGU community advisory notice board. View shared combine harvester schedules, NIA water canal releases, and fuel subsidy alerts.',
-      icon: 'campaign',
-      href: '/bulletin-notice',
-      badge: 'DA-LGU Certified',
-      color: 'border-harvest-amber/30 hover:border-harvest-amber',
-      bgGradient: 'from-surface-container-low to-cream-surface',
-      iconBg: 'bg-harvest-amber text-on-surface',
     },
   ];
 
   return (
     <div className="flex flex-col pb-16">
-      
-      {/* 1. Slim, High-Visibility Emergency Strip (Absolute Top) */}
-      <div className="bg-status-urgent-bg border-b border-status-urgent/30 w-full px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <div className="flex items-center gap-2 text-status-urgent">
-            <span className="material-symbols-outlined text-[20px]">warning</span>
-            <span className="font-bold text-xs sm:text-sm">Urgent Machinery Breakdown or Flood Gate Advisory?</span>
-          </div>
-          <a
-            href="tel:1343"
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-status-urgent text-white font-bold text-xs hover:bg-status-urgent/90 transition-colors shadow-sm whitespace-nowrap"
-          >
-            <span className="material-symbols-outlined text-[14px]">call</span>
-            Call 1343 Action Center
-          </a>
-        </div>
-      </div>
-
-      {/* 2. Simplified & Prominent Global Search Bar */}
+      {/* 1. Global Text & Category Search Bar */}
       <section className="bg-surface-container-lowest border-b border-border-soft px-4 sm:px-6 lg:px-8 py-6">
         <div className="max-w-4xl mx-auto">
           <form
@@ -106,7 +79,7 @@ export default function HomePage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="What equipment do you need? (e.g., Tractor, Harvester, Drone)..."
+              placeholder="Search by equipment category, model, or barangay location..."
               className="w-full pl-14 pr-32 py-4 rounded-2xl bg-white border-2 border-border-soft focus:border-primary focus:outline-none text-base sm:text-lg font-bold text-on-surface placeholder:text-soil-slate/50 shadow-sm transition-colors"
             />
             <div className="absolute right-2">
@@ -118,10 +91,10 @@ export default function HomePage() {
               </button>
             </div>
           </form>
-          {/* Quick Filter Tags */}
+          {/* Quick Category Filter Tags */}
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mt-4 text-xs">
-            <span className="font-mono text-soil-slate font-medium">Trending:</span>
-            {['Combine Harvester', 'Rotary Tiller 4WD', 'Rice Transplanter', 'Palay Solar Dryer'].map((tag) => (
+            <span className="font-mono text-soil-slate font-medium">Quick Categories:</span>
+            {['Combine Harvester', '4WD Tractor', 'Rice Transplanter', 'Irrigation Pump', 'Grain Dryer'].map((tag) => (
               <button
                 key={tag}
                 type="button"
@@ -138,147 +111,109 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Hero Section (Re-positioned below search) */}
+      {/* 2. Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-surface-container-low/80 via-surface/40 to-cream-surface pt-12 pb-16 px-4 sm:px-6 lg:px-8 border-b border-border-soft text-center sm:text-left">
-        <div className="max-w-6xl mx-auto flex flex-col items-center sm:items-start">
+        {/* Faded Background Watermark / Graphic with smooth mask gradient */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-25 bg-cover bg-center sm:bg-right mix-blend-multiply"
+          style={{ 
+            backgroundImage: `url('/UMAKONEKTA%20(5).png')`,
+            maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.95) 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.95) 100%)'
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="relative max-w-6xl mx-auto flex flex-col items-center sm:items-start">
           {/* Official Tag */}
           <div className="flex items-center gap-2 mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-xs border border-primary/20">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-xs border border-primary/20 backdrop-blur-xs">
               <span className="material-symbols-outlined text-[16px]">verified</span>
-              Official Philippine Agrarian Resource Exchange • DA-LGU
+              Philippine Agrarian Resource Directory & Exchange
             </span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-on-surface tracking-tight leading-tight max-w-4xl mb-6">
-            Modern Farm Machinery within Reach of Every Barangay.
+            Connecting Farmers with Essential Agricultural Equipment.
           </h1>
-          <p className="text-base sm:text-xl text-soil-slate max-w-3xl leading-relaxed font-medium">
-            Decentralized 4WD tractor and combine harvester bookings for smallholder farmers. Settle directly on the field dike via <strong className="text-primary font-black">Cash-on-Dike</strong> or charge to your accredited <strong className="text-primary font-black">Cooperative Passbook</strong>. Zero payment gateway commissions.
+          <p className="text-base sm:text-xl text-soil-slate max-w-3xl leading-relaxed font-medium mb-8">
+            A streamlined agricultural resource directory. Empowering <strong className="text-primary font-black">Farmers</strong> to submit simple requests, <strong className="text-primary font-black">Providers</strong> to manage equipment listings, and <strong className="text-primary font-black">Admins</strong> to maintain user registrations and roles across barangays.
           </p>
+
+          {/* Call To Action Buttons based on Auth */}
+          <div className="flex flex-wrap items-center gap-3">
+            {session ? (
+              <Link
+                href={session.user?.role === 'provider' ? '/provider-dashboard' : session.user?.role === 'admin' ? '/admin' : '/farmer-dashboard'}
+                className="px-6 py-3.5 rounded-2xl bg-primary text-on-primary font-extrabold text-sm sm:text-base hover:bg-primary-container shadow-md transition-all flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined text-[20px]">dashboard</span>
+                <span>Go to My Dashboard ({session.user?.name?.split(' ')[0] || 'Member'})</span>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="px-6 py-3.5 rounded-2xl bg-primary text-on-primary font-extrabold text-sm sm:text-base hover:bg-primary-container shadow-md transition-all flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined text-[20px]">login</span>
+                <span>Sign In to Access Directory & Requests</span>
+              </Link>
+            )}
+
+            <Link
+              href="/marketplace"
+              className="px-6 py-3.5 rounded-2xl bg-white border-2 border-border-soft text-on-surface font-extrabold text-sm sm:text-base hover:border-primary hover:text-primary transition-all flex items-center gap-2 shadow-xs"
+            >
+              <span className="material-symbols-outlined text-[20px]">travel_explore</span>
+              <span>Search Directory</span>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Metrics Ribbon */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-surface-container-low border border-border-soft">
-          <div className="border-r border-border-soft/60 last:border-0 pr-4">
-            <p className="text-2xl sm:text-3xl font-extrabold text-primary font-mono">842+</p>
-            <p className="text-xs text-soil-slate font-bold mt-1">Verified Implements & Machinery</p>
-          </div>
-          <div className="border-r border-border-soft/60 last:border-0 pr-4">
-            <p className="text-2xl sm:text-3xl font-extrabold text-field-ochre font-mono">₱0.00</p>
-            <p className="text-xs text-soil-slate font-bold mt-1">Digital Checkout / Gateway Fees</p>
-          </div>
-          <div className="border-r border-border-soft/60 last:border-0 pr-4">
-            <p className="text-2xl sm:text-3xl font-extrabold text-leaf-green font-mono">2,410</p>
-            <p className="text-xs text-soil-slate font-bold mt-1">RSBSA Registered Beneficiaries</p>
-          </div>
-          <div>
-            <p className="text-2xl sm:text-3xl font-extrabold text-primary font-mono">47</p>
-            <p className="text-xs text-soil-slate font-bold mt-1">Agrarian Barangays Connected</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Modules Grid */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-12">
+      {/* 3. In-Scope Feature Modules Grid */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-14">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-black text-on-surface">Agrarian Operations Suite</h2>
-            <p className="text-sm text-soil-slate font-medium">Interconnected modules built for Philippine rice and crop cycles</p>
+            <h2 className="text-2xl font-black text-on-surface">Directory Modules & Role Portals</h2>
+            <p className="text-sm text-soil-slate font-medium">Core workflows for farmers, equipment providers, and administrators</p>
           </div>
           <span className="text-xs font-mono bg-primary/10 text-primary px-3 py-1 rounded-full font-bold hidden sm:inline">
-            5 Core Pathways
+            Directory Portals
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {featureCards.map((card) => (
             <Link
               key={card.title}
               href={card.href}
-              className={`group p-6 rounded-2xl bg-gradient-to-br ${card.bgGradient} border ${card.color} shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between`}
+              className={`group p-5 rounded-2xl bg-gradient-to-br ${card.bgGradient} border ${card.color} shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between`}
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-xl ${card.iconBg} flex items-center justify-center shadow-xs`}>
-                    <span className="material-symbols-outlined text-[26px]">{card.icon}</span>
+                <div className="flex items-center justify-between mb-3">
+                  <div className={`w-11 h-11 rounded-xl ${card.iconBg} flex items-center justify-center shadow-xs`}>
+                    <span className="material-symbols-outlined text-[24px]">{card.icon}</span>
                   </div>
-                  <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-full bg-white border border-border-soft text-soil-slate">
-                    {card.badge}
-                  </span>
                 </div>
-                <h3 className="text-lg font-black text-on-surface group-hover:text-primary transition-colors">
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-white border border-border-soft text-soil-slate inline-block mb-2">
+                  {card.badge}
+                </span>
+                <h3 className="text-base font-black text-on-surface group-hover:text-primary transition-colors">
                   {card.title}
                 </h3>
-                <p className="text-xs font-bold text-soil-slate mt-0.5 mb-3">{card.tagline}</p>
+                <p className="text-xs font-bold text-soil-slate mt-0.5 mb-2">{card.tagline}</p>
                 <p className="text-xs text-soil-slate/80 leading-relaxed font-medium">{card.desc}</p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-border-soft/60 flex items-center justify-between text-xs font-black text-primary group-hover:translate-x-1 transition-transform">
-                <span>Open Module</span>
-                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              <div className="mt-5 pt-3 border-t border-border-soft/60 flex items-center justify-between text-xs font-black text-primary group-hover:translate-x-1 transition-transform">
+                <span>Enter Portal</span>
+                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
               </div>
             </Link>
           ))}
         </div>
       </section>
-
-      {/* 4. Smart Agrarian Operations Calendar Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-14">
-        <SmartCalendar />
-      </section>
-
-      {/* Cash-on-Dike & Passbook Standard Explainer */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-12">
-        <div className="p-8 rounded-3xl bg-surface-container-low border border-border-soft grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          <div className="lg:col-span-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-harvest-amber/20 text-field-ochre font-bold text-xs mb-3">
-              <span className="material-symbols-outlined text-[16px]">verified_user</span>
-              Agrarian Financial Architecture
-            </div>
-            <h3 className="text-2xl font-black text-on-surface tracking-tight mb-3">
-              Why UMAKONEKTA Has Zero Digital Checkout Gateways
-            </h3>
-            <p className="text-sm text-soil-slate leading-relaxed font-medium mb-4">
-              Unlike consumer platforms that mandate credit cards or digital e-wallets, Philippine agrarian operations thrive on trusted physical relationships and cooperative trust. Machinery operators inspect soil moisture directly at the dike, verify hectare boundary markers, and settle payments in cash or through SACCO palay grain share splits.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="p-4 rounded-xl bg-white border border-border-soft">
-                <div className="font-bold text-primary flex items-center gap-1.5 mb-1">
-                  <span className="material-symbols-outlined text-[18px]">payments</span>
-                  Cash-on-Dike Protocol
-                </div>
-                <p className="text-soil-slate font-medium">Payment is handed to machine operators only after field completion is verified.</p>
-              </div>
-              <div className="p-4 rounded-xl bg-white border border-border-soft">
-                <div className="font-bold text-primary flex items-center gap-1.5 mb-1">
-                  <span className="material-symbols-outlined text-[18px]">menu_book</span>
-                  Cooperative Passbook Ledger
-                </div>
-                <p className="text-soil-slate font-medium">Costs are debited against member harvest shares at the municipal agricultural cooperative.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-border-soft shadow-xs text-center flex flex-col items-center">
-            <div className="w-14 h-14 rounded-full bg-status-available-bg text-status-available flex items-center justify-center mb-3">
-              <span className="material-symbols-outlined text-[32px]">shield_person</span>
-            </div>
-            <h4 className="font-black text-base text-on-surface">PhilMech Certified</h4>
-            <p className="text-xs text-soil-slate font-medium mt-1 mb-4">
-              Standardized custom rate cards conforming to DA-Bureau of Agricultural and Fisheries Engineering standards.
-            </p>
-            <Link
-              href="/sacco-receipt"
-              className="w-full py-3 px-4 rounded-xl bg-primary text-on-primary text-xs font-bold hover:bg-primary-container transition-colors shadow-sm"
-            >
-              Inspect SACCO Scale Formula
-            </Link>
-          </div>
-        </div>
-      </section>
-
     </div>
   );
 }

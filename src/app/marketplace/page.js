@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export default function MarketplacePage() {
+  const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
@@ -13,6 +15,7 @@ export default function MarketplacePage() {
 
   // Modal State (Cognitive Load Reduction)
   const [bookingModalItem, setBookingModalItem] = useState(null);
+  const [userId, setUserId] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [bookingDateTime, setBookingDateTime] = useState('');
   const [bookingSuccess, setBookingSuccess] = useState(false);
@@ -165,7 +168,8 @@ export default function MarketplacePage() {
   const handleOpenBooking = (item) => {
     setBookingModalItem(item);
     setBookingSuccess(false);
-    setContactNumber('');
+    setUserId(session?.user?.registryId || session?.user?.id || '03-49-12-00841');
+    setContactNumber(session?.user?.phone || '');
     setBookingDateTime('');
   };
 
@@ -178,6 +182,7 @@ export default function MarketplacePage() {
       existingQueue.push({
         id: `book-${Date.now()}`,
         machinery: bookingModalItem.name,
+        userId: userId,
         contact: contactNumber,
         dateTime: bookingDateTime,
         date: new Date().toISOString(),
@@ -492,7 +497,7 @@ export default function MarketplacePage() {
                   </button>
                 </div>
 
-                {/* STRICTLY 3 FIELDS */}
+                {/* STRICTLY MODAL FIELDS */}
                 <div className="space-y-4">
                   {/* Field 1: Asset (Read-only) */}
                   <div>
@@ -504,7 +509,22 @@ export default function MarketplacePage() {
                     </div>
                   </div>
 
-                  {/* Field 2: Contact Number */}
+                  {/* Field 2: User ID / RSBSA Member ID */}
+                  <div>
+                    <label className="block font-bold text-xs text-on-surface mb-1">
+                      User ID / RSBSA Member ID
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g., 03-49-12-00841"
+                      value={userId}
+                      onChange={(e) => setUserId(e.target.value)}
+                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-border-soft text-sm font-bold text-on-surface font-mono focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-soil-slate/50"
+                    />
+                  </div>
+
+                  {/* Field 3: Contact Number */}
                   <div>
                     <label className="block font-bold text-xs text-on-surface mb-1">
                       Your Phone Number
@@ -519,7 +539,7 @@ export default function MarketplacePage() {
                     />
                   </div>
 
-                  {/* Field 3: Date/Time String */}
+                  {/* Field 4: Date/Time String */}
                   <div>
                     <label className="block font-bold text-xs text-on-surface mb-1">
                       Preferred Date & Time

@@ -24,18 +24,16 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // In-Scope Directory Workflow Nav Links
   const navLinks = [
     { label: t('marketplace'), href: '/marketplace' },
-    { label: t('smartCalendar'), href: '/bulletin-notice' },
     { label: t('farmerLedger'), href: '/farmer-dashboard' },
-    { label: t('operatorDispatch'), href: '/dispatch-slip' },
-    { label: t('saccoSplitReceipt'), href: '/sacco-receipt' },
+    { label: 'Provider Hub', href: '/provider-dashboard' },
+    { label: 'Admin Directory', href: '/admin' },
   ];
 
   const dashboardUrl = session?.user?.role === 'provider' 
     ? '/provider-dashboard' 
-    : session?.user?.role === 'mechanic'
-    ? '/mechanics/portal'
     : session?.user?.role === 'admin' 
     ? '/admin' 
     : '/farmer-dashboard';
@@ -55,7 +53,7 @@ export default function Navbar() {
           <div className="flex flex-col">
             <span className="font-headline-sm text-lg font-extrabold tracking-tight text-primary">UMAKONEKTA</span>
             <span className="text-[11px] font-mono tracking-wider text-soil-slate uppercase hidden sm:inline">
-              Agri Resource Exchange • DA-LGU
+              Agricultural Resource Directory & Exchange
             </span>
           </div>
         </Link>
@@ -68,7 +66,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors ${
                   isActive
                     ? 'bg-primary text-on-primary shadow-xs'
                     : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-low'
@@ -82,16 +80,6 @@ export default function Navbar() {
 
         {/* Actions & Role Switcher */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Emergency Hotline Button */}
-          <a
-            href="tel:1343"
-            aria-label="Call Emergency Hotline 1343"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-status-urgent-bg text-status-urgent font-bold text-xs hover:bg-status-urgent hover:text-white transition-colors"
-          >
-            <span className="material-symbols-outlined text-[16px]">emergency</span>
-            <span className="hidden md:inline">Hotline 1343</span>
-          </a>
-
           {/* User Profile Avatar with Dropdown & Sign Out */}
           {status === 'loading' ? (
             <div className="w-9 h-9 rounded-full bg-surface-container animate-pulse" />
@@ -113,9 +101,11 @@ export default function Navbar() {
                 <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white border border-border-soft shadow-xl py-3 px-3 z-50 flex flex-col gap-2 animate-in fade-in duration-150">
                   {/* User Info Header */}
                   <div className="px-3 py-2 bg-surface-container-low rounded-xl border border-border-soft/60">
-                    <p className="text-sm font-black text-on-surface truncate">{session.user.name}</p>
-                    <p className="text-[11px] font-mono text-soil-slate truncate mt-0.5">
-                      ID: {session.user.registryId || 'Verified Member'}
+                    <p className="font-extrabold text-sm text-on-surface truncate">
+                      {session.user.name || 'Member'}
+                    </p>
+                    <p className="text-[11px] font-mono text-soil-slate truncate">
+                      {session.user.email || session.user.registryId || 'RSBSA Member'}
                     </p>
                     <span className="inline-block px-2 py-0.5 mt-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20">
                       {session.user.role || 'Member'}
@@ -142,50 +132,40 @@ export default function Navbar() {
                     </Link>
                   </div>
 
-                  {/* Quick Role Portals Navigation */}
+                  {/* 3 Core Roles Switcher: Admin, Provider, Farmer */}
                   <div className="pt-2 border-t border-border-soft/80">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-soil-slate font-bold px-1 mb-1.5 block">
-                      Switch Role Portal
+                      Directory Roles
                     </span>
-                    <div className="grid grid-cols-2 gap-1.5">
+                    <div className="grid grid-cols-3 gap-1">
                       <Link
                         href="/farmer-dashboard"
                         onClick={() => setProfileOpen(false)}
-                        className={`px-2 py-1.5 rounded-lg text-[11px] font-bold flex items-center gap-1.5 transition-colors ${
+                        className={`px-2 py-1.5 rounded-lg text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-colors text-center ${
                           session?.user?.role === 'farmer' ? 'bg-primary/10 text-primary font-black' : 'bg-surface-container-low text-soil-slate hover:text-on-surface'
                         }`}
                       >
-                        <span className="material-symbols-outlined text-[15px]">person</span>
+                        <span className="material-symbols-outlined text-[16px]">person</span>
                         <span>Farmer</span>
                       </Link>
                       <Link
                         href="/provider-dashboard"
                         onClick={() => setProfileOpen(false)}
-                        className={`px-2 py-1.5 rounded-lg text-[11px] font-bold flex items-center gap-1.5 transition-colors ${
+                        className={`px-2 py-1.5 rounded-lg text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-colors text-center ${
                           session?.user?.role === 'provider' ? 'bg-primary/10 text-primary font-black' : 'bg-surface-container-low text-soil-slate hover:text-on-surface'
                         }`}
                       >
-                        <span className="material-symbols-outlined text-[15px]">corporate_fare</span>
+                        <span className="material-symbols-outlined text-[16px]">corporate_fare</span>
                         <span>Provider</span>
-                      </Link>
-                      <Link
-                        href="/mechanics/portal"
-                        onClick={() => setProfileOpen(false)}
-                        className={`px-2 py-1.5 rounded-lg text-[11px] font-bold flex items-center gap-1.5 transition-colors ${
-                          session?.user?.role === 'mechanic' ? 'bg-primary/10 text-primary font-black' : 'bg-surface-container-low text-soil-slate hover:text-on-surface'
-                        }`}
-                      >
-                        <span className="material-symbols-outlined text-[15px]">handyman</span>
-                        <span>Mechanic</span>
                       </Link>
                       <Link
                         href="/admin"
                         onClick={() => setProfileOpen(false)}
-                        className={`px-2 py-1.5 rounded-lg text-[11px] font-bold flex items-center gap-1.5 transition-colors ${
+                        className={`px-2 py-1.5 rounded-lg text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-colors text-center ${
                           session?.user?.role === 'admin' ? 'bg-primary/10 text-primary font-black' : 'bg-surface-container-low text-soil-slate hover:text-on-surface'
                         }`}
                       >
-                        <span className="material-symbols-outlined text-[15px]">shield_person</span>
+                        <span className="material-symbols-outlined text-[16px]">shield_person</span>
                         <span>Admin</span>
                       </Link>
                     </div>

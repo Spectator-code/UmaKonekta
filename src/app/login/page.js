@@ -9,7 +9,7 @@ const roleConfigs = {
   farmer: {
     heading: 'Farmer & Requestor Login',
     badge: 'RSBSA Auth',
-    subtext: 'Enter your RSBSA Registry ID or Barangay FCA Member Passbook number to schedule farm machinery and review dispatches.',
+    subtext: 'Enter your RSBSA Registry ID or Barangay FCA Member Passbook number to search directory resources and submit equipment requests.',
     idLabel: 'RSBSA ID Number / Member Passbook ID',
     idPlaceholder: 'e.g., 03-49-12-00841',
     idHelp: 'Printed on your physical DA RSBSA enrollment slip or FCA passbook.',
@@ -23,7 +23,7 @@ const roleConfigs = {
   provider: {
     heading: 'Resource Provider Depot Login',
     badge: 'FCA Depot Auth',
-    subtext: 'Sign in with your Cooperative SEC / CDA registration number to manage depot machinery, review incoming requests, and dispatch combine harvesters.',
+    subtext: 'Sign in with your Cooperative SEC / CDA registration number to manually create and manage resource listings, and review incoming requests.',
     idLabel: 'Cooperative Registration (CDA/SEC) or Provider ID',
     idPlaceholder: 'e.g., CDA-FCA-2024-9140',
     idHelp: 'Accredited DA-RFO XI Depot & Machinery Pool certificate number.',
@@ -34,24 +34,10 @@ const roleConfigs = {
     btnText: 'Authenticate & Access Provider Hub',
     targetUrl: '/provider-dashboard'
   },
-  mechanic: {
-    heading: 'Mobile Repair & Mechanic Dispatch',
-    badge: 'TESDA NC-II',
-    subtext: 'Technician access for real-time field breakdowns, spare parts requisitions, emergency machinery rescue, and daily job logs.',
-    idLabel: 'Technician ID / TESDA Mechanic License',
-    idPlaceholder: 'e.g., MECH-TESDA-889',
-    idHelp: 'Authorized Agricultural Machinery Servicing NC-II ID.',
-    idIcon: 'handyman',
-    pwdLabel: 'Field Terminal Access PIN',
-    demoId: 'MECH-TESDA-889',
-    demoPwd: '8890',
-    btnText: 'Open Field Mechanics Portal',
-    targetUrl: '/mechanics/portal'
-  },
   admin: {
-    heading: 'LGU & Municipal Admin Moderation',
+    heading: 'LGU & Municipal Admin Directory',
     badge: 'Gov Admin',
-    subtext: 'Restricted to Municipal Agriculture Office (MAO) officers and Regional Supervising Officers for policy enforcement and dispatch audits.',
+    subtext: 'Municipal Agriculture Office (MAO) administration for user registrations, role management, and farmer directory audits.',
     idLabel: 'Government Employee ID / MAO Dispatch ID',
     idPlaceholder: 'e.g., GOV-MAO-R11-0042',
     idHelp: 'Official @da.gov.ph or municipal officer credentials.',
@@ -83,7 +69,7 @@ function LoginContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   
-  const config = roleConfigs[activeRole];
+  const config = roleConfigs[activeRole] || roleConfigs.farmer;
   const intent = searchParams.get('intent');
   const asset = searchParams.get('asset');
 
@@ -142,16 +128,29 @@ function LoginContent() {
         <div className="absolute -top-32 -left-32 w-80 h-80 bg-[#a3f5b2]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-[#F4A228]/15 rounded-full blur-3xl pointer-events-none" />
 
-
-        {/* Center Hero Message & Pillars */}
+        {/* Center Hero Message & Scope Pillars */}
         <div className="relative z-10 my-auto py-8 lg:py-12 max-w-xl">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white font-bold text-xs mb-4 border border-white/20">
+            <span className="material-symbols-outlined text-[15px]">verified</span>
+            Directory Workflow Standard
+          </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] mb-4">
-            Connecting Every Farmer, <br/><span className="text-[#a3f5b2]">Securing Every Harvest.</span>
+            Connecting Every Farmer, <br/><span className="text-[#a3f5b2]">Empowering Every Community.</span>
           </h1>
-          <p className="text-white/85 text-sm sm:text-base leading-relaxed mb-8">
-            Sign in to request combine harvesters, manage municipal machinery depots, dispatch mobile repair technicians, or proxy-file physical SACCO scale tickets.
+          <p className="text-white/85 text-sm sm:text-base leading-relaxed mb-6">
+            Sign in to discover machinery resources, manually manage equipment listings, or moderate municipal farmer and cooperative directory records.
           </p>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-white/90">
+            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/10 border border-white/15">
+              <span className="material-symbols-outlined text-[#a3f5b2] text-[20px]">manage_accounts</span>
+              <span>3 Core Roles: Admin, Provider, Farmer</span>
+            </div>
+            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/10 border border-white/15">
+              <span className="material-symbols-outlined text-[#a3f5b2] text-[20px]">location_searching</span>
+              <span>Category & Text Search</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -159,14 +158,14 @@ function LoginContent() {
       <div className="flex-1 flex items-center justify-center p-4 sm:p-8 lg:p-12 xl:p-16">
         <div className="w-full max-w-lg bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 lg:p-10 shadow-[0_8px_32px_rgba(0,84,38,0.08)] border border-[#DDE3DA] flex flex-col gap-6">
           
-          {/* Portal Role Selector Tabs */}
+          {/* Portal Role Selector Tabs (3 In-Scope Roles: Farmer, Provider, Admin) */}
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-primary">Select Account Portal</span>
             </div>
 
-            <div className="grid grid-cols-4 gap-1.5 p-1 bg-[#e5f0eb] rounded-xl border border-[#DDE3DA]/80">
-              {['farmer', 'provider', 'mechanic', 'admin'].map(role => (
+            <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#e5f0eb] rounded-xl border border-[#DDE3DA]/80">
+              {['farmer', 'provider', 'admin'].map(role => (
                 <button 
                   key={role}
                   type="button" 
@@ -174,7 +173,7 @@ function LoginContent() {
                   className={`py-2 px-1 rounded-lg text-xs flex flex-col items-center gap-1 transition-all ${activeRole === role ? 'bg-primary text-white font-bold shadow-md' : 'text-[#475953] font-medium hover:text-on-surface'}`}
                 >
                   <span className="material-symbols-outlined text-[18px]">
-                    {role === 'farmer' ? 'person' : role === 'provider' ? 'corporate_fare' : role === 'mechanic' ? 'handyman' : 'shield_person'}
+                    {role === 'farmer' ? 'person' : role === 'provider' ? 'corporate_fare' : 'shield_person'}
                   </span>
                   <span className="capitalize">{role}</span>
                 </button>
@@ -200,7 +199,7 @@ function LoginContent() {
           {intent === 'request' && asset && (
             <div className="p-3 rounded-xl bg-[#EAF5EE] text-[#1B6E39] text-xs font-semibold flex items-center gap-2 border border-[#1B6E39]/20">
               <span className="material-symbols-outlined text-[18px]">info</span>
-              <span>Log in to finalize booking for {asset}.</span>
+              <span>Log in to finalize request for {asset}.</span>
             </div>
           )}
 
@@ -233,73 +232,49 @@ function LoginContent() {
                 <label className="block text-xs font-bold uppercase tracking-wider text-on-surface">
                   {config.pwdLabel}
                 </label>
-                <button type="button" onClick={handleFillDemo} className="text-[11px] text-primary font-bold hover:underline">
-                  Auto-fill Demo
+                <button 
+                  type="button" 
+                  onClick={handleFillDemo}
+                  className="text-xs font-mono font-bold text-[#8F4700] hover:text-[#C26D1A] flex items-center gap-1 hover:underline cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[14px]">auto_fix_high</span>
+                  Fill Demo
                 </button>
               </div>
+              
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#475953]">
-                  <span className="material-symbols-outlined text-[20px]">pin</span>
+                  <span className="material-symbols-outlined text-[20px]">lock</span>
                 </span>
                 <input 
-                  type={pwdVisible ? 'text' : 'password'} 
+                  type={pwdVisible ? "text" : "password"} 
                   required 
                   value={pwdValue}
                   onChange={(e) => setPwdValue(e.target.value)}
-                  placeholder="••••"
-                  maxLength={16}
+                  placeholder="••••••••"
                   className="w-full pl-11 pr-11 py-3 bg-white text-on-surface text-sm rounded-xl border border-[#DDE3DA] focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none font-mono transition-all"
                 />
-                <button type="button" onClick={() => setPwdVisible(!pwdVisible)} className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#475953] hover:text-on-surface">
-                  <span className="material-symbols-outlined text-[18px]">{pwdVisible ? 'visibility_off' : 'visibility'}</span>
+                <button
+                  type="button"
+                  onClick={() => setPwdVisible(!pwdVisible)}
+                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#475953] hover:text-on-surface"
+                >
+                  <span className="material-symbols-outlined text-[20px]">
+                    {pwdVisible ? 'visibility_off' : 'visibility'}
+                  </span>
                 </button>
               </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="block text-xs font-bold uppercase tracking-wider text-on-surface">
-                Municipal Cluster / Hub
-              </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#475953]">
-                  <span className="material-symbols-outlined text-[20px]">location_on</span>
-                </span>
-                <select className="w-full pl-11 pr-10 py-3 bg-white text-on-surface text-sm rounded-xl border border-[#DDE3DA] focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none appearance-none transition-all cursor-pointer">
-                  <option value="talavera" defaultValue>Tagum City, Davao del Norte (Region XI Hub)</option>
-                  <option value="sanjose">Panabo City, Davao del Norte</option>
-                  <option value="munoz">Island Garden City of Samal, Davao del Norte</option>
-                  <option value="guimba">Carmen, Davao del Norte</option>
-                  <option value="cabanatuan">Santo Tomas, Davao del Norte</option>
-                </select>
-                <span className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#475953]">
-                  <span className="material-symbols-outlined text-[20px]">expand_more</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between p-3 rounded-xl bg-[#ebf6f1] border border-[#DDE3DA]">
-              <div className="flex items-center gap-2.5">
-                <span className="material-symbols-outlined text-primary text-[20px]">speed</span>
-                <div>
-                  <span className="block text-xs font-bold text-on-surface">2G / Low-Data Light Mode</span>
-                  <span className="block text-[11px] text-[#475953]">Streamlines UI for remote farm plots</span>
-                </div>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" className="sr-only peer" />
-                <div className="w-9 h-5 bg-[#707a6f] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-              </label>
             </div>
 
             <button 
               type="submit" 
               disabled={isSubmitting || isSuccess}
-              className="w-full py-3.5 px-6 rounded-xl bg-primary hover:bg-[#1b6e39] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-80 disabled:cursor-wait"
+              className="w-full mt-2 py-3.5 px-4 bg-primary text-on-primary text-sm font-extrabold rounded-xl shadow-md hover:bg-primary-container hover:text-on-primary-container focus:ring-4 focus:ring-primary/20 transition-all active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
             >
               {isSubmitting ? (
                 <>
                   <span className="material-symbols-outlined text-[20px] animate-spin">sync</span>
-                  <span>Verifying Credentials with LGU Registry...</span>
+                  <span>Verifying Credentials...</span>
                 </>
               ) : isSuccess ? (
                 <>
@@ -315,39 +290,13 @@ function LoginContent() {
             </button>
           </form>
 
-          <div className="pt-4 border-t border-[#DDE3DA]">
-            <div className="flex items-center justify-between mb-2.5">
-              <span className="text-[11px] font-bold text-[#475953] uppercase tracking-wider">Direct Role Showcase Access</span>
-              <a href="/how-it-works" className="text-[11px] text-primary font-bold hover:underline">How It Works →</a>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
-              <a href="/farmer-dashboard" className="py-2 px-2 rounded-lg bg-[#e5f0eb] hover:bg-primary hover:text-white text-on-surface text-xs font-semibold border border-[#DDE3DA] transition-all flex items-center justify-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]">person</span>
-                <span>Farmer</span>
-              </a>
-              <a href="/provider-dashboard" className="py-2 px-2 rounded-lg bg-[#e5f0eb] hover:bg-primary hover:text-white text-on-surface text-xs font-semibold border border-[#DDE3DA] transition-all flex items-center justify-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]">corporate_fare</span>
-                <span>Provider</span>
-              </a>
-              <a href="/mechanics/portal" className="py-2 px-2 rounded-lg bg-[#e5f0eb] hover:bg-[#C26D1A] hover:text-white text-on-surface text-xs font-semibold border border-[#DDE3DA] transition-all flex items-center justify-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]">handyman</span>
-                <span>Mechanic</span>
-              </a>
-              <a href="/admin" className="py-2 px-2 rounded-lg bg-[#e5f0eb] hover:bg-primary hover:text-white text-on-surface text-xs font-semibold border border-[#DDE3DA] transition-all flex items-center justify-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]">shield_person</span>
-                <span>Admin</span>
-              </a>
-            </div>
-          </div>
 
           <div className="bg-[#F3F4EE] p-3 rounded-xl flex items-center justify-between text-xs text-[#475953]">
             <span className="flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[#C26D1A] text-[18px]">support_agent</span>
-              Barangay Desk Assistance:
+              Barangay Desk Assistance
             </span>
-            <a href="/emergency" className="font-bold text-[#ba1a1a] hover:underline flex items-center gap-1">
-              <span className="material-symbols-outlined text-[15px]">emergency</span> Hotline 1343
-            </a>
+            <span className="text-soil-slate/70 font-medium">Available during LGU office hours</span>
           </div>
 
         </div>

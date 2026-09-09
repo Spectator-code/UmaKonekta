@@ -168,13 +168,7 @@ export default function MechanicPortalPage() {
               <span>+ Log Completed Repair</span>
             </button>
 
-            <a
-              href="tel:1343"
-              className="px-4 py-2.5 rounded-xl bg-[#ba1a1a] hover:bg-[#93000a] text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors"
-            >
-              <span className="material-symbols-outlined text-[18px]">emergency</span>
-              <span>SOS Hotline 1343</span>
-            </a>
+
           </div>
         </div>
       </div>

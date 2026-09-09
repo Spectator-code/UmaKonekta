@@ -353,7 +353,7 @@ export default function ProviderDashboard() {
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">receipt_long</span>
-            <span>Dispatches & Tickets ({requestsList.length})</span>
+            <span>Incoming Equipment Requests ({requestsList.length})</span>
           </button>
         </div>
 
