@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+<<<<<<< HEAD
 import SmartCalendar from '@/components/SmartCalendar';
+=======
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
 export default function HomePage() {
   const router = useRouter();
@@ -224,11 +227,14 @@ export default function HomePage() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* 4. Smart Agrarian Operations Calendar Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-14">
         <SmartCalendar />
       </section>
 
+=======
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
       {/* Cash-on-Dike & Passbook Standard Explainer */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-12">
         <div className="p-8 rounded-3xl bg-surface-container-low border border-border-soft grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">

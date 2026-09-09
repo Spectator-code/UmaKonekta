@@ -136,12 +136,35 @@ function LoginContent() {
       <div className="relative lg:w-5/12 xl:w-1/2 flex flex-col justify-between p-6 sm:p-10 lg:p-14 bg-gradient-to-br from-[#003618] via-[#005426] to-[#01505e] text-white overflow-hidden min-h-[420px] lg:min-h-full">
         {/* Ambient Visual Elements & Terraces Backdrop */}
         <div 
+<<<<<<< HEAD
           className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" 
           style={{ backgroundImage: "url('/umakonekta-bg-4.png')" }}
+=======
+          className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-25" 
+          style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjnjwLahM6I7kDU5jPoOYwKB4odFq0pSKkVIe8FaoQLXvrcXEoqGNoU8HQdaF8ni_XzRo5azewzZmMeYhXM0BvVvx5R-pBQR2u5lvEWeZK1aiOlPHGpeZtlHYcLQthm8bCxChjvuA2nBCDe1g-L1edtOLFayJUhaHsXi-QIevFB5dYgoGfpi1jiKMzaYSjdatCuCHDXkqhRCbUrSHC48tTXKk2w8dmYQiJmSsr1ChjZjHgN9sx3JQYGAuauD9_TpBkKQ')" }}
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
         />
         <div className="absolute -top-32 -left-32 w-80 h-80 bg-[#a3f5b2]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-[#F4A228]/15 rounded-full blur-3xl pointer-events-none" />
 
+<<<<<<< HEAD
+=======
+        {/* Top Branding Strip */}
+        <div className="relative z-10 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <Image 
+              src="https://lh3.googleusercontent.com/aida/AEtjO1WXdPG7CNTT3uGt1my2aOQZ4VdiHSKXHOILhIaSJ3u-AegiA3gD8xHtjq7FKI_Dk4t8OJN2tchZP4B7lzoWzi9iCQ4taPeFYs4FlSJpYWOp5Qaz5kZG2CBpD3j2tVbUB7OctH2duF9lC3BQSCBB2XfQCLiJtRHRf4OaSOydiyU2BnuqBwmiFBreNDu6J7rDxbGeA5bT0F3mjjSNMcnetOy7obOGck1Z_zVHuMXK2XyNHuau8uo9sn4_NuDHvCGO3TSaNL4dz1F3" 
+              alt="UMAKONEKTA Emblem" 
+              width={36} height={36}
+              className="h-9 w-auto object-contain drop-shadow" 
+            />
+            <div className="flex flex-col">
+              <span className="font-bold text-lg tracking-tight text-white leading-none">UMAKONEKTA</span>
+              <span className="text-[10px] text-[#a3f5b2] uppercase tracking-widest font-mono mt-0.5">National Agri Exchange</span>
+            </div>
+          </div>
+        </div>
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
         {/* Center Hero Message & Pillars */}
         <div className="relative z-10 my-auto py-8 lg:py-12 max-w-xl">
@@ -152,6 +175,33 @@ function LoginContent() {
             Sign in to request combine harvesters, manage municipal machinery depots, dispatch mobile repair technicians, or proxy-file physical SACCO scale tickets.
           </p>
 
+<<<<<<< HEAD
+=======
+          <div className="grid grid-cols-2 gap-3 max-w-md">
+            <div className="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col gap-1">
+              <div className="flex items-center gap-2 text-[#a3f5b2]">
+                <span className="material-symbols-outlined text-[20px]">verified_user</span>
+                <span className="text-xs font-bold uppercase tracking-wider">RSBSA & FCA</span>
+              </div>
+              <span className="text-xs text-white/80">Direct Registry Identity Sync</span>
+            </div>
+            <div className="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col gap-1">
+              <div className="flex items-center gap-2 text-[#a3f5b2]">
+                <span className="material-symbols-outlined text-[20px]">money_off</span>
+                <span className="text-xs font-bold uppercase tracking-wider">₱0 Digital Fee</span>
+              </div>
+              <span className="text-xs text-white/80">Physical Cash/Palay Passbook</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 flex items-center justify-between text-xs text-white/70 pt-6 border-t border-white/15 font-mono">
+          <span className="flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-[16px] text-[#a3f5b2]">lock_clock</span>
+            DA-PhilMech 256-Bit TLS End-to-End
+          </span>
+          <span className="hidden sm:inline">PWA v2.4 • Offline Ready</span>
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
         </div>
       </div>
 

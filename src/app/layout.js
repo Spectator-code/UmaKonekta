@@ -4,7 +4,10 @@ import Footer from '../components/Footer';
 import OfflineIndicator from '../components/OfflineIndicator';
 import MunicipalityOnboarding from '../components/MunicipalityOnboarding';
 import NextAuthSessionProvider from '@/components/SessionProvider';
+<<<<<<< HEAD
 import { LanguageProvider } from '@/lib/LanguageContext';
+=======
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
 export const metadata = {
   title: 'UMAKONEKTA - Philippine Agricultural Resource Exchange Platform',
@@ -46,6 +49,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="min-h-screen flex flex-col bg-cream-surface text-on-surface antialiased selection:bg-primary selection:text-on-primary">
         <NextAuthSessionProvider>
+<<<<<<< HEAD
           <LanguageProvider>
             <Navbar />
             <MunicipalityOnboarding />
@@ -55,6 +59,15 @@ export default function RootLayout({ children }) {
             <Footer />
             <OfflineIndicator />
           </LanguageProvider>
+=======
+          <Navbar />
+          <MunicipalityOnboarding />
+          <main className="flex-1 pt-20">
+            {children}
+          </main>
+          <Footer />
+          <OfflineIndicator />
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
         </NextAuthSessionProvider>
       </body>
     </html>

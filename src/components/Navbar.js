@@ -1,14 +1,21 @@
 'use client';
 
+<<<<<<< HEAD
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useLanguage } from '@/lib/LanguageContext';
+=======
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useSession, signIn } from 'next-auth/react';
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
 export default function Navbar() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
+<<<<<<< HEAD
   const { language, setLanguage, t } = useLanguage();
   const [profileOpen, setProfileOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -40,17 +47,33 @@ export default function Navbar() {
     ? '/admin' 
     : '/farmer-dashboard';
 
+=======
+
+  const navLinks = [
+    { label: 'Marketplace', href: '/marketplace' },
+    { label: 'Farmer Ledger', href: '/farmer-dashboard' },
+    { label: 'Operator Dispatch', href: '/dispatch-slip' },
+    { label: 'SACCO Split Receipt', href: '/sacco-receipt' },
+    { label: 'Barangay Bulletin', href: '/bulletin-notice' },
+  ];
+
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
   return (
     <header className="fixed top-0 w-full z-50 bg-cream-surface/95 backdrop-blur-xl border-b border-border-soft shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Logo & Brand */}
         <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+<<<<<<< HEAD
           <div className="w-11 h-11 rounded-xl bg-white p-1 flex items-center justify-center shadow-xs border border-primary/20 overflow-hidden">
             <img 
               src="/umakonekta-logo.jpg" 
               alt="UMAKONEKTA Logo" 
               className="w-full h-full object-contain"
             />
+=======
+          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold shadow-sm">
+            <span className="material-symbols-outlined text-[24px]">agriculture</span>
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
           </div>
           <div className="flex flex-col">
             <span className="font-headline-sm text-lg font-extrabold tracking-tight text-primary">UMAKONEKTA</span>
@@ -92,6 +115,7 @@ export default function Navbar() {
             <span className="hidden md:inline">Hotline 1343</span>
           </a>
 
+<<<<<<< HEAD
           {/* User Profile Avatar with Dropdown & Sign Out */}
           {status === 'loading' ? (
             <div className="w-9 h-9 rounded-full bg-surface-container animate-pulse" />
@@ -256,6 +280,20 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+=======
+          {/* User Profile Avatar Link / Auth Button */}
+          {status === 'loading' ? (
+            <div className="w-9 h-9 rounded-full bg-surface-container animate-pulse" />
+          ) : session ? (
+            <Link
+              href={session.user.role === 'provider' ? '/provider-dashboard' : '/farmer-dashboard'}
+              aria-label="Go to Dashboard"
+              className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary hover:ring-2 hover:ring-primary/40 transition-all font-bold uppercase"
+              title={session.user.name}
+            >
+              {session.user.name?.[0] || <span className="material-symbols-outlined text-[20px]">person</span>}
+            </Link>
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
           ) : (
             <button
               onClick={() => signIn()}

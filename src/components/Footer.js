@@ -13,12 +13,17 @@ export default function Footer() {
           {/* Brand & Mandate */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
+<<<<<<< HEAD
               <div className="w-11 h-11 rounded-xl bg-white p-1 flex items-center justify-center shadow-xs border border-primary/20 overflow-hidden">
                 <img 
                   src="/umakonekta-logo.jpg" 
                   alt="UMAKONEKTA Logo" 
                   className="w-full h-full object-contain"
                 />
+=======
+              <div className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">
+                <span className="material-symbols-outlined text-[24px]">agriculture</span>
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
               </div>
               <span className="font-headline-sm text-xl font-extrabold tracking-tight text-cream-surface">UMAKONEKTA</span>
             </div>
@@ -60,11 +65,14 @@ export default function Footer() {
                   🏛️ Barangay Hall Bulletin
                 </Link>
               </li>
+<<<<<<< HEAD
               <li>
                 <Link href="/admin" className="hover:text-harvest-amber transition-colors">
                   🪪 LGU Farmer ID Creator System
                 </Link>
               </li>
+=======
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
             </ul>
           </div>
 
@@ -118,6 +126,14 @@ export default function Footer() {
         <div className="pt-8 border-t border-cream-surface/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream-surface/60">
           <p>© {new Date().getFullYear()} UMAKONEKTA. Republic of the Philippines. All rights reserved.</p>
           <div className="flex items-center gap-4">
+<<<<<<< HEAD
+=======
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-sprout-green inline-block animate-pulse"></span>
+              Serwist Offline PWA Ready
+            </span>
+            <span>•</span>
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
             <span>PhilMech Standard Compliant</span>
           </div>
         </div>
