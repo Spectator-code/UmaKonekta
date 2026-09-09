@@ -2,11 +2,17 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+<<<<<<< HEAD
 import SmartCalendar from '@/components/SmartCalendar';
 
 export default function BulletinNoticePage() {
   const [isEcoPrint, setIsEcoPrint] = useState(false);
   const [viewMode, setViewMode] = useState('calendar'); // 'calendar' or 'table'
+=======
+
+export default function BulletinNoticePage() {
+  const [isEcoPrint, setIsEcoPrint] = useState(false);
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
   const scheduleRows = [
     {
@@ -112,6 +118,7 @@ export default function BulletinNoticePage() {
           </p>
         </div>
 
+<<<<<<< HEAD
         {/* View Mode Toggle (No-print) */}
         <div className="flex items-center justify-between mb-4 no-print">
           <div className="flex items-center gap-1.5 p-1 bg-surface-container-low rounded-xl border border-border-soft">
@@ -154,6 +161,10 @@ export default function BulletinNoticePage() {
 
         {/* Machinery Rotation Schedule Table (Visible in table mode or print) */}
         <div className={`overflow-x-auto mb-6 ${viewMode !== 'table' ? 'print:block hidden' : ''}`}>
+=======
+        {/* Machinery Rotation Schedule Table */}
+        <div className="overflow-x-auto mb-6">
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
           <table className="w-full text-left text-xs border border-border-soft">
             <thead className="bg-surface-container border-b border-border-soft font-mono uppercase text-soil-slate">
               <tr>

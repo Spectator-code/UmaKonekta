@@ -7,7 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "postinstall": "prisma generate"
+=======
+    "lint": "next lint",
+    "postinstall": "prisma skills sync || exit 0"
+>>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
