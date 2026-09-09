@@ -1,33 +1,23 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-<<<<<<< HEAD
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]/route";
-=======
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
 export async function GET(request) {
   try {
     const assets = await prisma.asset.findMany({
       include: {
         provider: {
-<<<<<<< HEAD
           select: { name: true, registryId: true }
         }
       },
       orderBy: { createdAt: 'desc' }
-=======
-          select: { name: true }
-        }
-      }
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
     });
     return NextResponse.json(assets);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch assets' }, { status: 500 });
   }
 }
-<<<<<<< HEAD
 
 export async function POST(request) {
   const session = await getServerSession(authOptions);
@@ -62,5 +52,3 @@ export async function POST(request) {
   }
 }
 
-=======
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364

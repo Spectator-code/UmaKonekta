@@ -28,16 +28,12 @@
   border-radius: 4px;
 }
 
-<<<<<<< HEAD
 /* Thermal printer, scale tickets, dispatch slips, and eco-monochrome print rules */
 @page {
   size: A4 portrait;
   margin: 10mm 12mm;
 }
 
-=======
-/* Thermal printer and eco-monochrome print rules */
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 @media print {
   .no-print {
     display: none !important;
@@ -45,7 +41,6 @@
   body {
     background: #ffffff !important;
     color: #000000 !important;
-<<<<<<< HEAD
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -60,7 +55,5 @@
   }
   .print-border-solid {
     border-color: #000000 !important;
-=======
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
   }
 }

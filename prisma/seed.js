@@ -9,11 +9,7 @@ async function main() {
       role: 'farmer',
       registryId: '03-49-12-00841',
       password: '4092',
-<<<<<<< HEAD
       name: 'J. Madronero'
-=======
-      name: 'Juan Dela Cruz'
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
     },
     {
       role: 'provider',

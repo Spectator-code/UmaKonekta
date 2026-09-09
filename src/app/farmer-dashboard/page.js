@@ -1,22 +1,15 @@
 'use client';
 
-<<<<<<< HEAD
 import { useSession } from "next-auth/react"
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-=======
-import { useSession, signOut } from "next-auth/react"
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
 export default function FarmerDashboard() {
   const { data: session, status } = useSession()
   const router = useRouter()
   const [data, setData] = useState({ requests: [] })
   const [isLoading, setIsLoading] = useState(true)
-<<<<<<< HEAD
   const [filterStatus, setFilterStatus] = useState('all') // 'all', 'in_progress', 'scheduled', 'completed'
 
   // Quick Request Modal State
@@ -95,8 +88,6 @@ export default function FarmerDashboard() {
       dispatchSlipUrl: '/sacco-receipt',
     }
   ]);
-=======
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -109,7 +100,6 @@ export default function FarmerDashboard() {
           setData(d)
           setIsLoading(false)
         })
-<<<<<<< HEAD
         .catch(() => setIsLoading(false))
     }
   }, [status, router])
@@ -171,11 +161,6 @@ export default function FarmerDashboard() {
     return item.status === filterStatus;
   });
 
-=======
-    }
-  }, [status, router])
-
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
   if (status === 'loading' || isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-cream-surface">
@@ -185,7 +170,6 @@ export default function FarmerDashboard() {
   }
 
   return (
-<<<<<<< HEAD
     <div className="min-h-screen bg-cream-surface text-on-surface pb-16">
       
       {/* 1. Header Banner */}
@@ -215,26 +199,10 @@ export default function FarmerDashboard() {
           >
             <span className="material-symbols-outlined text-[20px]">add_circle</span>
             <span>Request Farm Machinery</span>
-=======
-    <div className="min-h-screen bg-cream-surface text-on-surface">
-      <div className="bg-field-ochre text-white py-8 px-4 shadow-md">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold font-headline-sm">{session?.user?.name}</h1>
-            <p className="text-white/80 font-label-md mt-1">RSBSA ID: {session?.user?.registryId}</p>
-          </div>
-          <button 
-            onClick={() => signOut({ callbackUrl: '/login' })}
-            className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors"
-          >
-            <span className="material-symbols-outlined">logout</span>
-            Sign Out
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
           </button>
         </div>
       </div>
 
-<<<<<<< HEAD
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         
         {/* 2. Top Metric Cards (Simplified) */}
@@ -388,43 +356,11 @@ export default function FarmerDashboard() {
                       <span>Job Ticket Slip</span>
                     </Link>
                   </div>
-=======
-      <div className="max-w-6xl mx-auto py-8 px-4">
-        <h2 className="text-2xl font-bold flex items-center gap-2 border-b border-border-soft pb-2 mb-6">
-          <span className="material-symbols-outlined text-primary">history</span>
-          My Dispatch Requests
-        </h2>
-        
-        {data.requests?.length === 0 ? (
-          <div className="text-center py-12 bg-surface-container rounded-xl border border-border-soft border-dashed">
-            <span className="material-symbols-outlined text-4xl text-soil-slate/50">history</span>
-            <p className="mt-2 text-soil-slate font-bold">You have not requested any machinery yet.</p>
-            <button onClick={() => router.push('/marketplace')} className="mt-4 px-6 py-2 bg-primary text-white rounded-lg font-bold hover:bg-primary/90">Browse Marketplace</button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-4">
-            {data.requests?.map(req => (
-              <div key={req.id} className="bg-surface-container rounded-xl p-5 shadow-sm border border-border-soft flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-field-ochre">store</span>
-                    <span className="font-bold text-lg">{req.asset?.provider?.name || 'Provider'}</span>
-                  </div>
-                  <p className="text-sm text-soil-slate mt-1">Machine: <span className="font-semibold text-on-surface">{req.asset?.name}</span></p>
-                  <p className="text-sm text-soil-slate mt-1">Requested Hectares: <span className="font-semibold">{req.hectares || 'Not specified'} Ha</span></p>
-                </div>
-                <div className="flex flex-col items-end gap-2">
-                   <span className="text-sm px-3 py-1 rounded-full bg-status-pending-bg text-status-pending font-bold uppercase">
-                    {req.status}
-                  </span>
-                  <p className="text-xs text-on-surface-variant font-mono mt-1">Ref: {req.id}</p>
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
                 </div>
               </div>
             ))}
           </div>
         )}
-<<<<<<< HEAD
 
       </div>
 
@@ -588,9 +524,3 @@ export default function FarmerDashboard() {
   )
 }
 
-=======
-      </div>
-    </div>
-  )
-}
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364

@@ -1,10 +1,6 @@
 'use client';
 
-<<<<<<< HEAD
 import { useState, useEffect, useRef } from 'react';
-=======
-import { useState, useEffect } from 'react';
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
@@ -14,13 +10,9 @@ export default function MarketplacePage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-<<<<<<< HEAD
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchContainerRef = useRef(null);
 
-=======
-  
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
   // Modal State (Cognitive Load Reduction)
   const [bookingModalItem, setBookingModalItem] = useState(null);
   const [userId, setUserId] = useState('');
@@ -32,7 +24,6 @@ export default function MarketplacePage() {
   const [bookingHectares, setBookingHectares] = useState(1.5);
   const [paymentOption, setPaymentOption] = useState('cash-on-dike');
 
-<<<<<<< HEAD
   // Close search dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event) {
@@ -44,8 +35,6 @@ export default function MarketplacePage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-=======
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
   useEffect(() => {
     // Simulate network delay for skeleton loading
     const timer = setTimeout(() => {
@@ -227,7 +216,6 @@ export default function MarketplacePage() {
 
       {/* Filter and Search Bar */}
       <div className="bg-surface-container-low p-4 rounded-2xl border border-border-soft mb-8 flex flex-col lg:flex-row gap-4 items-center justify-between">
-<<<<<<< HEAD
         {/* Real-time search with scrollable suggestions dropdown */}
         <div className="relative w-full lg:w-96" ref={searchContainerRef}>
           <div className="flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-border-soft focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all shadow-xs">
@@ -344,25 +332,6 @@ export default function MarketplacePage() {
                 ))}
               </div>
             </div>
-=======
-        {/* Real-time search */}
-        <div className="w-full lg:w-96 flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-border-soft">
-          <span className="material-symbols-outlined text-soil-slate text-[20px]">search</span>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search model, operator, or location..."
-            className="w-full text-xs sm:text-sm bg-transparent focus:outline-none placeholder:text-soil-slate/60 font-bold text-on-surface"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="text-soil-slate hover:text-on-surface text-xs font-bold"
-            >
-              Clear
-            </button>
->>>>>>> 3f298d9d3bf6ac4e2afcae546047cdcbfe778364
           )}
         </div>
 
