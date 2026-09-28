@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8FAFC;
+    color: #000000;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: font-size 0.2s ease, filter 0.2s ease;
+  }
+
+  /* Accessible Focus-Visible Indicator across all interactive elements */
+  :focus-visible {
+    outline: 3px solid #005426 !important;
+    outline-offset: 2px !important;
+    border-radius: 4px;
+  }
+}
+
+/* 1. Agrarian Font Scaling Controls */
+body.font-scale-large {
+  font-size: 112%;
+}
+
+body.font-scale-xlarge {
+  font-size: 125%;
+}
+
+/* 2. Outdoor High-Contrast Sunlight Mode (for direct sunlight field usage) */
+.sunlight-contrast {
+  --tw-bg-opacity: 1 !important;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+.sunlight-contrast .bg-cream-surface,
+.sunlight-contrast .bg-surface,
+.sunlight-contrast .bg-white {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #1a1a1a !important;
+}
+
+.sunlight-contrast input,
+.sunlight-contrast select,
+.sunlight-contrast textarea,
+.sunlight-contrast button,
+.sunlight-contrast a {
+  border-width: 2px !important;
+}
+
+.sunlight-contrast .text-soil-slate,
+.sunlight-contrast .text-on-surface-variant {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+.sunlight-contrast .border-border-soft,
+.sunlight-contrast .border-gray-200,
+.sunlight-contrast .border-[#DDE3DA] {
+  border-color: #000000 !important;
+}
+
+.sunlight-contrast :focus-visible {
+  outline: 4px solid #000000 !important;
+  outline-offset: 3px !important;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1fcf7;
+}
+::-webkit-scrollbar-thumb {
+  background: #1b6e39;
+  border-radius: 4px;
+}
+
+/* Thermal printer, scale tickets, dispatch slips, and eco-monochrome print rules */
+@page {
+  size: A4 portrait;
+  margin: 10mm 12mm;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .print-page-a4 {
+    width: 100% !important;
+    max-width: 190mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  .print-border-solid {
+    border-color: #000000 !important;
+  }
+}
