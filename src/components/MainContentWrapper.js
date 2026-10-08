@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file MainContentWrapper.js
+ * @description React Component / Page for MainContentWrapper.js. Handles UI rendering and local state.
+ * @module MainContentWrapper
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import React from 'react';
 
 export default function MainContentWrapper({ children }) {

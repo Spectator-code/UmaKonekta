@@ -1,3 +1,14 @@
+/**
+ * @file route.js
+ * @description Utility / Helper module for route.js. Contains business logic or API handlers.
+ * @module route
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { prisma } from "@/lib/prisma"
@@ -40,6 +51,13 @@ export const authOptions = {
         ipRateLimitMap.set(ip, rateData);
 
         if (rateData.count > 20) {
+          await logSecurityEvent({
+            eventType: 'IP_RATE_LIMIT_EXCEEDED',
+            ipAddress: ip,
+            registryId: cleanRegistryId,
+            details: `IP rate limit exceeded (${rateData.count} login attempts within 60s). Potential brute force detected.`,
+            severity: 'HIGH'
+          });
           throw new Error("Rate limit exceeded. Too many login attempts from your IP.");
         }
 
@@ -115,7 +133,7 @@ export const authOptions = {
         if (Date.now() < attempts.lockoutUntil) {
           await logSecurityEvent({
             eventType: 'BRUTE_FORCE_LOCKOUT',
-            ipAddress: req.headers?.['x-forwarded-for'] || 'unknown',
+            ipAddress: ip,
             registryId: cleanRegistryId,
             details: 'Blocked authentication attempt during lockout period.',
             severity: 'HIGH'

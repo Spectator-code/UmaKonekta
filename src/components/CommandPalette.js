@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file CommandPalette.js
+ * @description React Component / Page for CommandPalette.js. Handles UI rendering and local state.
+ * @module CommandPalette
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAccessibility } from '@/lib/AccessibilityContext';
@@ -172,7 +183,7 @@ export default function CommandPalette() {
               setSelectedIndex(0);
             }}
             onKeyDown={handleKeyDown}
-            placeholder={t('searchPlaceholder') || 'Search machinery, dispatches, or portals...'}
+            placeholder="Search machinery, dispatches, or portals..."
             className="w-full bg-transparent text-on-surface text-base placeholder:text-soil-slate/70 focus:outline-none font-medium"
           />
           {query && (

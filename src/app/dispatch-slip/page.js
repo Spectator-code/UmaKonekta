@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file page.js
+ * @description React Component / Page for page.js. Handles UI rendering and local state.
+ * @module page
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';

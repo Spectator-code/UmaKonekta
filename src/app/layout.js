@@ -1,3 +1,14 @@
+/**
+ * @file layout.js
+ * @description React Component / Page for layout.js. Handles UI rendering and local state.
+ * @module layout
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';

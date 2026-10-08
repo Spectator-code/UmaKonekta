@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file AccessibilityContext.js
+ * @description Utility / Helper module for AccessibilityContext.js. Contains business logic or API handlers.
+ * @module AccessibilityContext
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const AccessibilityContext = createContext({

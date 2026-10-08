@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Image from 'next/image';
+import ErrorMessage from '@/components/ErrorMessage';
 import { useUserProfilePhoto } from '@/lib/userProfile';
 
 export default function FarmerIDCard({ farmer, customData = {}, allowUpload = true, ...restProps }) {
@@ -162,18 +163,7 @@ export default function FarmerIDCard({ farmer, customData = {}, allowUpload = tr
           3. NOTIFICATIONS & ALERTS
           ============================================================================ */}
       {/* Error Message for 5MB Limit Violation */}
-      {photoError && (
-        <div className="no-print w-full max-w-xl p-3 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center justify-between gap-2 shadow-xs">
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-[18px] text-red-600 shrink-0">error</span>
-            <div>
-              <span className="font-bold">Upload Failed: </span>
-              <span>{photoError}</span>
-            </div>
-          </div>
-          <button type="button" onClick={clearMessages} className="text-red-500 font-bold hover:text-red-800 text-base leading-none">×</button>
-        </div>
-      )}
+      <ErrorMessage error={photoError} onDismiss={clearMessages} />
 
       {/* Success Notification */}
       {photoSuccess && (
@@ -330,13 +320,14 @@ export default function FarmerIDCard({ farmer, customData = {}, allowUpload = tr
 
         {/* ================= BACK SIDE OF ID ================= */}
         {(activeSide === 'back' || activeSide === 'both') && (
-          <div className="w-[360px] sm:w-[390px] h-[240px] sm:h-[250px] rounded-2xl bg-white border-2 border-[#C26D1A]/40 shadow-xl overflow-hidden relative flex flex-col justify-between p-4 print:shadow-none print:border-2 print:border-black text-on-surface">
+          <div className="w-[360px] sm:w-[390px] h-[240px] sm:h-[250px] rounded-2xl bg-gradient-to-br from-white to-gray-50 border border-white/60 shadow-2xl overflow-hidden relative flex flex-col justify-between p-4 print:shadow-none print:border-2 print:border-black text-on-surface group">
             {/* Illustrated Agrarian Background Backdrop */}
             <div 
               className="absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none" 
               style={{ backgroundImage: "url('/umakonekta-id-bg.png')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDF9]/95 via-white/85 to-white/90 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/60 to-transparent pointer-events-none transform -skew-x-12 translate-x-[-150%] group-hover:translate-x-[200%] transition-transform duration-1000 z-20" />
 
             {/* Back Header */}
             <div className="relative z-10 flex items-center justify-between border-b border-field-ochre/20 pb-1.5">

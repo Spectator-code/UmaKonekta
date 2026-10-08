@@ -8,6 +8,10 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      backdropBlur: {
+        'xs': '2px',
+        'sm': '4px',
+      },
       colors: {
         primary: '#005426',
         'primary-container': '#1b6e39',

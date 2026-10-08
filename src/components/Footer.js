@@ -1,3 +1,14 @@
+/**
+ * @file Footer.js
+ * @description React Component / Page for Footer.js. Handles UI rendering and local state.
+ * @module Footer
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import Link from 'next/link';
 
 export default function Footer() {

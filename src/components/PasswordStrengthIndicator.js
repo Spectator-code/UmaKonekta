@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file PasswordStrengthIndicator.js
+ * @description React Component / Page for PasswordStrengthIndicator.js. Handles UI rendering and local state.
+ * @module PasswordStrengthIndicator
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import React, { useMemo } from 'react';
 
 export function calculatePasswordStrength(password = '') {

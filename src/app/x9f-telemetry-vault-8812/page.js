@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file page.js
+ * @description React Component / Page for page.js. Handles UI rendering and local state.
+ * @module page
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { ShieldAlert, Shield, Trash2, Ban, ShieldCheck, Activity, Terminal, AlertTriangle, Lock, Users, Radar, Crosshair, Search, Copy, Cpu, X, History, Filter } from 'lucide-react';
@@ -24,6 +35,14 @@ export default function SecOpsDashboard() {
   const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, ip: null, registryId: null });
   const [dossier, setDossier] = useState(null);
   const [userHistory, setUserHistory] = useState(null);
+  const [toast, setToast] = useState(null);
+
+  const showToast = (message, type = 'info') => {
+    setToast({ message, type });
+    setTimeout(() => {
+      setToast(prev => prev?.message === message ? null : prev);
+    }, 4500);
+  };
 
   // Filters
   const [siemFilter, setSiemFilter] = useState({ ip: '', date: '' });
@@ -101,7 +120,7 @@ export default function SecOpsDashboard() {
   };
 
   const handleBanToggle = async (target, ban) => {
-    if (!target) return alert('Enter a Registry ID to target.');
+    if (!target) return showToast('Enter a Registry ID to target.');
     confirm({
       title: 'Confirm Action',
       message: `Are you sure you want to ${ban ? 'BAN' : 'UNBAN'} ${target}?`,
@@ -117,10 +136,10 @@ export default function SecOpsDashboard() {
             setTargetUser('');
             fetchData();
           } else {
-            alert((await res.json()).error || 'Failed.');
+            showToast((await res.json()).error || 'Failed.');
           }
         } catch (e) {
-          alert('Error.');
+          showToast('Error.');
         } finally {
           setIsProcessing(false);
         }
@@ -129,7 +148,7 @@ export default function SecOpsDashboard() {
   };
 
   const handleFirewall = async (action) => {
-    if (!targetIp) return alert('Enter an IP address to target.');
+    if (!targetIp) return showToast('Enter an IP address to target.');
     confirm({
       title: 'Confirm Firewall Action',
       message: `Are you sure you want to ${action} ${targetIp}?`,
@@ -142,12 +161,12 @@ export default function SecOpsDashboard() {
             body: JSON.stringify({ ipAddress: targetIp, action })
           });
           if (res.ok) {
-            alert((await res.json()).message);
+            showToast((await res.json()).message);
             setTargetIp('');
             fetchData();
           }
         } catch (e) {
-          alert('Error.');
+          showToast('Error.');
         } finally {
           setIsProcessing(false);
         }
@@ -240,10 +259,10 @@ export default function SecOpsDashboard() {
       if (res.ok) {
         setDossier(await res.json());
       } else {
-        alert('Failed to generate dossier.');
+        showToast('Failed to generate dossier.');
       }
     } catch (e) {
-      alert('Error generating dossier.');
+      showToast('Error generating dossier.');
     } finally {
       setIsProcessing(false);
     }
@@ -261,10 +280,10 @@ export default function SecOpsDashboard() {
       if (res.ok) {
         setUserHistory(await res.json());
       } else {
-        alert('Failed to generate user history.');
+        showToast('Failed to generate user history.');
       }
     } catch (e) {
-      alert('Error generating user history.');
+      showToast('Error generating user history.');
     } finally {
       setIsProcessing(false);
     }
@@ -283,7 +302,7 @@ export default function SecOpsDashboard() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ipAddress: contextMenu.ip, action: 'BLOCK' })
           }).then(res => res.json()).then(data => {
-            alert(data.message || 'Processed');
+            showToast(data.message || 'Processed');
             fetchData();
           }).finally(() => setIsProcessing(false));
         }
@@ -799,6 +818,18 @@ export default function SecOpsDashboard() {
           </div>
         </div>
       </div>
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-lg bg-slate-900/95 border border-slate-700 shadow-2xl backdrop-blur-md transition-all">
+          <div className={`w-2 h-2 rounded-full ${toast.type === 'error' ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : toast.type === 'success' ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]' : 'bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]'}`} />
+          <span className="text-xs font-mono font-medium text-slate-200">{toast.message}</span>
+          <button 
+            onClick={() => setToast(null)}
+            className="ml-2 text-slate-400 hover:text-white text-xs font-bold px-1"
+          >
+            ×
+          </button>
+        </div>
+      )}
     </div>
   );
 }

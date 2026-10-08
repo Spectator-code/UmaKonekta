@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file SmartSearchSelect.js
+ * @description React Component / Page for SmartSearchSelect.js. Handles UI rendering and local state.
+ * @module SmartSearchSelect
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 
 /**

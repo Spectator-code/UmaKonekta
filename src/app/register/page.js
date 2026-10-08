@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file page.js
+ * @description React Component / Page for page.js. Handles UI rendering and local state.
+ * @module page
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { useState, useEffect, Suspense, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { signIn, useSession } from 'next-auth/react';
@@ -140,12 +151,17 @@ function RegisterContent() {
     router.replace(`/register?role=${role}`, { scroll: false });
   };
 
+  // ---------------------------------------------------------------------------
+  // Legal Name Handlers (Anti-XSS & DA RSBSA Compliance)
+  // Individual roles (farmers, mechanics) permit only letters, spaces, hyphens, and periods.
+  // Angle brackets (< >) are automatically stripped in real time.
+  // ---------------------------------------------------------------------------
   const handleNameChange = (e) => {
-    const val = e.target.value;
-    if (activeRole !== 'provider' && /\d/.test(val)) {
+    let val = e.target.value.replace(/[<>]/g, '');
+    if (activeRole !== 'provider' && (/\d/.test(val) || /[^a-zA-Z\s.-]/.test(val))) {
       setShowNumberErrorModal(true);
-      setNameError('Numbers (0-9) are not allowed in your legal DA-registered name.');
-      setName(val.replace(/\d/g, ''));
+      setNameError('Only letters, spaces, hyphens, and periods are allowed in your legal DA-registered name.');
+      setName(val.replace(/[^a-zA-Z\s.-]/g, ''));
       return;
     }
     if (nameError) setNameError('');
@@ -162,9 +178,9 @@ function RegisterContent() {
 
   const handleNamePaste = (e) => {
     const pastedText = e.clipboardData?.getData('text') || '';
-    if (activeRole !== 'provider' && /\d/.test(pastedText)) {
+    if (activeRole !== 'provider' && (/\d/.test(pastedText) || /[^a-zA-Z\s.-]/.test(pastedText))) {
       e.preventDefault();
-      const sanitized = pastedText.replace(/\d/g, '');
+      const sanitized = pastedText.replace(/[^a-zA-Z\s.-]/g, '').replace(/[<>]/g, '');
       const input = e.target;
       const start = input.selectionStart || 0;
       const end = input.selectionEnd || 0;
@@ -172,7 +188,7 @@ function RegisterContent() {
       const updated = current.substring(0, start) + sanitized + current.substring(end);
       setName(updated);
       setShowNumberErrorModal(true);
-      setNameError('Numbers (0-9) are not allowed and were removed from your name.');
+      setNameError('Numbers and special characters are not allowed and were removed from your legal name.');
     }
   };
 
@@ -195,7 +211,7 @@ function RegisterContent() {
     e.preventDefault();
     setErrorMessage('');
 
-    const trimmedName = name.trim();
+    const trimmedName = name.replace(/[<>]/g, '').trim().replace(/\s+/g, ' ');
     const trimmedId = registryId.trim();
 
     // Client-side validations
@@ -204,10 +220,10 @@ function RegisterContent() {
       return;
     }
 
-    if (activeRole !== 'provider' && /\d/.test(trimmedName)) {
+    if (activeRole !== 'provider' && /[^a-zA-Z\s.-]/.test(trimmedName)) {
       setShowNumberErrorModal(true);
-      setNameError('Numbers (0-9) are not allowed in your legal DA-registered name.');
-      setErrorMessage('Full Name cannot contain numeric digits.');
+      setNameError('Only letters, spaces, hyphens, and periods are allowed in your legal name.');
+      setErrorMessage('Full Name contains invalid characters.');
       return;
     }
 

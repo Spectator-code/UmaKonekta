@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file not-found.js
+ * @description React Component / Page for not-found.js. Handles UI rendering and local state.
+ * @module not-found
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import Link from 'next/link';
 import { MapPinOff, Home, ArrowLeft } from 'lucide-react';
 

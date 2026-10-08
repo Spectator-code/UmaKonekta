@@ -1,3 +1,14 @@
+/**
+ * @file route.js
+ * @description Utility / Helper module for route.js. Contains business logic or API handlers.
+ * @module route
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
@@ -64,7 +75,15 @@ export async function POST(request) {
     const { name = '', registryId = '', password = '', role = 'farmer' } = body;
 
     const trimmedRegistryId = (registryId || '').trim();
-    const trimmedName = (name || '').trim();
+    // Anti-XSS sanitization: strip angle brackets and normalize whitespaces
+    const trimmedName = (name || '').replace(/[<>]/g, '').trim().replace(/\s+/g, ' ');
+
+    if (/[<>{}\\]/.test(name || '')) {
+      return NextResponse.json(
+        { error: 'Full Name contains invalid or unsafe HTML characters.' },
+        { status: 400 }
+      );
+    }
 
     // Validation
     if (!trimmedName || !trimmedRegistryId || !password) {
@@ -74,10 +93,15 @@ export async function POST(request) {
       );
     }
 
-    // Name validation: numbers are not allowed for individuals (farmer, mechanic) registered with DA
-    if (role !== 'provider' && /\d/.test(trimmedName)) {
+    // -------------------------------------------------------------------------
+    // Legal Name Validation:
+    // Individual registrants (farmers, mechanics) must have legal DA names
+    // containing only letters, spaces, hyphens, and periods (no numbers/symbols).
+    // To modify allowed characters, edit the regex pattern: /[^a-zA-Z\s.-]/
+    // -------------------------------------------------------------------------
+    if (role !== 'provider' && (/\d/.test(trimmedName) || /[^a-zA-Z\s.-]/.test(trimmedName))) {
       return NextResponse.json(
-        { error: 'Full Name (as registered with DA) cannot contain numbers. Please enter your legal name.' },
+        { error: 'Full Name (as registered with DA) can only contain letters, spaces, hyphens, and periods (numbers and special characters are not allowed).' },
         { status: 400 }
       );
     }

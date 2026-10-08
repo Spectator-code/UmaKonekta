@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file SmartCalendar.js
+ * @description React Component / Page for SmartCalendar.js. Handles UI rendering and local state.
+ * @module SmartCalendar
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { getEquipmentImage } from '@/lib/equipmentImages';
@@ -14,7 +25,9 @@ import {
   ExternalLink,
   CheckCircle2,
   SlidersHorizontal,
-  ArrowRight
+  ArrowRight,
+  AlertTriangle,
+  RefreshCw
 } from 'lucide-react';
 
 // ============================================================================
@@ -121,31 +134,35 @@ export default function SmartCalendar() {
   // Data State
   const [fleetAssets, setFleetAssets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
 
   // ============================================================================
   // 2. LIFECYCLE & STATE EFFECTS
   // ============================================================================
   // Fetch real assets from operations API
-  useEffect(() => {
-    let isMounted = true;
-    async function loadFleet() {
-      setIsLoading(true);
-      try {
-        const res = await fetch('/api/operations/calendar');
-        if (res.ok) {
-          const data = await res.json();
-          if (isMounted && data.assets) {
-            setFleetAssets(data.assets);
-          }
+  const loadFleet = async () => {
+    setIsLoading(true);
+    setFetchError(null);
+    try {
+      const res = await fetch('/api/operations/calendar');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.assets) {
+          setFleetAssets(data.assets);
         }
-      } catch (err) {
-        console.error('Failed to load operations calendar:', err);
-      } finally {
-        if (isMounted) setIsLoading(false);
+      } else {
+        setFetchError('Failed to load schedule from server.');
       }
+    } catch (err) {
+      console.error('Failed to load operations calendar:', err);
+      setFetchError('Unable to connect to operations calendar service.');
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
     loadFleet();
-    return () => { isMounted = false; };
   }, []);
 
   // ============================================================================
@@ -273,7 +290,7 @@ export default function SmartCalendar() {
           5. CALENDAR HEADER
           ============================================================================ */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border-soft/70">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <CalendarIcon className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-extrabold text-on-surface tracking-tight">
             Smart Operations Calendar
@@ -281,6 +298,19 @@ export default function SmartCalendar() {
           <span className="text-[10px] font-mono font-bold text-soil-slate px-2 py-0.5 rounded bg-surface-container-low border border-border-soft/60">
             {monthName}
           </span>
+          {fetchError && (
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-semibold">
+              <AlertTriangle className="w-3 h-3 text-amber-600 shrink-0" />
+              <span>Offline / Demo Mode</span>
+              <button
+                type="button"
+                onClick={loadFleet}
+                className="ml-1 text-primary hover:underline font-bold"
+              >
+                Retry
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Minimal Month Navigator & Quick Controls */}
@@ -449,6 +479,19 @@ export default function SmartCalendar() {
                 <div className="py-6 text-center text-soil-slate text-xs">
                   <div className="w-4 h-4 mx-auto border-2 border-primary border-t-transparent rounded-full animate-spin mb-1" />
                   <span>Loading schedule...</span>
+                </div>
+              ) : fetchError ? (
+                <div className="py-6 text-center text-soil-slate text-xs space-y-2 p-3 bg-red-50/60 rounded-xl border border-red-200">
+                  <AlertTriangle className="w-5 h-5 mx-auto text-red-500" />
+                  <p className="font-bold text-red-800 text-[11px]">{fetchError}</p>
+                  <button
+                    type="button"
+                    onClick={loadFleet}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-white hover:bg-red-50 text-red-700 text-[11px] font-bold rounded-lg border border-red-200 transition-colors shadow-2xs cursor-pointer mx-auto"
+                  >
+                    <RefreshCw className="w-3 h-3" />
+                    <span>Retry Connection</span>
+                  </button>
                 </div>
               ) : activeDayBookings.length === 0 ? (
                 <div className="py-7 text-center text-soil-slate text-xs space-y-1">

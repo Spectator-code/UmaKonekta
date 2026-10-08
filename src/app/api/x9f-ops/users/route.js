@@ -1,3 +1,14 @@
+/**
+ * @file route.js
+ * @description Utility / Helper module for route.js. Contains business logic or API handlers.
+ * @module route
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../auth/[...nextauth]/route';

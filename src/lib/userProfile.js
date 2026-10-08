@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * @file userProfile.js
+ * @description Utility module for user profile photo storage, optimization, and fallback recovery.
+ * @module userProfile
+ */
+
 import { useState, useEffect, useCallback } from 'react';
 import { useConfirm } from '@/components/ConfirmDialogProvider';
 
@@ -16,27 +22,49 @@ export function getProfileStorageKey(user) {
 }
 
 /**
- * Get the stored profile photo data URL from localStorage
+ * Get the stored profile photo data URL from localStorage with corruption resilience
  */
 export function getStoredUserPhoto(user) {
   if (typeof window === 'undefined') return null;
   try {
     const key = getProfileStorageKey(user);
-    return localStorage.getItem(key) || null;
+    const val = localStorage.getItem(key);
+    
+    // Corrupted data handling: verify it's a valid data URL or safe URL path
+    if (!val || typeof val !== 'string') return null;
+    if (!val.startsWith('data:image/') && !val.startsWith('http') && !val.startsWith('/')) {
+      console.warn('Corrupted avatar data detected in storage, resetting to default standard avatar.');
+      try { localStorage.removeItem(key); } catch (e) {}
+      return null;
+    }
+    return val;
   } catch (err) {
-    console.error('Failed to retrieve user profile photo:', err);
+    console.error('Failed to retrieve user profile photo, falling back to default:', err);
     return null;
   }
 }
 
 /**
- * Save user profile photo to localStorage and notify all components
+ * Save user profile photo to localStorage with auto-pruning to prevent QuotaExceededError
  */
 export function saveStoredUserPhoto(user, dataUrl) {
   if (typeof window === 'undefined') return false;
   try {
     const key = getProfileStorageKey(user);
-    localStorage.setItem(key, dataUrl);
+    try {
+      localStorage.setItem(key, dataUrl);
+    } catch (quotaError) {
+      // Quota exceeded: prune other cached avatars to free space
+      console.warn('LocalStorage quota reached. Pruning stale avatar caches...');
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith('umakonekta_avatar_') && k !== key) {
+          localStorage.removeItem(k);
+        }
+      }
+      localStorage.setItem(key, dataUrl);
+    }
+
     window.dispatchEvent(
       new CustomEvent('umakonekta_avatar_updated', {
         detail: { key, photo: dataUrl }
@@ -44,7 +72,7 @@ export function saveStoredUserPhoto(user, dataUrl) {
     );
     return true;
   } catch (err) {
-    console.error('Failed to save user profile photo:', err);
+    console.error('Failed to save user profile photo to browser storage:', err);
     return false;
   }
 }
@@ -73,7 +101,8 @@ export function removeStoredUserPhoto(user) {
  * Validate and process an uploaded image file:
  * - Checks 5MB file size limit
  * - Checks valid image MIME type
- * - Resizes to optimal avatar dimensions (512x512 max) to maintain performance & prevent storage bloat
+ * - Resizes to 384x384 maximum avatar dimensions and 0.82 JPEG quality
+ *   to ensure ultra-compact storage (<40KB) and prevent storage quota exhaustion
  */
 export function processPhotoFile(file, maxSizeMB = MAX_PHOTO_SIZE_MB) {
   return new Promise((resolve) => {
@@ -117,7 +146,7 @@ export function processPhotoFile(file, maxSizeMB = MAX_PHOTO_SIZE_MB) {
       img.onload = () => {
         try {
           const canvas = document.createElement('canvas');
-          const MAX_DIM = 512;
+          const MAX_DIM = 384; // Optimized for avatars without excessive byte payload
           let { width, height } = img;
 
           if (width > height) {
@@ -136,16 +165,16 @@ export function processPhotoFile(file, maxSizeMB = MAX_PHOTO_SIZE_MB) {
           canvas.height = height;
           const ctx = canvas.getContext('2d');
           if (!ctx) {
-            return resolve({ dataUrl: rawDataUrl });
+            return resolve({ error: 'Browser graphics acceleration unavailable.' });
           }
 
-          // Draw and compress to high quality JPEG
+          // Draw and compress to compact high-quality JPEG (<40KB typical)
           ctx.drawImage(img, 0, 0, width, height);
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.88);
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
           resolve({ dataUrl: compressedDataUrl });
         } catch (canvasErr) {
-          // Fallback to raw data url if canvas processing fails
-          resolve({ dataUrl: rawDataUrl });
+          console.error('Canvas processing failed:', canvasErr);
+          resolve({ error: 'Unable to optimize image. Please try a different photo.' });
         }
       };
 
@@ -214,7 +243,7 @@ export function useUserProfilePhoto(user) {
           setSuccessMessage('Profile photo updated successfully!');
           setTimeout(() => setSuccessMessage(''), 3500);
         } else {
-          setErrorMessage('Unable to save photo to browser storage.');
+          setErrorMessage('Unable to save photo to browser storage (quota exceeded).');
         }
       }
 

@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file SkipToContent.js
+ * @description React Component / Page for SkipToContent.js. Handles UI rendering and local state.
+ * @module SkipToContent
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import React from 'react';
 
 export default function SkipToContent() {

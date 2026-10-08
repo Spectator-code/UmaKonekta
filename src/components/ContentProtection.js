@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file ContentProtection.js
+ * @description React Component / Page for ContentProtection.js. Handles UI rendering and local state.
+ * @module ContentProtection
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { useEffect } from 'react';
 
 export default function ContentProtection() {

@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file page.js
+ * @description React Component / Page for page.js. Handles UI rendering and local state.
+ * @module page
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -114,6 +125,7 @@ export default function AdminPage() {
   const [intakeNotes, setIntakeNotes] = useState('Assisted desk booking via Municipal Agriculture Office.');
   const [isIntakeSubmitting, setIsIntakeSubmitting] = useState(false);
   const [intakeSuccessMessage, setIntakeSuccessMessage] = useState('');
+  const [intakeErrorMessage, setIntakeErrorMessage] = useState('');
 
   // Dual Intake Form State (Provider Equipment Registration)
   const [assetProviderId, setAssetProviderId] = useState('provider-1-23-A001');
@@ -320,6 +332,7 @@ export default function AdminPage() {
     e.preventDefault();
     setIsIntakeSubmitting(true);
     setIntakeSuccessMessage('');
+    setIntakeErrorMessage('');
 
     try {
       const matchedAsset = assetsList.find(a => a.id === intakeMachineId) || assetsList[0];
@@ -347,10 +360,10 @@ export default function AdminPage() {
           setIntakeSuccessMessage('');
         }, 1200);
       } else {
-        alert(data.error || 'Failed to submit request.');
+        setIntakeErrorMessage(data.error || 'Failed to submit request.');
       }
     } catch (err) {
-      alert('Network error submitting request.');
+      setIntakeErrorMessage('Network error submitting request.');
     } finally {
       setIsIntakeSubmitting(false);
     }
@@ -361,6 +374,7 @@ export default function AdminPage() {
     e.preventDefault();
     setIsIntakeSubmitting(true);
     setIntakeSuccessMessage('');
+    setIntakeErrorMessage('');
 
     try {
       const res = await fetch('/api/assets', {
@@ -399,10 +413,10 @@ export default function AdminPage() {
           setIntakeSuccessMessage('');
         }, 1200);
       } else {
-        alert(data.error || 'Failed to register machinery.');
+        setIntakeErrorMessage(data.error || 'Failed to register machinery.');
       }
     } catch (err) {
-      alert('Network error registering machinery.');
+      setIntakeErrorMessage('Network error registering machinery.');
     } finally {
       setIsIntakeSubmitting(false);
     }
@@ -1330,6 +1344,21 @@ export default function AdminPage() {
               <div className="p-3.5 mb-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>{intakeSuccessMessage}</span>
+              </div>
+            )}
+            {intakeErrorMessage && (
+              <div className="p-3.5 mb-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs font-bold flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-red-600 shrink-0" />
+                  <span>{intakeErrorMessage}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIntakeErrorMessage('')}
+                  className="text-red-500 hover:text-red-700 text-sm font-bold px-1"
+                >
+                  ×
+                </button>
               </div>
             )}
 

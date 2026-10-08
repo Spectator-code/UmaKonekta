@@ -1,11 +1,23 @@
 'use client';
 
+/**
+ * @file Navbar.js
+ * @description React Component / Page for Navbar.js. Handles UI rendering and local state.
+ * @module Navbar
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useAccessibility } from '../lib/AccessibilityContext';
 import { useUserProfilePhoto } from '../lib/userProfile';
+import ErrorMessage from '@/components/ErrorMessage';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -229,7 +241,7 @@ export default function Navbar() {
   const navSections = getNavSections();
 
   return (
-    <header role="banner" className="fixed top-0 w-full z-50 bg-cream-surface/95 backdrop-blur-xl border-b border-border-soft shadow-sm">
+    <header role="banner" className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-white/20 shadow-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 sm:gap-4">
         {/* ============================================================================
             4. LEFT SECTION (Mobile Menu Trigger + Logo)
@@ -493,22 +505,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Error Banner (e.g. file exceeds 5MB limit) */}
-                    {photoError && (
-                      <div className="mt-2 p-2 rounded-xl bg-red-50 border border-red-200 text-red-700 text-[11px] leading-tight flex items-start gap-1.5 animate-fadeIn">
-                        <span className="material-symbols-outlined text-[15px] shrink-0 text-red-600">error</span>
-                        <div className="flex-1">
-                          <span className="font-bold">Error: </span>
-                          <span>{photoError}</span>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={clearMessages}
-                          className="text-red-500 hover:text-red-800 text-[13px] leading-none"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    )}
+                    <ErrorMessage error={photoError} onDismiss={clearMessages} />
 
                     {/* Success Banner */}
                     {photoSuccess && (

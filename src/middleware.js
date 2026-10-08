@@ -1,3 +1,9 @@
+/**
+ * @file middleware.js
+ * @description Global Edge WAF, Security clearance, and Authentication Guard with SIEM telemetry dispatch.
+ * @module middleware
+ */
+
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
@@ -13,10 +19,28 @@ const rolePortalMap = {
 export async function middleware(req) {
   const userAgent = req.headers.get('user-agent')?.toLowerCase() || '';
   const country = req.headers.get('x-vercel-ip-country');
+  const clientIp = req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') || req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
 
   // 1. GLOBAL ANTI-SCRAPER
   const blockedScrapers = ['curl', 'wget', 'python', 'scrapy', 'bot', 'headlesschrome', 'puppeteer'];
   if (blockedScrapers.some(scraper => userAgent.includes(scraper))) {
+    // Asynchronously dispatch SIEM scraper block alert
+    try {
+      fetch(new URL('/api/x9f-ops/track', req.url), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: req.nextUrl.pathname,
+          publicIp: clientIp,
+          securityEvent: {
+            eventType: 'SCRAPER_BLOCKED',
+            severity: 'MEDIUM',
+            details: `Edge WAF blocked automated scraper user-agent: ${userAgent.substring(0, 120)}`
+          }
+        })
+      }).catch(() => {});
+    } catch (e) {}
+
     return new NextResponse("Forbidden", { status: 403 });
   }
 
@@ -35,6 +59,31 @@ export async function middleware(req) {
     });
 
     if (!token || token.role !== 'secops') {
+      console.warn(JSON.stringify({ 
+        event: 'SECOPS_UNAUTHORIZED_ACCESS', 
+        path: pathname, 
+        ip: clientIp,
+        role: token?.role || 'anonymous'
+      }));
+
+      // Asynchronously log unauthorized SecOps clearance attempt to SIEM
+      try {
+        fetch(new URL('/api/x9f-ops/track', req.url), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            path: pathname,
+            publicIp: clientIp,
+            securityEvent: {
+              eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
+              severity: 'HIGH',
+              registryId: token?.registryId || token?.sub || null,
+              details: `Unauthorized attempt to access SecOps endpoint: ${pathname}. Requester Role: ${token?.role || 'unauthenticated'}.`
+            }
+          })
+        }).catch(() => {});
+      } catch (e) {}
+
       return NextResponse.json({ error: 'Unauthorized: SecOps clearance required' }, { status: 403 });
     }
     return NextResponse.next();
@@ -79,7 +128,30 @@ export async function middleware(req) {
     if (pathname.startsWith("/provider-dashboard") && role !== "provider" && role !== "admin") return redirectToHomePortal();
     if (pathname.startsWith("/daily-roster") && role !== "provider" && role !== "admin") return redirectToHomePortal();
     if (pathname.startsWith("/mechanic-dashboard") && role !== "mechanic" && role !== "admin") return redirectToHomePortal();
-    if (pathname.startsWith("/x9f-telemetry-vault-8812") && role !== "secops" && role !== "admin") return redirectToHomePortal();
+
+    // -------------------------------------------------------------------------
+    // SecOps Vault Portal Guard: Only 'secops' and 'admin' roles are permitted.
+    // Unauthorized access triggers an asynchronous SIEM security event before redirect.
+    // -------------------------------------------------------------------------
+    if (pathname.startsWith("/x9f-telemetry-vault-8812") && role !== "secops" && role !== "admin") {
+      try {
+        fetch(new URL('/api/x9f-ops/track', req.url), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            path: pathname,
+            publicIp: clientIp,
+            securityEvent: {
+              eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
+              severity: 'HIGH',
+              registryId: token?.registryId || token?.sub || null,
+              details: `Unauthorized attempt to access SecOps Telemetry Vault UI: ${pathname}. Requester Role: ${role}.`
+            }
+          })
+        }).catch(() => {});
+      } catch (e) {}
+      return redirectToHomePortal();
+    }
   }
 
   return NextResponse.next();

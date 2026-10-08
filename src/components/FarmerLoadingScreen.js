@@ -1,5 +1,16 @@
 'use client';
 
+/**
+ * @file FarmerLoadingScreen.js
+ * @description React Component / Page for FarmerLoadingScreen.js. Handles UI rendering and local state.
+ * @module FarmerLoadingScreen
+ * 
+ * @notes
+ * - Ensure all imports are correctly resolved.
+ * - Follows standard React and Next.js conventions.
+ * - Requires proper authentication context for protected routes.
+ */
+
 export default function FarmerLoadingScreen({ 
   message = "Loading UmaKonekta...", 
   subtext = "Philippine Agricultural Resource Exchange",
