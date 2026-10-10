@@ -224,7 +224,7 @@ export default function MechanicDashboardPage() {
 
   // Filtered SOS list
   const filteredSosList = useMemo(() => {
-    if (sosFilter === 'all') return sosList;
+    if (sosFilter === 'all') return sosList.filter(s => s.status !== 'resolved');
     return sosList.filter(s => s.status === sosFilter);
   }, [sosList, sosFilter]);
 
@@ -509,7 +509,7 @@ export default function MechanicDashboardPage() {
               {/* Status Filter Buttons */}
               <div className="flex flex-wrap items-center gap-2">
                 {[
-                  { id: 'all', label: 'All Alerts', count: sosList.length },
+                  { id: 'all', label: 'All Alerts', count: activeSosCount },
                   { id: 'open', label: 'Awaiting Claim', count: sosList.filter(s => s.status === 'open').length },
                   { id: 'assigned', label: 'Van En Route', count: sosList.filter(s => s.status === 'assigned').length },
                   { id: 'resolved', label: 'Repaired', count: sosList.filter(s => s.status === 'resolved').length }
