@@ -69,16 +69,22 @@ export async function GET(request) {
       if (isResolved) statusCategory = 'resolved';
       else if (isAssigned) statusCategory = 'assigned';
 
-      // Parse notes for sector, phone, details
+      // Parse notes for sector, phone, details, and repair summary
       const notesParts = (req.notes || '').split(' | ');
       let sector = 'Purok 2, Lowland Rice Basin';
       let phone = '0919-000-0002';
       let issueDetail = 'Engine overheating / Mechanical thresher jam';
+      let repairDescription = 'Standard maintenance applied.';
+      let partsUsed = 'None';
+      let cost = `₱${(req.totalCost || 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
 
       notesParts.forEach(p => {
         if (p.startsWith('Sector:')) sector = p.replace('Sector:', '').trim();
         else if (p.startsWith('Phone:')) phone = p.replace('Phone:', '').trim();
-        else if (!p.includes('EMERGENCY')) issueDetail = p.trim();
+        else if (p.startsWith('[REPAIR COMPLETED]')) repairDescription = p.replace('[REPAIR COMPLETED]', '').trim();
+        else if (p.startsWith('Parts:')) partsUsed = p.replace('Parts:', '').trim();
+        else if (p.startsWith('Cost:')) cost = p.replace('Cost:', '').trim();
+        else if (!p.includes('EMERGENCY') && !p.startsWith('Tech:') && !p.startsWith('[CLAIMED BY')) issueDetail = p.trim();
       });
 
       return {
@@ -94,6 +100,9 @@ export async function GET(request) {
         gpsCoords: '7.4472° N, 125.8035° E',
         landmark: sector,
         breakdownType: issueDetail,
+        repairDescription: repairDescription,
+        partsUsed: partsUsed,
+        totalCost: cost,
         severity: 'CRITICAL',
         severityDetail: 'Field Operation Stalled',
         severityLevel: 'critical',

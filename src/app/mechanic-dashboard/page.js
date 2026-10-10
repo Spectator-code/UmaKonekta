@@ -113,8 +113,23 @@ export default function MechanicDashboardPage() {
   // Spare Parts Requisition & Mobile Van Inventory
   const [partsList, setPartsList] = useState([]);
 
-  // Work Logs History
-  const [workLogs, setWorkLogs] = useState([]);
+  // Work Logs History derived from resolved SOS tickets
+  const workLogs = useMemo(() => {
+    return sosList
+      .filter(s => s.status === 'resolved')
+      .map(s => ({
+        id: `LOG-${s.id.replace('SOS-', '')}`,
+        date: new Date(s.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        ticket: s.id,
+        machine: s.machine,
+        farmer: s.farmer,
+        description: s.repairDescription || 'Issue resolved.',
+        partsUsed: s.partsUsed || 'Standard Maintenance',
+        amount: s.totalCost || '₱0.00',
+        status: 'Field Certified & Tested',
+        certNumber: `TESDA-CERT-${s.id.slice(-4)}`
+      }));
+  }, [sosList]);
 
   // Announcements
   const [announcements, setAnnouncements] = useState([]);
@@ -155,7 +170,7 @@ export default function MechanicDashboardPage() {
   const handleClaimSos = async (id) => {
     const mechanicName = session?.user?.name || 'mechanic-1-23-A001';
     setSosList(prev => prev.map(s => s.id === id ? { ...s, status: 'assigned', assignedMechanic: mechanicName } : s));
-    showToast(`Breakdown ${id} claimed! GPS route loaded for Mobile Van Kit #2.`);
+    showToast(`Breakdown ${id} claimed! Route loaded for Mobile Van Kit #2.`);
     try {
       await fetch('/api/mechanics', {
         method: 'PATCH',
@@ -189,21 +204,23 @@ export default function MechanicDashboardPage() {
 
   const handleLogSubmit = async (e) => {
     e.preventDefault();
-    const newLog = {
-      id: `LOG-${Math.floor(1000 + Math.random() * 9000)}`,
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-      ticket: logForm.ticketId,
-      machine: logForm.machineName,
-      farmer: logForm.farmerName,
-      description: logForm.issueResolved,
-      partsUsed: logForm.partsUsed,
-      amount: `₱${Number(logForm.repairCost).toLocaleString('en-US', { minimumFractionDigits: 2 })}`,
-      status: 'Field Certified & Tested',
-      certNumber: `TESDA-CERT-${Math.floor(1000 + Math.random() * 9000)}`
-    };
-    setWorkLogs([newLog, ...workLogs]);
+    
     setIsLogModalOpen(false);
     showToast('Job log synchronized with DA-PhilMech Machinery Registry.');
+
+    // Optimistically update sosList
+    setSosList(prev => prev.map(s => {
+      if (s.id === logForm.ticketId) {
+        return {
+          ...s,
+          status: 'resolved',
+          repairDescription: logForm.issueResolved,
+          partsUsed: logForm.partsUsed,
+          totalCost: `₱${Number(logForm.repairCost).toLocaleString('en-US', { minimumFractionDigits: 2 })}`
+        };
+      }
+      return s;
+    }));
 
     try {
       await fetch('/api/mechanics', {
@@ -497,9 +514,6 @@ export default function MechanicDashboardPage() {
                 <h2 className="text-xl font-black text-gray-900 flex items-center gap-2">
                   <Flame className="w-6 h-6 text-red-600" />
                   <span>Live Field Breakdown Broadcasts</span>
-                  <span className="text-[10px] font-mono px-3 py-1 bg-red-100 text-red-800 font-bold border border-red-200">
-                    Auto-Refreshing GPS Telemetry
-                  </span>
                 </h2>
                 <p className="text-sm text-gray-600 mt-1">
                   Direct distress calls from combine harvesters and tractors stranded in rice paddies.
