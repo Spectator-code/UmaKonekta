@@ -14,11 +14,24 @@ model User {
   registryId   String            @unique
   passwordHash String
   name         String
+  baranggay    String?
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
   isBanned     Boolean           @default(false)
   assets       Asset[]           @relation("ProviderAssets")
   requests     DispatchRequest[] @relation("FarmerRequests")
+  announcements Announcement[]
+}
+
+model Announcement {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  baranggay   String
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Asset {

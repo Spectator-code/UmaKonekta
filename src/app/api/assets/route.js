@@ -61,6 +61,13 @@ export async function GET(request) {
       ];
     }
 
+    const session = await getServerSession(authOptions);
+    if (session?.user?.baranggay) {
+      where.provider = {
+        baranggay: session.user.baranggay
+      };
+    }
+
     const [totalCount, assets] = await Promise.all([
       prisma.asset.count({ where }),
       prisma.asset.findMany({

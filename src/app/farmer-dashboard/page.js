@@ -84,6 +84,9 @@ export default function FarmerDashboard() {
 
   // Curated requests state
   const [requestsList, setRequestsList] = useState([]);
+  
+  // Announcements
+  const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -147,6 +150,16 @@ export default function FarmerDashboard() {
           }
         })
         .catch(() => {});
+
+      // Fetch Patalastas ng Baranggay
+      fetch('/api/announcements')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.announcements) {
+            setAnnouncements(data.announcements);
+          }
+        })
+        .catch(console.error);
     }
   }, [status, session, router])
 
@@ -406,6 +419,34 @@ export default function FarmerDashboard() {
             </Link>
           </div>
         </div>
+
+        {/* ============================================================================
+            PATALASTAS NG BARANGGAY (ANNOUNCEMENTS)
+            ============================================================================ */}
+        {announcements.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-black text-gray-900 flex items-center gap-3 mb-6">
+              <Radio className="w-6 h-6 text-[#005426]" />
+              <span>Patalastas ng {session?.user?.baranggay || 'Baranggay'}</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {announcements.map((ann, idx) => (
+                <div key={ann.id || idx} className="bg-amber-50 border-l-4 border-amber-500 p-6">
+                  <div className="flex items-center gap-2 mb-2 text-amber-800 font-bold text-xs uppercase tracking-wider">
+                    <Sparkles className="w-4 h-4" />
+                    <span>Admin Announcement • {new Date(ann.createdAt).toLocaleDateString()}</span>
+                  </div>
+                  <h3 className="text-lg font-black text-gray-900 mb-2">{ann.title}</h3>
+                  <p className="text-sm text-gray-700">{ann.content}</p>
+                  <div className="mt-4 flex items-center gap-2 text-xs font-bold text-gray-500">
+                    <UserCheck className="w-4 h-4" />
+                    <span>Posted by {ann.author?.name || 'Admin'}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* ============================================================================
             3. SECTION HEADER & FILTER TABS

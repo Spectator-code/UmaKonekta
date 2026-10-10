@@ -89,6 +89,9 @@ export async function GET(request) {
       if (farmerIdParam) {
         where.farmerId = farmerIdParam;
       }
+      if (session.user.role === 'admin' && session.user.baranggay) {
+        where.farmer = { baranggay: session.user.baranggay };
+      }
     }
 
     const requests = await prisma.dispatchRequest.findMany({

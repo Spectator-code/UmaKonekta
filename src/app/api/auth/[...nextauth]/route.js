@@ -308,6 +308,7 @@ export const authOptions = {
           name: user.name,
           role: user.role,
           registryId: standardRegistryId,
+          baranggay: user.baranggay,
         };
       }
     })
@@ -318,6 +319,7 @@ export const authOptions = {
       if (user) {
         token.role = user.role;
         token.registryId = user.registryId;
+        token.baranggay = user.baranggay;
       }
       return token;
     },
@@ -326,6 +328,7 @@ export const authOptions = {
         session.user.id = token.sub;
         session.user.role = token.role;
         session.user.registryId = token.registryId;
+        session.user.baranggay = token.baranggay;
       }
       return session;
     }

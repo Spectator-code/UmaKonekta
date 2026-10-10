@@ -32,13 +32,19 @@ export async function GET(request) {
   }
 
   try {
+    const whereClause = { role: 'farmer' };
+    if (session.user.baranggay) {
+      whereClause.baranggay = session.user.baranggay;
+    }
+
     const farmers = await prisma.user.findMany({
-      where: { role: 'farmer' },
+      where: whereClause,
       select: {
         id: true,
         name: true,
         registryId: true,
         role: true,
+        baranggay: true,
         createdAt: true,
         _count: {
           select: { requests: true }
@@ -47,9 +53,17 @@ export async function GET(request) {
       orderBy: { createdAt: 'desc' }
     });
 
-    const farmersCount = await prisma.user.count({ where: { role: 'farmer' } });
-    const providersCount = await prisma.user.count({ where: { role: 'provider' } });
-    const mechanicsCount = await prisma.user.count({ where: { role: 'mechanic' } });
+    const farmersCount = await prisma.user.count({ where: whereClause });
+    
+    // Also scope provider/mechanic counts to baranggay if needed
+    const providerWhere = { role: 'provider' };
+    const mechanicWhere = { role: 'mechanic' };
+    if (session.user.baranggay) {
+      providerWhere.baranggay = session.user.baranggay;
+      mechanicWhere.baranggay = session.user.baranggay;
+    }
+    const providersCount = await prisma.user.count({ where: providerWhere });
+    const mechanicsCount = await prisma.user.count({ where: mechanicWhere });
 
     return NextResponse.json({ 
       farmers, 
@@ -69,10 +83,11 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { name, registryId, password } = body;
+    const { name, registryId, password, baranggay } = body;
 
     const trimmedName = (name || '').trim();
     const trimmedRegistryId = (registryId || '').trim();
+    const finalBaranggay = baranggay || session.user.baranggay || 'San Manuel';
 
     if (!trimmedName || !trimmedRegistryId) {
       return NextResponse.json({ error: 'Name and Registry ID are required.' }, { status: 400 });
@@ -125,13 +140,15 @@ export async function POST(request) {
         name: trimmedName,
         registryId: trimmedRegistryId,
         passwordHash,
-        role: 'farmer'
+        role: 'farmer',
+        baranggay: finalBaranggay
       },
       select: {
         id: true,
         name: true,
         registryId: true,
         role: true,
+        baranggay: true,
         createdAt: true
       }
     });

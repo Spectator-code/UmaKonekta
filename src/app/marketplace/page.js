@@ -244,11 +244,26 @@ function MarketplaceContent() {
     setBookingDateTime('');
   };
 
-  const handleConfirmBooking = (e) => {
+  const handleConfirmBooking = async (e) => {
     e.preventDefault();
     setBookingSuccess(true);
-    // Persist to offline local queue
+    
     try {
+      // Send to API
+      await fetch('/api/requests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          farmerUserId: userId,
+          assetId: bookingModalItem.id,
+          hectares: bookingHectares || 1.0,
+          scheduleDate: bookingDateTime,
+          contactPhone: contactNumber,
+          notes: `Marketplace Booking | Payment: ${paymentOption}`,
+        })
+      });
+
+      // Persist to offline local queue as backup
       const existingQueue = JSON.parse(localStorage.getItem('umakonekta_offline_queue') || '[]');
       existingQueue.push({
         id: `book-${Date.now()}`,
@@ -260,7 +275,7 @@ function MarketplaceContent() {
       });
       localStorage.setItem('umakonekta_offline_queue', JSON.stringify(existingQueue));
     } catch (err) {
-      // Local fallback
+      console.error("Booking error", err);
     }
   };
 

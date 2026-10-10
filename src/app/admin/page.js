@@ -93,6 +93,7 @@ export default function AdminPage() {
   // Modals State
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false); // Farmer Registration
   const [isIntakeModalOpen, setIsIntakeModalOpen] = useState(false); // Dual-Tab Intake Modal
+  const [isAnnouncementModalOpen, setIsAnnouncementModalOpen] = useState(false); // Announcement Modal
   const [intakeTab, setIntakeTab] = useState('farmer_request'); // 'farmer_request', 'provider_asset'
 
   // Farmer Registration Form State
@@ -143,6 +144,13 @@ export default function AdminPage() {
 
   // Municipal Dispatch Audit Logs
   const [dispatchAuditLogs, setDispatchAuditLogs] = useState([]);
+
+  // Announcements State
+  const [announcementTitle, setAnnouncementTitle] = useState('');
+  const [announcementContent, setAnnouncementContent] = useState('');
+  const [announcementSubmitting, setAnnouncementSubmitting] = useState(false);
+  const [announcementSuccess, setAnnouncementSuccess] = useState('');
+  const [announcementError, setAnnouncementError] = useState('');
 
   // Initial Auth & Data Load
   useEffect(() => {
@@ -460,6 +468,42 @@ export default function AdminPage() {
     }
   };
 
+  // Create Announcement
+  const handleCreateAnnouncement = async (e) => {
+    e.preventDefault();
+    setAnnouncementSubmitting(true);
+    setAnnouncementError('');
+    setAnnouncementSuccess('');
+
+    try {
+      const res = await fetch('/api/announcements', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: announcementTitle,
+          content: announcementContent,
+          baranggay: session?.user?.baranggay || 'San Manuel'
+        })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setAnnouncementSuccess('Patalastas posted successfully!');
+        setTimeout(() => {
+          setIsAnnouncementModalOpen(false);
+          setAnnouncementSuccess('');
+          setAnnouncementTitle('');
+          setAnnouncementContent('');
+        }, 1500);
+      } else {
+        setAnnouncementError(data.error || 'Failed to post patalastas.');
+      }
+    } catch (err) {
+      setAnnouncementError('Error connecting to server.');
+    } finally {
+      setAnnouncementSubmitting(false);
+    }
+  };
+
   // Filtered Lists
   const filteredFarmers = farmers.filter(f =>
     f.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -507,6 +551,15 @@ export default function AdminPage() {
 
           {/* Action Hub Buttons */}
           <div className="flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              onClick={() => setIsAnnouncementModalOpen(true)}
+              className="px-6 py-3 bg-amber-500 text-amber-950 font-black text-sm border border-amber-600 flex items-center gap-2 cursor-pointer"
+            >
+              <Radio className="w-5 h-5 text-amber-950" />
+              <span>+ Patalastas ng Baranggay</span>
+            </button>
+
             <button
               type="button"
               onClick={() => {
@@ -1847,6 +1900,83 @@ export default function AdminPage() {
                   >
                     <UserPlus className="w-4 h-4" />
                     <span>Create Account & Generate ID</span>
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* PATALASTAS NG BARANGGAY (ANNOUNCEMENT) MODAL */}
+      {/* ========================================================================= */}
+      {isAnnouncementModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white p-6 sm:p-8 max-w-lg w-full border-t-8 border-amber-500 shadow-2xl relative">
+            <button
+              onClick={() => setIsAnnouncementModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                <Radio className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-xl font-black text-gray-900">Post Patalastas</h3>
+                <p className="text-sm text-gray-500">Broadcast to all farmers & providers in {session?.user?.baranggay || 'your Baranggay'}</p>
+              </div>
+            </div>
+
+            {announcementSuccess ? (
+              <div className="text-center py-6">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
+                <p className="text-lg font-black text-emerald-800">{announcementSuccess}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleCreateAnnouncement} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase text-gray-900 mb-1">Title</label>
+                  <input
+                    type="text"
+                    required
+                    value={announcementTitle}
+                    onChange={(e) => setAnnouncementTitle(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 bg-gray-50 text-gray-900 focus:outline-none focus:border-amber-500"
+                    placeholder="e.g. Libreng Binhi sa Lunes"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase text-gray-900 mb-1">Content</label>
+                  <textarea
+                    required
+                    rows={5}
+                    value={announcementContent}
+                    onChange={(e) => setAnnouncementContent(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 bg-gray-50 text-gray-900 focus:outline-none focus:border-amber-500"
+                    placeholder="Provide details about the announcement..."
+                  />
+                </div>
+                {announcementError && (
+                  <p className="text-sm text-red-600 font-bold">{announcementError}</p>
+                )}
+                <div className="pt-4 flex items-center justify-end gap-4 border-t border-gray-200">
+                  <button
+                    type="button"
+                    onClick={() => setIsAnnouncementModalOpen(false)}
+                    className="px-6 py-2.5 bg-gray-100 text-gray-700 text-sm font-bold cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={announcementSubmitting}
+                    className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-amber-950 font-black text-sm cursor-pointer disabled:opacity-50 flex items-center gap-2"
+                  >
+                    {announcementSubmitting ? 'Posting...' : 'Post Announcement'}
+                    <Sparkles className="w-4 h-4" />
                   </button>
                 </div>
               </form>
