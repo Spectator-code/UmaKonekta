@@ -333,6 +333,20 @@ export async function PATCH(request) {
       return NextResponse.json({ error: `Invalid status: ${status}. Allowed: ${allowedStatuses.join(', ')}` }, { status: 400 });
     }
 
+    if (status === 'cancelled') {
+      const assetId = existing.assetId;
+      await prisma.dispatchRequest.delete({
+        where: { id }
+      });
+      if (assetId) {
+        await syncAssetStatus(assetId);
+      }
+      return NextResponse.json({
+        success: true,
+        message: 'Request ticket has been cancelled and removed.'
+      });
+    }
+
     const updateData = {};
     if (status) {
       // Normalize 'dispatched' to 'in_progress' or retain standard

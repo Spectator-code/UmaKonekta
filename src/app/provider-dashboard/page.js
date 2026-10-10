@@ -535,7 +535,11 @@ export default function ProviderDashboard() {
   };
 
   const handleRequestStatus = async (id, newStatus) => {
-    setRequestsList(prev => prev.map(r => r.id === id ? { ...r, status: newStatus } : r));
+    if (newStatus === 'cancelled') {
+      setRequestsList(prev => prev.filter(r => r.id !== id));
+    } else {
+      setRequestsList(prev => prev.map(r => r.id === id ? { ...r, status: newStatus } : r));
+    }
     const targetItem = requestsList.find(r => r.id === id);
     const dbId = targetItem?.dbId || id;
     try {

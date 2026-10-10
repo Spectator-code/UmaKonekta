@@ -254,7 +254,11 @@ export default function AdminPage() {
   // Status transition handler via PATCH API
   const handleUpdateStatus = async (requestId, nextStatus) => {
     try {
-      setRequests(prev => prev.map(r => r.id === requestId ? { ...r, status: nextStatus } : r));
+      if (nextStatus === 'cancelled') {
+        setRequests(prev => prev.filter(r => r.id !== requestId));
+      } else {
+        setRequests(prev => prev.map(r => r.id === requestId ? { ...r, status: nextStatus } : r));
+      }
 
       const res = await fetch('/api/requests', {
         method: 'PATCH',
