@@ -82,14 +82,14 @@ export const authOptions = {
           let geoBlocked = false;
           let geoData = null;
           try {
-            const geoRes = await fetch(`http://ip-api.com/json/${ip}?fields=status,countryCode,proxy,hosting`, { 
+            const geoRes = await fetch(`https://freeipapi.com/api/json/${ip}`, { 
               next: { revalidate: 3600 },
               signal: AbortSignal.timeout(2000)
             });
             const geo = await geoRes.json();
-            if (geo.status === 'success') {
+            if (geo && geo.countryCode) {
               geoData = geo;
-              if (geo.proxy || geo.hosting || (geo.countryCode && geo.countryCode !== 'PH')) {
+              if (geo.isProxy || (geo.countryCode !== 'PH' && geo.countryCode !== '-')) {
                 geoBlocked = true;
               }
             }
@@ -127,10 +127,16 @@ export const authOptions = {
         });
         const isLockdownActive = lockdownConfig?.value === 'true';
 
-        const rateKey = cleanRegistryId.toLowerCase();
-        const attempts = rateLimitMap.get(rateKey) || { count: 0, lockoutUntil: 0 };
+        // 2.5 Stateless Brute-Force Protection via DB
+        const recentLockout = await prisma.siemLog.findFirst({
+          where: {
+            registryId: cleanRegistryId,
+            eventType: 'BRUTE_FORCE_DETECTED',
+            createdAt: { gte: new Date(Date.now() - LOCKOUT_MS) }
+          }
+        });
         
-        if (Date.now() < attempts.lockoutUntil) {
+        if (recentLockout) {
           await logSecurityEvent({
             eventType: 'BRUTE_FORCE_LOCKOUT',
             ipAddress: ip,
@@ -233,9 +239,18 @@ export const authOptions = {
         );
 
         if (!isValid) {
-          attempts.count += 1;
-          if (attempts.count >= MAX_ATTEMPTS) {
-            attempts.lockoutUntil = Date.now() + LOCKOUT_MS;
+          // Count recent failures statelessly via DB
+          const recentFailures = await prisma.siemLog.count({
+            where: {
+              registryId: cleanRegistryId,
+              eventType: 'FAILED_LOGIN',
+              createdAt: { gte: new Date(Date.now() - LOCKOUT_MS) }
+            }
+          });
+
+          const currentFails = recentFailures + 1;
+
+          if (currentFails >= MAX_ATTEMPTS) {
             await logSecurityEvent({
               eventType: 'BRUTE_FORCE_DETECTED',
               ipAddress: ip,
@@ -270,16 +285,12 @@ export const authOptions = {
               eventType: 'FAILED_LOGIN',
               ipAddress: ip,
               registryId: cleanRegistryId,
-              details: `Failed attempt ${attempts.count}/${MAX_ATTEMPTS}`,
+              details: `Failed attempt ${currentFails}/${MAX_ATTEMPTS}`,
               severity: 'LOW'
             });
           }
-          rateLimitMap.set(rateKey, attempts);
           return null;
         }
-
-        // Clear failed attempt tracking on verified login
-        rateLimitMap.delete(rateKey);
 
         // Standardize registryId format (user role-month-day register-A000)
         let standardRegistryId = user.registryId;

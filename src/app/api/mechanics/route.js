@@ -47,7 +47,8 @@ export async function GET(request) {
           }
         }
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
+      take: 100
     });
 
     // Also fetch machines currently under maintenance
