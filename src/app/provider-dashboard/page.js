@@ -221,26 +221,7 @@ export default function ProviderDashboard() {
   const [assignFuelOption, setAssignFuelOption] = useState('Farmer supplies 18L Diesel/ha');
 
   // Cropping Block Reservations (Seasonal Availability Calendar)
-  const [reservedBlocks, setReservedBlocks] = useState([
-    {
-      id: 'BLK-01',
-      sector: 'Brgy. San Manuel Rice Cropping Block A',
-      machine: 'Kubota DC-70 Plus Combine Harvester',
-      operator: 'Accredited Operator #1',
-      dateRange: 'Oct 12 – Oct 15, 2026',
-      hectares: 24.0,
-      status: 'Reserved / Locked'
-    },
-    {
-      id: 'BLK-02',
-      sector: 'Sitio Balite East Basin',
-      machine: 'Yanmar EF494T 4WD Heavy Duty Tractor',
-      operator: 'Accredited Operator #2',
-      dateRange: 'Oct 16 – Oct 18, 2026',
-      hectares: 15.5,
-      status: 'Reserved / Locked'
-    }
-  ]);
+  const [reservedBlocks, setReservedBlocks] = useState([]);
   const [isBlockModalOpen, setIsBlockModalOpen] = useState(false);
   const [newBlockSector, setNewBlockSector] = useState('Purok 4 Mankilam Rice Basin');
   const [newBlockMachine, setNewBlockMachine] = useState('Kubota DC-70 Plus Combine Harvester');
@@ -248,172 +229,13 @@ export default function ProviderDashboard() {
   const [newBlockHectares, setNewBlockHectares] = useState(18.0);
 
   // Machinery Local State with demo fallback
-  const [localAssets, setLocalAssets] = useState([
-    {
-      id: 'ast-01',
-      name: 'Kubota DC-70 Plus Combine Harvester',
-      type: 'harvester',
-      horsepower: '70 HP Turbo',
-      location: 'Brgy. San Manuel, Tagum City',
-      rate: 2800,
-      unit: 'per_ha',
-      status: 'available',
-      fuelTerms: 'Farmer supplies 18L Diesel/ha',
-      operator: 'Accredited Operator #1 (Cert #819)'
-    },
-    {
-      id: 'ast-02',
-      name: 'Yanmar EF494T 4WD Heavy Duty Tractor',
-      type: 'tractor',
-      horsepower: '49 HP 4WD',
-      location: 'Brgy. Apokon, Tagum City',
-      rate: 2400,
-      unit: 'per_ha',
-      status: 'dispatched',
-      fuelTerms: 'Fuel Inclusive within 10km radius',
-      operator: 'Accredited Operator #2 (Cert #402)'
-    },
-    {
-      id: 'ast-03',
-      name: 'Buhler 5-Ton Grain Recirculating Batch Dryer',
-      type: 'dryer',
-      horsepower: 'Biomass Husk Fired',
-      location: 'Municipal Silo Bodega, Tagum',
-      rate: 45,
-      unit: 'per_bag',
-      status: 'available',
-      fuelTerms: 'Husk biomass fuel included',
-      operator: 'Cooperative Silo Technician #1'
-    },
-    {
-      id: 'ast-04',
-      name: 'DJI Agras T40 Precision Crop Sprayer',
-      type: 'drone',
-      horsepower: 'Twin Atomizing Nozzles',
-      location: 'Muñoz Precision Drone Center',
-      rate: 950,
-      unit: 'per_ha',
-      status: 'available',
-      fuelTerms: 'Solar Battery Charged',
-      operator: 'Licensed Drone Pilot #1'
-    },
-    {
-      id: 'ast-05',
-      name: 'Kubota SPV-6MD Riding Rice Transplanter',
-      type: 'transplanter',
-      horsepower: '19.6 HP Gas Multi-Row',
-      location: 'Brgy. Canocotan, Tagum City',
-      rate: 3200,
-      unit: 'per_ha',
-      status: 'available',
-      fuelTerms: 'Farmer supplies 15L Gas/ha',
-      operator: 'Accredited Transplanter Operator #1'
-    }
-  ]);
+  const [localAssets, setLocalAssets] = useState([]);
 
   // Farmer Needs Feed
-  const [farmerNeeds, setFarmerNeeds] = useState([
-    {
-      id: 'FNEED-101',
-      farmerName: 'Farmer Member #00481',
-      rsbsaId: 'farmer-1-23-A002',
-      location: 'Sitio Balite, Brgy. San Manuel, Tagum City',
-      serviceNeeded: 'Emergency Harvester Needed (Rain approaching)',
-      machineType: 'Combine Harvester',
-      hectares: 2.5,
-      urgency: 'URGENT (Within 24 Hours)',
-      urgencyBadge: 'bg-status-urgent-bg text-status-urgent border-status-urgent/30',
-      targetDate: 'Oct 14, 2026',
-      offeredBudget: '₱2,800 / ha (Standard Cash-on-Dike)',
-      notes: 'Palay lodging in low-lying parcel. Ground firm enough for tracked harvester.',
-      status: 'open'
-    },
-    {
-      id: 'FNEED-102',
-      farmerName: 'Farmer Member #00992',
-      rsbsaId: 'farmer-1-23-A003',
-      location: 'Purok 4, Brgy. Mankilam, Tagum City',
-      serviceNeeded: 'Primary Land Preparation & Disc Plowing',
-      machineType: '4WD Heavy Tractor',
-      hectares: 4.0,
-      urgency: 'Scheduled (Within 3 Days)',
-      urgencyBadge: 'bg-status-pending-bg text-status-pending border-status-pending/30',
-      targetDate: 'Oct 15, 2026',
-      offeredBudget: '₱2,400 / ha (Co-op Passbook)',
-      notes: 'Heavy clay soil, requires 4WD tractor with 2.2m rotavator implement.',
-      status: 'open'
-    },
-    {
-      id: 'FNEED-103',
-      farmerName: 'Farmer Member #00122',
-      rsbsaId: 'farmer-1-23-A004',
-      location: 'Sitio Riverside, Brgy. Pagsabangan, Tagum City',
-      serviceNeeded: 'Precision Drone Bio-Fertilizer Spraying',
-      machineType: 'Precision Spray Drone',
-      hectares: 3.2,
-      urgency: 'Standard',
-      urgencyBadge: 'bg-status-available-bg text-status-available border-status-available/30',
-      targetDate: 'Oct 18, 2026',
-      offeredBudget: '₱950 / ha (Cash-on-Dike)',
-      notes: 'Foliar feeding during panicle initiation stage.',
-      status: 'open'
-    }
-  ]);
+  const [farmerNeeds, setFarmerNeeds] = useState([]);
 
   // Dispatch requests state
-  const [requestsList, setRequestsList] = useState([
-    {
-      id: 'REQ-2026-089',
-      farmerName: 'Farmer Member #00481',
-      rsbsaId: 'farmer-1-23-A002',
-      machine: 'Kubota DC-70 Plus Combine Harvester',
-      hectares: 2.5,
-      rate: 2800,
-      date: 'Oct 14, 2026',
-      location: 'Sitio Balite, Brgy. San Manuel, Tagum City',
-      totalEstimated: '₱7,000',
-      operatorName: 'Accredited Operator #1',
-      operatorPhone: '0919-000-0002',
-      operatorCert: 'TESDA NC-II / DA-Cert #819',
-      fuelTerms: 'Farmer supplies 45L Diesel',
-      settlementType: 'Cash-on-Dike Settlement',
-      status: 'dispatched'
-    },
-    {
-      id: 'REQ-2026-092',
-      farmerName: 'Farmer Member #00731',
-      rsbsaId: 'farmer-1-23-A003',
-      machine: 'Yanmar EF494T 4WD Heavy Duty Tractor',
-      hectares: 1.8,
-      rate: 2400,
-      date: 'Oct 15, 2026',
-      location: 'Purok 3, Brgy. Canocotan, Tagum City',
-      totalEstimated: '₱4,320',
-      operatorName: 'Accredited Operator #2',
-      operatorPhone: '0928-000-0003',
-      operatorCert: 'TESDA NC-II / DA-Cert #402',
-      fuelTerms: 'Fuel Inclusive (Depot Diesel)',
-      settlementType: 'Co-op Passbook Charge',
-      status: 'pending'
-    },
-    {
-      id: 'REQ-2026-095',
-      farmerName: 'Farmer Member #00122',
-      rsbsaId: 'farmer-1-23-A004',
-      machine: 'DJI Agras T40 Precision Crop Sprayer',
-      hectares: 3.2,
-      rate: 950,
-      date: 'Oct 18, 2026',
-      location: 'Purok 1, Brgy. Pagsabangan, Tagum City',
-      totalEstimated: '₱3,040',
-      operatorName: 'Licensed Drone Pilot #1',
-      operatorPhone: '0908-000-0004',
-      operatorCert: 'CAAP Remote Pilot #RP-2024',
-      fuelTerms: 'Solar Battery Charged',
-      settlementType: 'Cash-on-Dike Settlement',
-      status: 'dispatched'
-    }
-  ]);
+  const [requestsList, setRequestsList] = useState([]);
 
   useEffect(() => {
     if (status === 'unauthenticated') {

@@ -139,19 +139,10 @@ export default function AdminPage() {
   const [assetEngineNo, setAssetEngineNo] = useState('V2403-CR-TE4');
 
   // Municipal Fleet Oversight Static Data (Fallback & Seeded)
-  const [fleetAuditList, setFleetAuditList] = useState([
-    { id: 'FLT-01', name: 'Kubota DC-70 Plus Combine Harvester', depot: 'Tagum FCA Depot', type: 'Combine Harvester', status: 'Certified & Active', engineNo: 'V2403-CR-TE4', lastInspection: 'Oct 02, 2026', rate: '₱2,800/ha' },
-    { id: 'FLT-02', name: 'Yanmar EF494T 4WD Heavy Duty Tractor', depot: 'Apokon Agrarian Co-op', type: '4WD Tractor', status: 'Certified & Active', engineNo: '4TNV88-GGE', lastInspection: 'Oct 05, 2026', rate: '₱2,400/ha' },
-    { id: 'FLT-03', name: 'DJI Agras T40 Precision Crop Sprayer', depot: 'Muñoz Precision Center', type: 'Agri Drone', status: 'CAAP Pilot Approved', engineNo: 'T40-SN-8841', lastInspection: 'Oct 08, 2026', rate: '₱950/ha' },
-    { id: 'FLT-04', name: 'Buhler 5-Ton Grain Recirculating Dryer', depot: 'Municipal Silo Bodega', type: 'Biomass Batch Dryer', status: 'Calibration Verified', engineNo: 'BHL-DRY-9901', lastInspection: 'Oct 01, 2026', rate: '₱120/sack' }
-  ]);
+  const [fleetAuditList, setFleetAuditList] = useState([]);
 
   // Municipal Dispatch Audit Logs
-  const [dispatchAuditLogs, setDispatchAuditLogs] = useState([
-    { id: 'AUD-991', ticketNo: 'OP-2026-089', farmer: 'Farmer Member #00481', provider: 'Tagum FCA Depot', hectares: 2.4, amount: '₱5,760', settlement: 'Cash-on-Dike Certified', status: 'Settled & Verified' },
-    { id: 'AUD-990', ticketNo: 'ST-2026-7712', farmer: 'Farmer Member #00001', provider: 'San Manuel Co-op (SMABC)', hectares: 1.8, amount: '₱116,913', settlement: '8% SACCO Split Validated', status: 'Settled & Verified' },
-    { id: 'AUD-989', ticketNo: 'SOS-2026-034', farmer: 'Farmer Member #00122', provider: 'Mobile Van Kit #2 (Field Mechanic #889)', hectares: 3.2, amount: '₱650', settlement: 'TESDA Repair Complete', status: 'Settled & Verified' }
-  ]);
+  const [dispatchAuditLogs, setDispatchAuditLogs] = useState([]);
 
   // Initial Auth & Data Load
   useEffect(() => {
@@ -215,14 +206,9 @@ export default function AdminPage() {
         setSelectedFarmer(data.farmers[0]);
         if (!intakeFarmerId) setIntakeFarmerId(data.farmers[0].registryId || data.farmers[0].id);
       } else {
-        const fallback = [
-          { id: 'f-1', name: 'Farmer Member #00001', registryId: 'farmer-0-0-F0001', role: 'farmer', createdAt: new Date().toISOString() },
-          { id: 'f-2', name: 'Farmer Member #00481', registryId: 'farmer-0-0-F0002', role: 'farmer', createdAt: new Date().toISOString() },
-          { id: 'f-3', name: 'Farmer Member #00992', registryId: 'farmer-0-0-F0003', role: 'farmer', createdAt: new Date().toISOString() }
-        ];
-        setFarmers(fallback);
-        setSelectedFarmer(fallback[0]);
-        setIntakeFarmerId(fallback[0].registryId);
+        setFarmers([]);
+        setSelectedFarmer(null);
+        setIntakeFarmerId('');
       }
     } catch (e) {
       console.error('Error loading farmers:', e);
@@ -236,38 +222,7 @@ export default function AdminPage() {
       if (data.requests && data.requests.length > 0) {
         setRequests(data.requests);
       } else {
-        setRequests([
-          {
-            id: 'REQ-2026-0891',
-            farmer: { name: 'Farmer Member #00001', registryId: 'farmer-0-0-F0001' },
-            asset: { name: 'Kubota DC-70 Plus Combine Harvester', type: 'harvester', rate: 2800, provider: { name: 'Tagum FCA Machinery Depot' } },
-            hectares: 2.5,
-            totalCost: 7000,
-            date: new Date('2026-10-14').toISOString(),
-            status: 'approved',
-            notes: 'Sector: Purok 2 (Sitio Balite) | Phone: 0917-000-0001 | Cash-on-Dike settlement.'
-          },
-          {
-            id: 'REQ-2026-0884',
-            farmer: { name: 'Farmer Member #00481', registryId: 'farmer-0-0-F0002' },
-            asset: { name: 'Yanmar EF494T 4WD Heavy Duty Tractor', type: 'tractor', rate: 2400, provider: { name: 'Apokon Agrarian Co-op Pool' } },
-            hectares: 1.8,
-            totalCost: 4320,
-            date: new Date('2026-10-16').toISOString(),
-            status: 'pending',
-            notes: 'Sector: Purok 3 (East Rice Basin) | Phone: 0928-000-0003 | Lodging clay soil.'
-          },
-          {
-            id: 'REQ-2026-0798',
-            farmer: { name: 'Farmer Member #00992', registryId: 'farmer-1-23-A004' },
-            asset: { name: 'DJI Agras T40 Spray Drone', type: 'drone', rate: 950, provider: { name: 'Muñoz Precision Center' } },
-            hectares: 3.2,
-            totalCost: 3040,
-            date: new Date('2026-10-18').toISOString(),
-            status: 'in_progress',
-            notes: 'Sector: Purok 4 (Mankilam) | Bio-fertilizer foliar spray.'
-          }
-        ]);
+        setRequests([]);
       }
     } catch (e) {
       console.error('Error loading requests:', e);

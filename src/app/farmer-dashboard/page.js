@@ -83,71 +83,7 @@ export default function FarmerDashboard() {
   const [sosSubmitted, setSosSubmitted] = useState(false)
 
   // Curated requests state
-  const [requestsList, setRequestsList] = useState([
-    {
-      id: 'REQ-2026-0891',
-      machineName: 'Kubota DC-70 Plus Combine Harvester',
-      machineCategory: 'Harvester',
-      icon: 'agriculture',
-      driverName: 'Accredited Operator #1',
-      driverPhone: '0919-000-0002',
-      driverRating: '4.9 (DA-Certified Master Operator)',
-      depot: 'Tagum FCA Machinery Depot',
-      parcel: 'Purok 2 (Sitio Balite, Parcel #04)',
-      hectares: 2.5,
-      date: 'Oct 14, 2026',
-      timeSlot: '06:30 AM – 02:00 PM',
-      estimatedRate: '₱7,000 (₱2,800/ha)',
-      fuelAllocation: '45L Diesel (Supplied by Farmer)',
-      settlementType: 'Cash-on-Dike Settlement',
-      status: 'dispatched', // 'dispatched', 'in_progress', 'completed', 'pending'
-      statusLabel: 'Driver En Route to Dike',
-      statusBadge: 'bg-primary/10 text-primary border-primary/20',
-      dispatchSlipUrl: '/dispatch-slip',
-    },
-    {
-      id: 'REQ-2026-0884',
-      machineName: 'Yanmar EF494T 4WD Heavy Duty Tractor + Rotary Tiller',
-      machineCategory: 'Tractor',
-      icon: 'precision_manufacturing',
-      driverName: 'Accredited Operator #2',
-      driverPhone: '0928-000-0003',
-      driverRating: '4.8 (Agrarian Mechanic & Driver)',
-      depot: 'Apokon Agrarian Co-op Pool',
-      parcel: 'Purok 3 (East Rice Basin)',
-      hectares: 1.8,
-      date: 'Oct 16, 2026',
-      timeSlot: '07:00 AM – 03:00 PM',
-      estimatedRate: '₱4,320 (₱2,400/ha)',
-      fuelAllocation: 'Fuel Inclusive within 10km',
-      settlementType: 'Co-op Passbook Charge',
-      status: 'scheduled',
-      statusLabel: 'Scheduled / Reserved',
-      statusBadge: 'bg-harvest-amber/15 text-[#9E5D00] border-harvest-amber/30',
-      dispatchSlipUrl: '/dispatch-slip',
-    },
-    {
-      id: 'REQ-2026-0798',
-      machineName: 'DJI Agras T40 Precision Crop Sprayer',
-      machineCategory: 'Drone',
-      icon: 'flight',
-      driverName: 'Licensed Drone Pilot #1',
-      driverPhone: '0908-000-0004',
-      driverRating: '5.0 (CAAP & DA Remote Pilot)',
-      depot: 'Muñoz Precision Drone Center',
-      parcel: 'North Ridge Bio-Parcel',
-      hectares: 3.0,
-      date: 'Oct 08, 2026',
-      timeSlot: '05:30 AM – 08:30 AM',
-      estimatedRate: '₱2,850 (₱950/ha)',
-      fuelAllocation: 'Solar Battery Charged',
-      settlementType: 'Cash-on-Dike Certified',
-      status: 'completed',
-      statusLabel: 'Completed & Signed',
-      statusBadge: 'bg-status-available-bg text-status-available border-status-available/20',
-      dispatchSlipUrl: '/sacco-receipt',
-    }
-  ]);
+  const [requestsList, setRequestsList] = useState([]);
 
   useEffect(() => {
     if (status === 'unauthenticated') {

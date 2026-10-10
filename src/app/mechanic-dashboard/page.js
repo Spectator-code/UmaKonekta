@@ -108,103 +108,13 @@ export default function MechanicDashboardPage() {
   });
 
   // Emergency SOS Field Breakdowns Feed
-  const [sosList, setSosList] = useState([
-    {
-      id: 'SOS-2026-041',
-      machine: 'Kubota DC-70 Plus Combine Harvester',
-      category: 'Combine Harvester',
-      operator: 'Accredited Operator #1',
-      operatorPhone: '0919-000-0002',
-      farmer: 'farmer-1-23-A002',
-      location: 'Sitio Balite, Brgy. San Manuel, Tagum City',
-      gpsCoords: '7.4472° N, 125.8035° E',
-      landmark: 'Field Dike Lateral 3, near NIA Siphon',
-      breakdownType: 'Threshing Drum Jammed & Broken V-Belt',
-      severity: 'CRITICAL',
-      severityDetail: 'Harvest Stalled in Field',
-      severityLevel: 'critical',
-      timeReported: '25 mins ago',
-      status: 'assigned', // 'open', 'assigned', 'resolved'
-      assignedMechanic: 'mechanic-1-23-A001',
-      distanceKm: '2.4 km'
-    },
-    {
-      id: 'SOS-2026-039',
-      machine: 'Yanmar EF494T 4WD Heavy Duty Tractor',
-      category: '4WD Tractor',
-      operator: 'Accredited Operator #2',
-      operatorPhone: '0928-000-0003',
-      farmer: 'farmer-1-23-A003',
-      location: 'Purok 4, Brgy. Mankilam, Tagum City',
-      gpsCoords: '7.4521° N, 125.8110° E',
-      landmark: 'Deep Muddy Lowland Basin, Dike 12',
-      breakdownType: 'Hydraulic 3-Point Hitch Lift Failure',
-      severity: 'HIGH',
-      severityDetail: 'Rotavator Stuck in Clay Mud',
-      severityLevel: 'high',
-      timeReported: '1 hour ago',
-      status: 'open',
-      assignedMechanic: null,
-      distanceKm: '3.8 km'
-    },
-    {
-      id: 'SOS-2026-034',
-      machine: 'DJI Agras T40 Spray Drone',
-      category: 'Agricultural Drone',
-      operator: 'Licensed Drone Pilot #1',
-      operatorPhone: '0908-000-0004',
-      farmer: 'farmer-1-23-A004',
-      location: 'Sitio Riverside, Brgy. Pagsabangan',
-      gpsCoords: '7.4610° N, 125.7990° E',
-      landmark: 'Staging Pad near Solar Dryer',
-      breakdownType: 'Nozzle Pump Clogging & ESC Error 24',
-      severity: 'MEDIUM',
-      severityDetail: 'Minor Preventive Maintenance',
-      severityLevel: 'medium',
-      timeReported: '3 hours ago',
-      status: 'resolved',
-      assignedMechanic: 'mechanic-1-23-A001',
-      distanceKm: '5.1 km'
-    }
-  ]);
+  const [sosList, setSosList] = useState([]);
 
   // Spare Parts Requisition & Mobile Van Inventory
-  const [partsList, setPartsList] = useState([
-    { id: 'PRT-01', name: 'Heavy Duty V-Belt B-88 (Kubota Spec)', stock: 6, minStock: 3, unit: 'pcs', category: 'Belts & Pulleys', price: 650, depot: 'Tagum Central Silo Bodega', brand: 'Bando Heavy Duty' },
-    { id: 'PRT-02', name: 'High-Tensile Shear Pins M12 (Grade 8.8)', stock: 24, minStock: 10, unit: 'pcs', category: 'Hardware', price: 120, depot: 'Mobile Van Kit #2', brand: 'DA-PhilMech Spec' },
-    { id: 'PRT-03', name: 'Diesel Fuel Filter Element (Yanmar EF Series)', stock: 8, minStock: 4, unit: 'pcs', category: 'Filters', price: 420, depot: 'Tagum FCA Pool', brand: 'Yanmar OEM' },
-    { id: 'PRT-04', name: 'Hydraulic Hose Assembly 1/2" 2-Wire (1.5m)', stock: 4, minStock: 5, unit: 'pcs', category: 'Hydraulics', price: 1250, depot: 'Mobile Van Kit #2', brand: 'Gates Agriflex' },
-    { id: 'PRT-05', name: 'Rotary Tiller Blade C-Shape (Forged Steel)', stock: 32, minStock: 15, unit: 'pcs', category: 'Tillage Implements', price: 280, depot: 'Tagum Central Silo Bodega', brand: 'PhilMech Accredited' },
-    { id: 'PRT-06', name: 'Centrifugal Spray Nozzle Atomizer (T40 Drone)', stock: 5, minStock: 2, unit: 'sets', category: 'Drone Avionics', price: 1850, depot: 'Regional Tech Hub', brand: 'DJI Agriculture' }
-  ]);
+  const [partsList, setPartsList] = useState([]);
 
   // Work Logs History
-  const [workLogs, setWorkLogs] = useState([
-    {
-      id: 'LOG-8812',
-      date: 'Oct 11, 2026',
-      ticket: 'SOS-2026-034',
-      machine: 'DJI Agras T40 Spray Drone',
-      farmer: 'farmer-1-23-A004',
-      description: 'Ultrasonic cleaning of dual atomized nozzles and reset ESC sensor firmware.',
-      partsUsed: '1x Nozzle Seal Kit',
-      amount: '₱650.00',
-      status: 'Certified Safe for Flight',
-      certNumber: 'TESDA-CERT-8891'
-    },
-    {
-      id: 'LOG-8809',
-      date: 'Oct 09, 2026',
-      ticket: 'SOS-2026-028',
-      machine: 'Solis 50 4WD Utility Tractor',
-      farmer: 'farmer-1-23-A001',
-      description: 'Replaced broken hydraulic return line and refilled 5L ISO 68 Hydraulic Oil.',
-      partsUsed: '1x Hyd Hose, 5L Oil',
-      amount: '₱2,100.00',
-      status: 'Dispatched to Tilling',
-      certNumber: 'TESDA-CERT-8884'
-    }
-  ]);
+  const [workLogs, setWorkLogs] = useState([]);
 
   // Load live SOS alerts from backend
   useEffect(() => {
