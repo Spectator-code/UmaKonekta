@@ -55,7 +55,7 @@ export async function middleware(req) {
           securityEvent: {
             eventType: 'VPN_GEO_BLOCKED',
             severity: 'HIGH',
-            details: \`CyGuard blocked connection from non-PH region or VPN. Country: \${country}\`
+            details: `CyGuard blocked connection from non-PH region or VPN. Country: ${country}`
           }
         })
       }).catch(() => {});
