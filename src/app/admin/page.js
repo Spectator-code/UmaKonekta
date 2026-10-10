@@ -564,6 +564,19 @@ export default function AdminPage() {
             <button
               type="button"
               onClick={() => {
+                setAssetProviderId(session?.user?.registryId || '');
+                setIntakeTab('machinery');
+                setIsIntakeModalOpen(true);
+              }}
+              className="px-6 py-3 bg-[#005426] text-white font-black text-sm border border-[#005426] flex items-center gap-2 cursor-pointer"
+            >
+              <Tractor className="w-5 h-5 text-white" />
+              <span>+ Post Machinery</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
                 setIntakeTab('farmer_request');
                 setIsIntakeModalOpen(true);
               }}
@@ -1528,13 +1541,30 @@ export default function AdminPage() {
               <form onSubmit={handleSubmitProviderAsset} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase text-soil-slate mb-1">Cooperative Depot Provider ID</label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block text-xs font-bold uppercase text-soil-slate">Cooperative Depot Provider ID</label>
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={assetProviderId === session?.user?.registryId}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setAssetProviderId(session?.user?.registryId || '');
+                            } else {
+                              setAssetProviderId('');
+                            }
+                          }}
+                          className="w-3.5 h-3.5 text-primary rounded-sm border-gray-300 focus:ring-primary cursor-pointer"
+                        />
+                        <span className="text-[10px] font-bold text-primary uppercase">Post as Baranggay (Me)</span>
+                      </label>
+                    </div>
                     <input
                       type="text"
                       required
                       value={assetProviderId}
-                      onChange={(e) => setAssetProviderId(formatRegistryId(e.target.value, 'provider'))}
-                      placeholder="e.g., provider-0-0-P0000"
+                      onChange={(e) => setAssetProviderId(e.target.value)}
+                      placeholder="e.g., provider-0-0-P0000 or admin ID"
                       className="w-full text-xs font-bold p-3 bg-surface-container-low rounded-xl border border-border-soft focus:border-primary focus:outline-none font-mono"
                     />
                   </div>
