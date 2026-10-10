@@ -15,55 +15,87 @@ const rolePortalMap = {
   secops: "/x9f-telemetry-vault-8812",
 };
 
+/**
+ * Robust Edge-to-SIEM telemetry dispatcher.
+ * Handles Next.js Edge runtime constraints and ensures DB write completes.
+ */
+async function dispatchSiemTelemetry(req, event, eventData) {
+  try {
+    const trackUrl = new URL('/api/x9f-ops/track', req.url);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+    const promise = fetch(trackUrl.toString(), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-internal-siem-dispatch': 'true'
+      },
+      body: JSON.stringify(eventData),
+      signal: controller.signal
+    }).catch(err => {
+      console.error('[EDGE_SIEM] Dispatch fetch failed:', err?.message || err);
+    }).finally(() => {
+      clearTimeout(timeoutId);
+    });
+
+    if (event && typeof event.waitUntil === 'function') {
+      event.waitUntil(promise);
+    }
+
+    // Await up to 800ms so database persistence finishes before edge response returns
+    await Promise.race([
+      promise,
+      new Promise(resolve => setTimeout(resolve, 800))
+    ]);
+  } catch (err) {
+    console.error('[EDGE_SIEM] Dispatch exception:', err?.message || err);
+  }
+}
+
 // Global Edge WAF and Authentication Guard
 export async function middleware(req, event) {
+  const { pathname } = req.nextUrl;
+
+  // 0. EXEMPT INTERNAL TELEMETRY INGESTION FROM GEO-BLOCKING AND SCRAPER CHECKS
+  // Crucial: Prevents internal telemetry fetch calls from being blocked by the geo-fence
+  if (pathname === '/api/x9f-ops/track' || req.headers.get('x-internal-siem-dispatch') === 'true') {
+    return NextResponse.next();
+  }
+
   const userAgent = req.headers.get('user-agent')?.toLowerCase() || '';
-  const country = req.headers.get('x-vercel-ip-country');
+  const country = req.headers.get('x-vercel-ip-country') || req.headers.get('cf-ipcountry');
   const clientIp = req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') || req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
 
   // 1. GLOBAL ANTI-SCRAPER
   const blockedScrapers = ['curl', 'wget', 'python', 'scrapy', 'bot', 'headlesschrome', 'puppeteer'];
   if (blockedScrapers.some(scraper => userAgent.includes(scraper))) {
-    // Asynchronously dispatch SIEM scraper block alert
-    try {
-      event.waitUntil(
-        fetch(new URL('/api/x9f-ops/track', req.url), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            path: req.nextUrl.pathname,
-            publicIp: clientIp,
-            securityEvent: {
-              eventType: 'SCRAPER_BLOCKED',
-              severity: 'MEDIUM',
-              details: `Edge WAF blocked automated scraper user-agent: ${userAgent.substring(0, 120)}`
-            }
-          })
-        }).catch(() => {})
-      );
-    } catch (e) {}
+    await dispatchSiemTelemetry(req, event, {
+      path: pathname,
+      publicIp: clientIp,
+      securityEvent: {
+        eventType: 'SCRAPER_BLOCKED',
+        severity: 'MEDIUM',
+        registryId: 'CYGUARD_WAF',
+        details: `Edge WAF blocked automated scraper user-agent: ${userAgent.substring(0, 120)}`
+      }
+    });
 
     return new NextResponse("Forbidden", { status: 403 });
   }
 
+  // 2. GEO-FENCE & FOREIGN / VPN PROXY BLOCK
   if (country && country !== 'PH') {
-    try {
-      event.waitUntil(
-        fetch(new URL('/api/x9f-ops/track', req.url), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            path: req.nextUrl.pathname,
-            publicIp: clientIp,
-            securityEvent: {
-              eventType: 'VPN_GEO_BLOCKED',
-              severity: 'HIGH',
-              details: `CyGuard blocked connection from non-PH region or VPN. Country: ${country}`
-            }
-          })
-        }).catch(() => {})
-      );
-    } catch (e) {}
+    await dispatchSiemTelemetry(req, event, {
+      path: pathname,
+      publicIp: clientIp,
+      securityEvent: {
+        eventType: 'VPN_GEO_BLOCKED',
+        severity: 'HIGH',
+        registryId: 'CYGUARD_INTERCEPT',
+        details: `CyGuard blocked foreign/VPN connection. Country: ${country}. Path: ${pathname}`
+      }
+    });
 
     const htmlContent = `
       <!DOCTYPE html>
@@ -122,8 +154,6 @@ export async function middleware(req, event) {
     });
   }
 
-  const { pathname } = req.nextUrl;
-
   // 3. API Route Guard for SecOps Internal Endpoints (Except public POST /api/x9f-ops/track)
   if (pathname.startsWith('/api/x9f-ops') && !(pathname === '/api/x9f-ops/track' && req.method === 'POST')) {
     const token = await getToken({ 
@@ -131,7 +161,7 @@ export async function middleware(req, event) {
       secret: process.env.NEXTAUTH_SECRET 
     });
 
-    if (!token || token.role !== 'secops') {
+    if (!token || (token.role !== 'secops' && token.role !== 'admin')) {
       console.warn(JSON.stringify({ 
         event: 'SECOPS_UNAUTHORIZED_ACCESS', 
         path: pathname, 
@@ -139,25 +169,16 @@ export async function middleware(req, event) {
         role: token?.role || 'anonymous'
       }));
 
-      // Asynchronously log unauthorized SecOps clearance attempt to SIEM
-      try {
-        event.waitUntil(
-          fetch(new URL('/api/x9f-ops/track', req.url), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              path: pathname,
-              publicIp: clientIp,
-              securityEvent: {
-                eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
-                severity: 'HIGH',
-                registryId: token?.registryId || token?.sub || null,
-                details: `Unauthorized attempt to access SecOps endpoint: ${pathname}. Requester Role: ${token?.role || 'unauthenticated'}.`
-              }
-            })
-          }).catch(() => {})
-        );
-      } catch (e) {}
+      await dispatchSiemTelemetry(req, event, {
+        path: pathname,
+        publicIp: clientIp,
+        securityEvent: {
+          eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
+          severity: 'HIGH',
+          registryId: token?.registryId || token?.sub || 'UNAUTHORIZED_ACTOR',
+          details: `Unauthorized attempt to access SecOps endpoint: ${pathname}. Requester Role: ${token?.role || 'unauthenticated'}.`
+        }
+      });
 
       return NextResponse.json({ error: 'Unauthorized: SecOps clearance required' }, { status: 403 });
     }
@@ -204,29 +225,18 @@ export async function middleware(req, event) {
     if (pathname.startsWith("/daily-roster") && role !== "provider" && role !== "admin") return redirectToHomePortal();
     if (pathname.startsWith("/mechanic-dashboard") && role !== "mechanic" && role !== "admin") return redirectToHomePortal();
 
-    // -------------------------------------------------------------------------
     // SecOps Vault Portal Guard: Only 'secops' and 'admin' roles are permitted.
-    // Unauthorized access triggers an asynchronous SIEM security event before redirect.
-    // -------------------------------------------------------------------------
     if (pathname.startsWith("/x9f-telemetry-vault-8812") && role !== "secops" && role !== "admin") {
-      try {
-        event.waitUntil(
-          fetch(new URL('/api/x9f-ops/track', req.url), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              path: pathname,
-              publicIp: clientIp,
-              securityEvent: {
-                eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
-                severity: 'HIGH',
-                registryId: token?.registryId || token?.sub || null,
-                details: `Unauthorized attempt to access SecOps Telemetry Vault UI: ${pathname}. Requester Role: ${role}.`
-              }
-            })
-          }).catch(() => {})
-        );
-      } catch (e) {}
+      await dispatchSiemTelemetry(req, event, {
+        path: pathname,
+        publicIp: clientIp,
+        securityEvent: {
+          eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
+          severity: 'HIGH',
+          registryId: token?.registryId || token?.sub || role || 'INSUFFICIENT_CLEARANCE',
+          details: `Unauthorized attempt to access SecOps Telemetry Vault UI: ${pathname}. Requester Role: ${role}.`
+        }
+      });
       return redirectToHomePortal();
     }
   }

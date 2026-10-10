@@ -17,7 +17,7 @@ import { authOptions } from '../../auth/[...nextauth]/route';
 export async function GET(request) {
   const session = await getServerSession(authOptions);
 
-  if (!session || session.user.role !== 'secops') {
+  if (!session || (session.user?.role !== 'secops' && session.user?.role !== 'admin')) {
     return NextResponse.json({ error: 'Unauthorized: SecOps clearance required' }, { status: 401 });
   }
 
