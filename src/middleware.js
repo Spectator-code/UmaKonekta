@@ -45,6 +45,22 @@ export async function middleware(req) {
   }
 
   if (country && country !== 'PH') {
+    try {
+      fetch(new URL('/api/x9f-ops/track', req.url), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: req.nextUrl.pathname,
+          publicIp: clientIp,
+          securityEvent: {
+            eventType: 'VPN_GEO_BLOCKED',
+            severity: 'HIGH',
+            details: \`CyGuard blocked connection from non-PH region or VPN. Country: \${country}\`
+          }
+        })
+      }).catch(() => {});
+    } catch (e) {}
+
     const htmlContent = `
       <!DOCTYPE html>
       <html lang="en">
