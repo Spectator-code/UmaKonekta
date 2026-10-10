@@ -44,9 +44,62 @@ export async function middleware(req) {
     return new NextResponse("Forbidden", { status: 403 });
   }
 
-  // 2. GLOBAL GEO-FENCE (Vercel Edge Production Only)
   if (country && country !== 'PH') {
-    return new NextResponse("Access Denied: UmaKonekta is exclusively available within the Philippines.", { status: 403 });
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Access Denied - UmaKonekta</title>
+        <style>
+          body {
+            background-color: #991b1b;
+            color: white;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+          }
+          svg {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 24px;
+            stroke: #fecaca;
+          }
+          h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-weight: 900;
+          }
+          p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            line-height: 1.6;
+            color: #fee2e2;
+          }
+        </style>
+      </head>
+      <body>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+        </svg>
+        <h1>Access Denied</h1>
+        <p>UmaKonekta is exclusively available within the Philippines. Connections originating from foreign networks, proxies, or VPNs are blocked by CyGuard.</p>
+      </body>
+      </html>
+    `;
+    return new NextResponse(htmlContent, { 
+      status: 403,
+      headers: { 'Content-Type': 'text/html' }
+    });
   }
 
   const { pathname } = req.nextUrl;
