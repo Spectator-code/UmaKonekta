@@ -16,7 +16,7 @@ const rolePortalMap = {
 };
 
 // Global Edge WAF and Authentication Guard
-export async function middleware(req) {
+export async function middleware(req, event) {
   const userAgent = req.headers.get('user-agent')?.toLowerCase() || '';
   const country = req.headers.get('x-vercel-ip-country');
   const clientIp = req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') || req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
@@ -26,19 +26,21 @@ export async function middleware(req) {
   if (blockedScrapers.some(scraper => userAgent.includes(scraper))) {
     // Asynchronously dispatch SIEM scraper block alert
     try {
-      fetch(new URL('/api/x9f-ops/track', req.url), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          path: req.nextUrl.pathname,
-          publicIp: clientIp,
-          securityEvent: {
-            eventType: 'SCRAPER_BLOCKED',
-            severity: 'MEDIUM',
-            details: `Edge WAF blocked automated scraper user-agent: ${userAgent.substring(0, 120)}`
-          }
-        })
-      }).catch(() => {});
+      event.waitUntil(
+        fetch(new URL('/api/x9f-ops/track', req.url), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            path: req.nextUrl.pathname,
+            publicIp: clientIp,
+            securityEvent: {
+              eventType: 'SCRAPER_BLOCKED',
+              severity: 'MEDIUM',
+              details: `Edge WAF blocked automated scraper user-agent: ${userAgent.substring(0, 120)}`
+            }
+          })
+        }).catch(() => {})
+      );
     } catch (e) {}
 
     return new NextResponse("Forbidden", { status: 403 });
@@ -46,19 +48,21 @@ export async function middleware(req) {
 
   if (country && country !== 'PH') {
     try {
-      fetch(new URL('/api/x9f-ops/track', req.url), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          path: req.nextUrl.pathname,
-          publicIp: clientIp,
-          securityEvent: {
-            eventType: 'VPN_GEO_BLOCKED',
-            severity: 'HIGH',
-            details: `CyGuard blocked connection from non-PH region or VPN. Country: ${country}`
-          }
-        })
-      }).catch(() => {});
+      event.waitUntil(
+        fetch(new URL('/api/x9f-ops/track', req.url), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            path: req.nextUrl.pathname,
+            publicIp: clientIp,
+            securityEvent: {
+              eventType: 'VPN_GEO_BLOCKED',
+              severity: 'HIGH',
+              details: `CyGuard blocked connection from non-PH region or VPN. Country: ${country}`
+            }
+          })
+        }).catch(() => {})
+      );
     } catch (e) {}
 
     const htmlContent = `
@@ -137,20 +141,22 @@ export async function middleware(req) {
 
       // Asynchronously log unauthorized SecOps clearance attempt to SIEM
       try {
-        fetch(new URL('/api/x9f-ops/track', req.url), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            path: pathname,
-            publicIp: clientIp,
-            securityEvent: {
-              eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
-              severity: 'HIGH',
-              registryId: token?.registryId || token?.sub || null,
-              details: `Unauthorized attempt to access SecOps endpoint: ${pathname}. Requester Role: ${token?.role || 'unauthenticated'}.`
-            }
-          })
-        }).catch(() => {});
+        event.waitUntil(
+          fetch(new URL('/api/x9f-ops/track', req.url), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              path: pathname,
+              publicIp: clientIp,
+              securityEvent: {
+                eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
+                severity: 'HIGH',
+                registryId: token?.registryId || token?.sub || null,
+                details: `Unauthorized attempt to access SecOps endpoint: ${pathname}. Requester Role: ${token?.role || 'unauthenticated'}.`
+              }
+            })
+          }).catch(() => {})
+        );
       } catch (e) {}
 
       return NextResponse.json({ error: 'Unauthorized: SecOps clearance required' }, { status: 403 });
@@ -204,20 +210,22 @@ export async function middleware(req) {
     // -------------------------------------------------------------------------
     if (pathname.startsWith("/x9f-telemetry-vault-8812") && role !== "secops" && role !== "admin") {
       try {
-        fetch(new URL('/api/x9f-ops/track', req.url), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            path: pathname,
-            publicIp: clientIp,
-            securityEvent: {
-              eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
-              severity: 'HIGH',
-              registryId: token?.registryId || token?.sub || null,
-              details: `Unauthorized attempt to access SecOps Telemetry Vault UI: ${pathname}. Requester Role: ${role}.`
-            }
-          })
-        }).catch(() => {});
+        event.waitUntil(
+          fetch(new URL('/api/x9f-ops/track', req.url), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              path: pathname,
+              publicIp: clientIp,
+              securityEvent: {
+                eventType: 'SECOPS_UNAUTHORIZED_ACCESS',
+                severity: 'HIGH',
+                registryId: token?.registryId || token?.sub || null,
+                details: `Unauthorized attempt to access SecOps Telemetry Vault UI: ${pathname}. Requester Role: ${role}.`
+              }
+            })
+          }).catch(() => {})
+        );
       } catch (e) {}
       return redirectToHomePortal();
     }
